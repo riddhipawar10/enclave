@@ -24,3 +24,7 @@ spring:
 
 server:
   port: 8080
+
+jwt:
+  secret: enclave-development-secret-key-must-be-at-least-32-bytes-long
+  access-token-expiry-ms: 900000
