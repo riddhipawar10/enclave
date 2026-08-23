@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";*/
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/common/ProtectedRoute";
@@ -11,6 +11,12 @@ import Dashboard from "./pages/user/Dashboard";
 import Profile from "./pages/user/Profile";
 import NotFound from "./pages/NotFound";
 
+
+import OrganizationDashboard from "./pages/organization/OrganizationDashboard";
+import CreateOrganization from "./pages/organization/CreateOrganization";
+import OrganizationDetails from "./pages/organization/OrganizationDetails";
+import EditOrganization from "./pages/organization/EditOrganization";
+import ManageMembers from "./pages/organization/ManageMembers";
 /**
  * App
  *
@@ -54,11 +60,14 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
 
-            {/* Team extension point:
-                Madhura and Riddhi can nest Organization/RBAC routes
-                here once those modules are ready, e.g.:
-                <Route path="/organization" element={<OrgPage />} />
-                <Route path="/roles" element={<RolesPage />} /> */}
+                        {/* Organization Management routes (Madhura) */}
+            <Route path="/organizations" element={<OrganizationDashboard />} />
+            <Route path="/organizations/create" element={<CreateOrganization />} />
+            <Route path="/organizations/:id" element={<OrganizationDetails />} />
+            <Route path="/organizations/:id/edit" element={<EditOrganization />} />
+            <Route path="/organizations/:id/members" element={<ManageMembers />} />
+
+            {/* RBAC routes (Riddhi) - not yet added */}
           </Route>
 
           {/* Catch-all */}

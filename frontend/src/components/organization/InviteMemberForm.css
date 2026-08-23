@@ -1,0 +1,86 @@
+.invite-member-form {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.invite-member-form-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.invite-member-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.invite-member-input {
+  padding: 9px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  min-width: 260px;
+}
+
+.invite-member-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.invite-member-select {
+  padding: 9px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.invite-member-button {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.invite-member-button:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.invite-member-button:disabled {
+  background-color: #93b4f0;
+  cursor: not-allowed;
+}
+
+.invite-member-field-error {
+  color: #b42318;
+  font-size: 12px;
+  margin: 0;
+}
+
+.invite-member-form-error {
+  background-color: #fef3f2;
+  color: #b42318;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.invite-member-form-success {
+  background-color: #ecfdf3;
+  color: #027a48;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}

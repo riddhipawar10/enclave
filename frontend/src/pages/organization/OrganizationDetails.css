@@ -1,0 +1,92 @@
+.organization-details-page {
+  padding: 28px;
+  background-color: #f9fafb;
+  min-height: 100%;
+}
+
+.organization-details-back-button {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 18px;
+}
+
+.organization-details-back-button:hover {
+  text-decoration: underline;
+}
+
+.organization-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.organization-details-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 4px 0;
+}
+
+.organization-details-slug {
+  color: #6b7280;
+  font-size: 13px;
+  margin: 0 0 10px 0;
+}
+
+.organization-status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 11px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.organization-status.active {
+  background-color: #ecfdf3;
+  color: #027a48;
+}
+
+.organization-status.inactive {
+  background-color: #fef3f2;
+  color: #b42318;
+}
+
+.organization-details-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.organization-details-actions button {
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+}
+
+.organization-details-actions button:hover {
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.organization-details-page h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 12px;
+}

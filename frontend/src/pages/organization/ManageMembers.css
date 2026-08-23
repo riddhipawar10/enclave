@@ -1,0 +1,36 @@
+.manage-members-page {
+  padding: 28px;
+  background-color: #f9fafb;
+  min-height: 100%;
+}
+
+.manage-members-page h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 16px 0;
+}
+
+.manage-members-back-button {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 18px;
+}
+
+.manage-members-back-button:hover {
+  text-decoration: underline;
+}
+
+.manage-members-success {
+  background-color: #ecfdf3;
+  color: #027a48;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}

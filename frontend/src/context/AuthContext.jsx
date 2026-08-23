@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useContext,
   useState,
@@ -33,10 +33,11 @@ export function AuthProvider({ children }) {
     async function restoreSession() {
       try {
         const data = await authService.refreshAccessToken();
+
         if (data?.user) {
           setUser(data.user);
         }
-      } catch (err) {
+      } catch {
         // No valid session to restore — this is a normal case,
         // not necessarily an error the user needs to see.
         clearAccessToken();
@@ -50,17 +51,21 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     const data = await authService.login(email, password);
+
     if (data?.user) {
       setUser(data.user);
     }
+
     return data;
   };
 
   const register = async (name, email, password) => {
     const data = await authService.register(name, email, password);
+
     if (data?.user) {
       setUser(data.user);
     }
+
     return data;
   };
 
@@ -82,14 +87,20 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={value}>
+      {children}
+    </AuthContext.Provider>
   );
 }
 
+// AuthProvider and useAuth intentionally live in the same context module.
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   const context = useContext(AuthContext);
+
   if (context === undefined) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
+
   return context;
 }

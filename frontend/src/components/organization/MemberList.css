@@ -1,0 +1,85 @@
+.member-list {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.member-list th {
+  text-align: left;
+  padding: 12px 16px;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.member-list td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  color: #111827;
+}
+
+.member-list tr:last-child td {
+  border-bottom: none;
+}
+
+.member-role-badge {
+  background-color: #eef2ff;
+  color: #4338ca;
+  padding: 3px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.member-status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 11px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.member-status.active {
+  background-color: #ecfdf3;
+  color: #027a48;
+}
+
+.member-status.inactive {
+  background-color: #fef3f2;
+  color: #b42318;
+}
+
+.member-remove-button {
+  background-color: #fef3f2;
+  color: #b42318;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.member-remove-button:hover {
+  background-color: #fee4e2;
+}
+
+.member-list-status {
+  color: #9ca3af;
+  font-size: 14px;
+  text-align: center;
+  padding: 40px 24px;
+  background-color: #ffffff;
+  border: 1px dashed #e5e7eb;
+  border-radius: 12px;
+}
