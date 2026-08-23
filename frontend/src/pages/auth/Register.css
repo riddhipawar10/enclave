@@ -1,0 +1,56 @@
+/* Register.css */
+
+.register-page__auth-error {
+  margin: 4px 0 0 0;
+  padding: 10px 12px;
+  background-color: #fdecea;
+  border: 1px solid #f3c1bd;
+  border-radius: 8px;
+  color: #b3261e;
+  font-size: 13px;
+}
+
+.register-page__submit {
+  width: 100%;
+  margin-top: 8px;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #4a6cf7;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.register-page__submit:hover:not(:disabled) {
+  background-color: #3a5ce0;
+}
+
+.register-page__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.register-page__links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.register-page__link {
+  color: #4a6cf7;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-page__link:hover {
+  text-decoration: underline;
+}
+
+.register-page__login-text {
+  margin: 0;
+  color: #6b6b6b;
+}

@@ -1,0 +1,11 @@
+/* ProtectedRoute.css */
+
+.protected-route__loading {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #6b6b6b;
+  background-color: #f5f6fa;
+}

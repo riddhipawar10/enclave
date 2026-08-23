@@ -1,0 +1,57 @@
+/* AuthLayout.css
+   Styling for the reusable authentication page layout.
+   Keep this file focused on layout/presentation only. */
+
+.auth-layout {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: #f5f6fa;
+  box-sizing: border-box;
+}
+
+.auth-layout__card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 32px 28px;
+  box-sizing: border-box;
+}
+
+.auth-layout__title {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.auth-layout__subtitle {
+  margin: 0 0 24px 0;
+  font-size: 14px;
+  color: #6b6b6b;
+  text-align: center;
+}
+
+.auth-layout__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+  .auth-layout__card {
+    padding: 24px 20px;
+    border-radius: 8px;
+  }
+
+  .auth-layout__title {
+    font-size: 20px;
+  }
+}
