@@ -1,7 +1,7 @@
 /**
  * apiEndpoints.js
  *
- * PLACEHOLDER CONFIGURATION — NOT CONFIRMED WITH BACKEND.
+ * PLACEHOLDER CONFIGURATION — NOT CONFIRMED WITH BACKEND (for AUTH_ENDPOINTS only).
  *
  * These paths are NOT guaranteed to match the real Spring Boot
  * controllers. They are named based on common convention only.
@@ -39,5 +39,29 @@ const ORGANIZATION_ENDPOINTS = {
     `/api/organizations/${organizationId}/members/${userId}/role`, // confirmed: PATCH
 };
 
-export { AUTH_ENDPOINTS, ORGANIZATION_ENDPOINTS };
+/**
+ * ROLE_ENDPOINTS / PERMISSION_ENDPOINTS
+ *
+ * Confirmed against com.enclave.rbac.controller.RoleController and
+ * PermissionController. All paths below match the actual
+ * @RequestMapping/@GetMapping/etc. annotations - not guessed.
+ *
+ * Exception: ROLE_PERMISSIONS is marked TODO - no such endpoint exists
+ * yet in RoleController. The backend has the query logic
+ * (RolePermissionRepository) but no controller endpoint exposing it.
+ * Flag with backend before using this.
+ */
+const ROLE_ENDPOINTS = {
+  LIST_ALL: "/api/roles", // confirmed: GET
+  CREATE: "/api/roles", // confirmed: POST
+  BY_ID: (roleId) => `/api/roles/${roleId}`, // confirmed: GET, PUT, DELETE
+  ROLE_PERMISSIONS: (roleId) => `/api/roles/${roleId}/permissions`, // TODO: NOT confirmed - no such endpoint exists yet
+};
+
+const PERMISSION_ENDPOINTS = {
+  LIST_ALL: "/api/permissions", // confirmed: GET
+  BY_ID: (permissionId) => `/api/permissions/${permissionId}`, // confirmed: GET
+};
+
+export { AUTH_ENDPOINTS, ORGANIZATION_ENDPOINTS, ROLE_ENDPOINTS, PERMISSION_ENDPOINTS };
 export default AUTH_ENDPOINTS;

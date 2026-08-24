@@ -1,0 +1,151 @@
+.permissions-page {
+  padding: 28px;
+  background-color: #f9fafb;
+  min-height: 100%;
+}
+
+.permissions-back-button {
+  background: none;
+  border: none;
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 18px;
+}
+
+.permissions-back-button:hover {
+  text-decoration: underline;
+}
+
+.permissions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.permissions-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 4px 0;
+}
+
+.permissions-role-name {
+  color: #6b7280;
+  font-size: 13px;
+  margin: 0;
+}
+
+.permissions-save-button {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.permissions-save-button:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.permissions-save-button:disabled {
+  background-color: #93b4f0;
+  cursor: not-allowed;
+}
+
+.permissions-readonly-notice {
+  background-color: #fef3c7;
+  color: #92400e;
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.permissions-save-success {
+  background-color: #dcfce7;
+  color: #166534;
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.permissions-empty-state {
+  color: #9ca3af;
+  font-size: 14px;
+  text-align: center;
+  padding: 48px 24px;
+  background-color: #ffffff;
+  border: 1px dashed #e5e7eb;
+  border-radius: 12px;
+}
+
+.permissions-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.permissions-group {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.permissions-group h3 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 0 0 14px 0;
+}
+
+.permissions-group-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+
+.permissions-checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.permissions-checkbox-item:hover {
+  background-color: #f9fafb;
+}
+
+.permissions-checkbox-item input[type="checkbox"] {
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.permissions-checkbox-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+
+.permissions-checkbox-label strong {
+  color: #111827;
+  font-weight: 600;
+}
+
+.permissions-checkbox-description {
+  color: #9ca3af;
+  font-size: 12px;
+  margin-top: 2px;
+}

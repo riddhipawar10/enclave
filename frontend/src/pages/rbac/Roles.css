@@ -1,0 +1,130 @@
+.roles-page {
+  padding: 28px;
+  background-color: #f9fafb;
+  min-height: 100%;
+}
+
+.roles-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.roles-page-header h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.roles-page-create-button {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.roles-page-create-button:hover {
+  background-color: #1d4ed8;
+}
+
+.roles-page-status {
+  color: #9ca3af;
+  font-size: 14px;
+  text-align: center;
+  padding: 48px 24px;
+  background-color: #ffffff;
+  border: 1px dashed #e5e7eb;
+  border-radius: 12px;
+}
+
+.roles-table-wrapper {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+
+.roles-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.roles-table thead {
+  background-color: #f9fafb;
+}
+
+.roles-table th,
+.roles-table td {
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.roles-table th {
+  font-weight: 600;
+  color: #374151;
+}
+
+.roles-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.roles-table-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+.roles-table-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.roles-action-button {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.roles-action-view {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.roles-action-view:hover {
+  background-color: #e5e7eb;
+}
+
+.roles-action-edit {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.roles-action-edit:hover {
+  background-color: #bfdbfe;
+}
+
+.roles-action-delete {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+.roles-action-delete:hover {
+  background-color: #fecaca;
+}
+
+.roles-action-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
