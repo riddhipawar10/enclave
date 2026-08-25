@@ -1,0 +1,55 @@
+/* InputField.css
+   Styling for the reusable form input component. */
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.input-field__label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333333;
+}
+
+.input-field__required {
+  color: #d64545;
+}
+
+.input-field__input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #d0d3d9;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-field__input:focus {
+  border-color: #4a6cf7;
+  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.15);
+}
+
+.input-field__input:disabled {
+  background-color: #f2f3f5;
+  color: #9a9a9a;
+  cursor: not-allowed;
+}
+
+.input-field__input--error {
+  border-color: #d64545;
+}
+
+.input-field__input--error:focus {
+  box-shadow: 0 0 0 3px rgba(214, 69, 69, 0.15);
+}
+
+.input-field__error {
+  margin: 0;
+  font-size: 13px;
+  color: #d64545;
+}

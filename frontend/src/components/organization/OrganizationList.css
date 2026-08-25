@@ -1,0 +1,15 @@
+.organization-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.organization-list-status {
+  color: #9ca3af;
+  font-size: 14px;
+  text-align: center;
+  padding: 48px 24px;
+  background-color: #ffffff;
+  border: 1px dashed #e5e7eb;
+  border-radius: 12px;
+}
