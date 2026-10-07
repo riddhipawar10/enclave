@@ -1,0 +1,276 @@
+.add-member-page {
+  min-height: 100%;
+  padding: 32px;
+  background: #f8fafc;
+}
+
+.add-member-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.back-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-bottom: 24px;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  color: #2563eb;
+}
+
+.add-member-header {
+  margin-bottom: 28px;
+}
+
+.add-member-header h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  color: #0f172a;
+}
+
+.add-member-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.add-member-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+}
+
+.form-section {
+  margin-bottom: 28px;
+}
+
+.form-section h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+  color: #0f172a;
+}
+
+.section-description {
+  margin: 0 0 20px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  box-sizing: border-box;
+  height: 44px;
+  padding: 0 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.email-search-row {
+  display: flex;
+  gap: 12px;
+}
+
+.email-search-row input {
+  flex: 1;
+}
+
+.find-member-button,
+.confirm-add-member-button {
+  border: none;
+  border-radius: 8px;
+  padding: 0 20px;
+  height: 44px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.find-member-button {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.find-member-button:hover {
+  background: #1d4ed8;
+}
+
+.find-member-button:disabled,
+.confirm-add-member-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.candidate-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  margin: 24px 0;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  background: #eff6ff;
+}
+
+.candidate-avatar {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.candidate-info {
+  flex: 1;
+}
+
+.candidate-info h3 {
+  margin: 0 0 4px;
+  color: #0f172a;
+  font-size: 15px;
+}
+
+.candidate-info p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.candidate-found {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.role-section {
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.add-member-message {
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.error-message {
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.success-message {
+  border: 1px solid #bbf7d0;
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.add-member-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.cancel-button {
+  height: 44px;
+  padding: 0 20px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background: #f8fafc;
+}
+
+.confirm-add-member-button {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+.confirm-add-member-button:hover:not(:disabled) {
+  background: #15803d;
+}
+
+@media (max-width: 700px) {
+  .add-member-page {
+    padding: 20px;
+  }
+
+  .add-member-card {
+    padding: 20px;
+  }
+
+  .email-search-row {
+    flex-direction: column;
+  }
+
+  .find-member-button {
+    width: 100%;
+  }
+
+  .candidate-card {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .candidate-found {
+    margin-left: 58px;
+  }
+
+  .add-member-actions {
+    flex-direction: column-reverse;
+  }
+
+  .cancel-button,
+  .confirm-add-member-button {
+    width: 100%;
+  }
+}

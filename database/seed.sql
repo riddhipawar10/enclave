@@ -67,32 +67,26 @@ ON CONFLICT DO NOTHING;
 INSERT INTO role_permissions (role_id, permission_id)
 SELECT r.id, p.id
 FROM roles r
-JOIN permissions p ON p.name IN (
-    'UPDATE_ORGANIZATION',
-    'VIEW_ORGANIZATION',
-    'MANAGE_MEMBERS',
-    'VIEW_MEMBERS',
-
-    'CREATE_PROJECT',
-    'UPDATE_PROJECT',
-    'DELETE_PROJECT',
-    'VIEW_PROJECT',
-
-    'CREATE_TASK',
-    'UPDATE_TASK',
-    'DELETE_TASK',
-    'ASSIGN_TASK',
-    'VIEW_TASK',
-
-    'CREATE_COMMENT',
-    'UPDATE_COMMENT',
-    'DELETE_COMMENT',
-
-    'VIEW_ANALYTICS'
-)
+JOIN permissions p
+    ON p.name IN (
+        'VIEW_ORGANIZATION',
+        'VIEW_MEMBERS',
+        'CREATE_PROJECT',
+        'UPDATE_PROJECT',
+        'DELETE_PROJECT',
+        'VIEW_PROJECT',
+        'CREATE_TASK',
+        'UPDATE_TASK',
+        'DELETE_TASK',
+        'ASSIGN_TASK',
+        'VIEW_TASK',
+        'CREATE_COMMENT',
+        'UPDATE_COMMENT',
+        'DELETE_COMMENT',
+        'VIEW_ANALYTICS'
+    )
 WHERE r.name = 'MANAGER'
 ON CONFLICT DO NOTHING;
-
 
 -- =====================================================
 -- 5. TEAM MEMBER → 9 PERMISSIONS

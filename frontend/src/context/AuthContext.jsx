@@ -4,23 +4,26 @@ import {
   useState,
   useEffect,
 } from "react";
+
 import * as authService from "../services/authService";
-import { clearAccessToken } from "../utils/tokenStorage";
+
+import {
+  getRefreshToken,
+  clearTokens,
+} from "../utils/tokenStorage";
 
 /**
  * AuthContext
  *
  * Central place for authentication state used across the app:
- * current user, authentication status, and loading state — plus
- * login/register/logout actions. No component should call
- * authService or axios directly except through this context.
+ * current user, authentication status, loading state, and
+ * login/register/logout actions.
  *
- * On mount, this tries to silently restore a session by calling
- * refreshAccessToken() (since the access token lives only in
- * memory and is lost on page refresh). If that fails (no valid
- * refresh token/cookie), the user is simply treated as logged out
- * — this is expected behavior for first-time visitors, not an error.
+ * The access token is kept in memory, so it is lost when the
+ * page is refreshed. The refresh token is persisted and is used
+ * to restore the session when the application starts.
  */
+
 const AuthContext = createContext(undefined);
 
 export function AuthProvider({ children }) {
@@ -29,18 +32,31 @@ export function AuthProvider({ children }) {
 
   const isAuthenticated = Boolean(user);
 
+  // ---------------------------------------------------------
+  // Restore session on application startup
+  // ---------------------------------------------------------
+
   useEffect(() => {
     async function restoreSession() {
+      const refreshToken = getRefreshToken();
+
+      // No refresh token means there is no session to restore.
+      if (!refreshToken) {
+        setIsLoading(false);
+        return;
+      }
+
       try {
-        const data = await authService.refreshAccessToken();
+        const data =
+          await authService.refreshAccessToken(refreshToken);
 
         if (data?.user) {
           setUser(data.user);
         }
       } catch {
-        // No valid session to restore — this is a normal case,
-        // not necessarily an error the user needs to see.
-        clearAccessToken();
+        // Refresh token is invalid, expired, or revoked.
+        clearTokens();
+        setUser(null);
       } finally {
         setIsLoading(false);
       }
@@ -49,8 +65,13 @@ export function AuthProvider({ children }) {
     restoreSession();
   }, []);
 
+  // ---------------------------------------------------------
+  // Login
+  // ---------------------------------------------------------
+
   const login = async (email, password) => {
-    const data = await authService.login(email, password);
+    const data =
+      await authService.login(email, password);
 
     if (data?.user) {
       setUser(data.user);
@@ -58,24 +79,53 @@ export function AuthProvider({ children }) {
 
     return data;
   };
+
+  // ---------------------------------------------------------
+  // Register
+  // ---------------------------------------------------------
 
   const register = async (name, email, password) => {
-    const data = await authService.register(name, email, password);
+    const data =
+      await authService.register(
+        name,
+        email,
+        password
+      );
 
-    if (data?.user) {
-      setUser(data.user);
-    }
+    /*
+     * IMPORTANT:
+     *
+     * Registration does NOT authenticate the user.
+     *
+     * Do not call setUser() here.
+     *
+     * The user must go to the login page and
+     * authenticate using their email and password.
+     */
 
     return data;
   };
 
+  // ---------------------------------------------------------
+  // Logout
+  // ---------------------------------------------------------
+
   const logout = async () => {
+    const refreshToken = getRefreshToken();
+
     try {
-      await authService.logout();
+      if (refreshToken) {
+        await authService.logout(refreshToken);
+      }
     } finally {
+      clearTokens();
       setUser(null);
     }
   };
+
+  // ---------------------------------------------------------
+  // Context value
+  // ---------------------------------------------------------
 
   const value = {
     user,
@@ -99,7 +149,9 @@ export function useAuth() {
   const context = useContext(AuthContext);
 
   if (context === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error(
+      "useAuth must be used within an AuthProvider"
+    );
   }
 
   return context;

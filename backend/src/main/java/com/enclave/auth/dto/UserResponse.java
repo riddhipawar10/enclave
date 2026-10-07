@@ -24,7 +24,12 @@ public class UserResponse {
 
     private String email;
 
-    private boolean isActive;
+    @Builder.Default
+    private boolean isActive = true;
 
     private LocalDateTime createdAt;
+
+    public boolean getIsActive() {
+        return isActive;
+    }
 }

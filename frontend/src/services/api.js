@@ -1,11 +1,24 @@
 // src/services/api.js
 //
-// Single axios instance for the whole app. Every feature module
-// (auth, and later organization/RBAC) should import `api` from here
-// instead of creating its own axios instance or calling axios directly.
+// Single axios instance for the whole app.
+//
+// Responsibilities:
+// 1. Attach the access token to requests.
+// 2. Detect expired access tokens (401).
+// 3. Use the stored refresh token to get a new access token.
+// 4. Retry the failed request once.
+// 5. Clear tokens if refresh fails.
 
 import axios from "axios";
-import { getAccessToken } from "../utils/tokenStorage";
+
+import {
+  getAccessToken,
+  getRefreshToken,
+  setAccessToken,
+  clearTokens,
+} from "../utils/tokenStorage";
+
+import AUTH_ENDPOINTS from "../config/apiEndpoints";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -14,48 +27,107 @@ const api = axios.create({
   },
 });
 
-// ---- Request interceptor: attach the access token, if we have one ----
-// Token reading lives in one helper (getAccessToken) instead of being
-// duplicated here, so there's only one place that knows where/how
-// tokens are stored.
+// ---------------------------------------------------------
+// Request interceptor
+// ---------------------------------------------------------
+
 api.interceptors.request.use(
   (config) => {
     const token = getAccessToken();
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     return config;
   },
   (error) => Promise.reject(error)
 );
 
-// ---- Response interceptor: structure for handling a 401 ----
-// A 401 usually means the access token expired. The actual refresh
-// call (POST to whatever the backend's real refresh endpoint is) does
-// NOT belong in this file — it belongs in authService.js, next to the
-// rest of the auth API calls. This interceptor is just the hook point.
+// ---------------------------------------------------------
+// Response interceptor
+// ---------------------------------------------------------
+
 api.interceptors.response.use(
   (response) => response,
+
   async (error) => {
     const originalRequest = error.config;
 
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-
-      // TODO (connect to authService.js):
-      // 1. Import the refresh function from authService.js here
-      //    (avoid importing it at the top of this file to prevent a
-      //    circular import, since authService.js will likely import
-      //    `api` from this file too).
-      // 2. Call it to get a new access token, store it via the same
-      //    token helper used above.
-      // 3. Update originalRequest's Authorization header with the
-      //    new token and return api(originalRequest) to retry once.
-      // 4. If the refresh call itself fails, clear stored tokens and
-      //    let the error propagate so the app can redirect to /login.
+    // No response means this may be a network/CORS/server error.
+    if (!error.response) {
+      return Promise.reject(error);
     }
 
-    return Promise.reject(error);
+    // Only handle 401 responses.
+    if (
+      error.response.status !== 401 ||
+      !originalRequest ||
+      originalRequest._retry
+    ) {
+      return Promise.reject(error);
+    }
+
+    originalRequest._retry = true;
+
+    const refreshToken = getRefreshToken();
+
+    // No refresh token available.
+    if (!refreshToken) {
+      clearTokens();
+      return Promise.reject(error);
+    }
+
+    try {
+      // IMPORTANT:
+      // Use axios directly here instead of `api`.
+      //
+      // Otherwise this refresh request would also go through
+      // the same interceptor and could cause a refresh loop.
+      const refreshResponse = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}${AUTH_ENDPOINTS.REFRESH}`,
+        {
+          refreshToken,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = refreshResponse.data;
+
+      if (!data?.accessToken) {
+        throw new Error("Refresh response did not contain an access token");
+      }
+
+      // Store the new access token.
+      setAccessToken(data.accessToken);
+
+      // Backend may rotate the refresh token.
+      // If a new one is returned, store it too.
+      if (data.refreshToken) {
+        localStorage.setItem(
+          "enclave_refresh_token",
+          data.refreshToken
+        );
+      }
+
+      // Update the failed request with the new access token.
+      originalRequest.headers.Authorization =
+        `Bearer ${data.accessToken}`;
+
+      // Retry the original request once.
+      return api(originalRequest);
+
+    } catch (refreshError) {
+
+      // Refresh token is invalid/expired/revoked.
+      clearTokens();
+
+      return Promise.reject(refreshError);
+    }
   }
 );
 

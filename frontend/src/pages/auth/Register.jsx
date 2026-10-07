@@ -1,31 +1,15 @@
-import  { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import AuthLayout from "../../components/auth/AuthLayout";
 import InputField from "../../components/auth/InputField";
 import PasswordField from "../../components/auth/PasswordField";
 import { useAuth } from "../../context/AuthContext";
 
-/**
- * Register Page
- *
- * Handles new user registration using AuthContext's `register` function.
- * This page does NOT call axios or any API directly — all network
- * logic lives inside AuthContext / the auth service layer.
- *
- * IMPORTANT:
- * - Passwords and tokens are never logged or displayed here.
- * - Only form-level state (fields, errors, loading) is kept locally.
- *
- * NOTE ON NAVIGATION:
- * The backend response shape after registration isn't finalized yet.
- * This page checks whether `register()` returns an authenticated
- * session (e.g. a user/accessToken) and navigates to /dashboard if so,
- * otherwise falls back to /login. Adjust this once AuthContext's
- * exact return shape is confirmed.
- */
 function Register() {
   const { register } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -38,18 +22,81 @@ function Register() {
   const [authError, setAuthError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  /*
+   * Determine which portal the user entered.
+   *
+   * This identifies the selected portal only.
+   * It does NOT assign a backend role.
+   */
+  const getPortal = () => {
+    const path = location.pathname;
+
+    if (path === "/admin/register") {
+      return "admin";
+    }
+
+    if (path === "/manager/register") {
+      return "manager";
+    }
+
+    if (path === "/team-member/register") {
+      return "team-member";
+    }
+
+    return "default";
+  };
+
+  const portal = getPortal();
+
+  const portalDetails = {
+    admin: {
+      title: "Create Admin Account",
+      subtitle: "Register for the Enclave Admin workspace",
+      loginPath: "/admin/login",
+    },
+
+    manager: {
+      title: "Create Manager Account",
+      subtitle: "Register for the Enclave Manager workspace",
+      loginPath: "/manager/login",
+    },
+
+    "team-member": {
+      title: "Create Team Member Account",
+      subtitle: "Register for your Enclave workspace",
+      loginPath: "/team-member/login",
+    },
+
+    default: {
+      title: "Create your account",
+      subtitle: "Join Enclave to get started",
+      loginPath: "/login",
+    },
+  };
+
+  const currentPortal = portalDetails[portal];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
 
     if (fieldErrors[name]) {
-      setFieldErrors((prev) => ({ ...prev, [name]: "" }));
+      setFieldErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
+
+    if (authError) {
+      setAuthError("");
     }
   };
 
   const isValidEmail = (email) => {
-    // Simple, readable email pattern — good enough for frontend validation.
-    // Final validation always happens on the backend too.
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
@@ -63,55 +110,66 @@ function Register() {
     if (!formData.email.trim()) {
       errors.email = "Email is required.";
     } else if (!isValidEmail(formData.email)) {
-      errors.email = "Please enter a valid email address.";
+      errors.email =
+        "Please enter a valid email address.";
     }
 
     if (!formData.password) {
       errors.password = "Password is required.";
     } else if (formData.password.length < 8) {
-      errors.password = "Password must be at least 8 characters.";
+      errors.password =
+        "Password must be at least 8 characters.";
     }
 
     if (!formData.confirmPassword) {
-      errors.confirmPassword = "Please confirm your password.";
-    } else if (formData.confirmPassword !== formData.password) {
-      errors.confirmPassword = "Passwords do not match.";
+      errors.confirmPassword =
+        "Please confirm your password.";
+    } else if (
+      formData.confirmPassword !== formData.password
+    ) {
+      errors.confirmPassword =
+        "Passwords do not match.";
     }
 
     setFieldErrors(errors);
+
     return Object.keys(errors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (isSubmitting) return;
+    if (isSubmitting) {
+      return;
+    }
 
     setAuthError("");
 
-    if (!validate()) return;
+    if (!validate()) {
+      return;
+    }
 
     setIsSubmitting(true);
 
     try {
-      const response = await register(
+      await register(
         formData.name,
         formData.email,
         formData.password
       );
 
-      // If registration also returns an authenticated session
-      // (user info / access token), treat the user as logged in.
-      // Otherwise, send them to Login to sign in manually.
-      const isAuthenticated = Boolean(
-        response && (response.accessToken || response.user)
-      );
-
-      navigate(isAuthenticated ? "/dashboard" : "/login");
+      /*
+       * Registration should NOT automatically take the user
+       * into the dashboard.
+       *
+       * Send them back to the login page for the portal
+       * they selected.
+       */
+      navigate(currentPortal.loginPath);
     } catch (err) {
-      // Handle duplicate email and other backend validation errors cleanly.
       setAuthError(
-        err?.message || "Unable to register. Please try again."
+        err?.message ||
+          "Unable to register. Please try again."
       );
     } finally {
       setIsSubmitting(false);
@@ -120,10 +178,11 @@ function Register() {
 
   return (
     <AuthLayout
-      title="Create your account"
-      subtitle="Join Enclave to get started"
+      title={currentPortal.title}
+      subtitle={currentPortal.subtitle}
     >
       <form onSubmit={handleSubmit} noValidate>
+
         <InputField
           label="Full Name"
           name="name"
@@ -171,7 +230,10 @@ function Register() {
         />
 
         {authError && (
-          <p className="register-page__auth-error" role="alert">
+          <p
+            className="register-page__auth-error"
+            role="alert"
+          >
             {authError}
           </p>
         )}
@@ -181,14 +243,21 @@ function Register() {
           className="register-page__submit"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Creating account..." : "Create account"}
+          {isSubmitting
+            ? "Creating account..."
+            : "Create account"}
         </button>
+
       </form>
 
       <div className="register-page__links">
         <p className="register-page__login-text">
           Already have an account?{" "}
-          <Link to="/login" className="register-page__link">
+
+          <Link
+            to={currentPortal.loginPath}
+            className="register-page__link"
+          >
             Log in
           </Link>
         </p>

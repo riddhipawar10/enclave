@@ -1,0 +1,412 @@
+.settings-page {
+  min-height: 100%;
+  padding: 32px;
+  box-sizing: border-box;
+  background: #f8fafc;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.settings-page__header {
+  max-width: 900px;
+  margin-bottom: 28px;
+}
+
+.settings-page__header h1 {
+  margin: 0;
+  color: #111827;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.settings-page__header p {
+  margin: 8px 0 0;
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.settings-page__content {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.settings-card {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  box-shadow:
+    0 2px 6px rgba(15, 23, 42, 0.03),
+    0 8px 20px rgba(15, 23, 42, 0.03);
+}
+
+.settings-card + .settings-card {
+  margin-top: 20px;
+}
+
+.settings-card__header {
+  padding: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.settings-card__header h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.settings-card__header p {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.settings-form {
+  padding: 24px;
+}
+
+.settings-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.settings-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.settings-form__field label {
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.settings-form__field input {
+  width: 100%;
+  min-height: 42px;
+  box-sizing: border-box;
+
+  padding: 10px 13px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #111827;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.settings-form__field input::placeholder {
+  color: #9ca3af;
+}
+
+.settings-form__field input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.settings-form__field input:disabled {
+  background: #f3f4f6;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.settings-form__hint {
+  margin-top: -2px;
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* =========================================================
+   FORM BUTTONS
+========================================================= */
+
+.settings-form__actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.settings-form__actions button {
+  min-width: 120px;
+
+  border: none;
+  border-radius: 8px;
+
+  padding: 10px 18px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.settings-form__actions button:hover:not(:disabled) {
+  background: #1d4ed8;
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.2);
+  transform: translateY(-1px);
+}
+
+.settings-form__actions button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.settings-form__actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.settings-form__actions button:focus-visible {
+  outline: 2px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+.settings-message {
+  margin-bottom: 20px;
+  padding: 11px 13px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.settings-message--error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+.settings-message--success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+}
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.settings-page__state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 300px;
+
+  color: #6b7280;
+}
+
+.settings-page__state p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* =========================================================
+   ACCOUNT
+========================================================= */
+
+.settings-account {
+  padding: 24px;
+}
+
+.settings-account__item {
+  padding: 16px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.settings-account__item:first-child {
+  padding-top: 0;
+}
+
+.settings-account__label {
+  display: block;
+  margin-bottom: 7px;
+
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.settings-account__value {
+  display: block;
+  color: #111827;
+  font-size: 15px;
+}
+
+.settings-account__status {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 4px 10px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.settings-account__status--active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.settings-account__status--inactive {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+.settings-account__logout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding-top: 24px;
+}
+
+.settings-account__logout h3 {
+  margin: 0;
+
+  color: #111827;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.settings-account__logout p {
+  margin: 5px 0 0;
+
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.settings-account__logout-button {
+  flex-shrink: 0;
+
+  border: 1px solid #dc2626;
+  border-radius: 8px;
+
+  padding: 10px 18px;
+
+  background: #ffffff;
+  color: #dc2626;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.settings-account__logout-button:hover:not(:disabled) {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+.settings-account__logout-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.settings-account__logout-button:focus-visible {
+  outline: 2px solid #fca5a5;
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+  .settings-page {
+    padding: 20px;
+  }
+
+  .settings-page__header h1 {
+    font-size: 26px;
+  }
+
+  .settings-form__row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .settings-card__header,
+  .settings-form,
+  .settings-account {
+    padding: 20px;
+  }
+
+  .settings-form__actions {
+    justify-content: stretch;
+  }
+
+  .settings-form__actions button {
+    width: 100%;
+  }
+
+  .settings-account__logout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .settings-account__logout-button {
+    width: 100%;
+  }
+}

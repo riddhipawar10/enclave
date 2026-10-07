@@ -1,7 +1,7 @@
 package com.enclave.organization.entity;
 
 import com.enclave.role.entity.Role;
-import com.enclave.user.entity.User;
+import com.enclave.auth.entity.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

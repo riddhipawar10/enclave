@@ -1,6 +1,6 @@
 package com.enclave.rbac.service;
 
-import com.enclave.rbac.entity.Role;
+import com.enclave.role.entity.Role;
 import com.enclave.rbac.exception.ResourceNotFoundException;
 import com.enclave.rbac.repository.RoleRepository;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,8 @@ public class RoleService {
 
     public Role getRoleById(UUID id) {
         return roleRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found with id: " + id));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Role not found with id: " + id));
     }
 
     public Role createRole(String name, String description) {
@@ -33,9 +34,12 @@ public class RoleService {
 
     public Role updateRole(UUID id, String name, String description) {
         Role role = roleRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found with id: " + id));
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("Role not found with id: " + id));
+
         role.setName(name);
         role.setDescription(description);
+
         return roleRepository.save(role);
     }
 
@@ -43,6 +47,7 @@ public class RoleService {
         if (!roleRepository.existsById(id)) {
             throw new ResourceNotFoundException("Role not found with id: " + id);
         }
+
         roleRepository.deleteById(id);
     }
 }

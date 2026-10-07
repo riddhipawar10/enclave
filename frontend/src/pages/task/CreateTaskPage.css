@@ -1,0 +1,59 @@
+.create-task-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.create-task-back-button {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-bottom: 24px;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.create-task-back-button:hover {
+  color: #1d4ed8;
+}
+
+.create-task-page-header {
+  margin-bottom: 28px;
+}
+
+.create-task-page-header h1 {
+  margin: 0;
+  color: #1f2937;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.create-task-page-header p {
+  margin: 8px 0 0;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+.create-task-page-header strong {
+  color: #374151;
+}
+
+.create-task-page-error {
+  padding: 16px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+@media (max-width: 700px) {
+  .create-task-page {
+    padding: 20px;
+  }
+
+  .create-task-page-header h1 {
+    font-size: 26px;
+  }
+}

@@ -1,45 +1,101 @@
-import  { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import AuthLayout from "../../components/auth/AuthLayout";
 import InputField from "../../components/auth/InputField";
 import PasswordField from "../../components/auth/PasswordField";
 import { useAuth } from "../../context/AuthContext";
 
-/**
- * Login Page
- *
- * Handles user login using the AuthContext's `login` function.
- * This page does NOT call axios or any API directly — all
- * network logic lives inside AuthContext / the auth service layer.
- *
- * IMPORTANT:
- * - Access tokens and refresh tokens are never displayed or logged here.
- * - Only form-level state (email, password, errors, loading) is kept locally.
- */
 function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  // Field-level validation errors (e.g. "Email is required")
   const [fieldErrors, setFieldErrors] = useState({});
-
-  // Error returned from the backend (e.g. "Invalid email or password")
   const [authError, setAuthError] = useState("");
-
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  /*
+   * Determine which portal the user entered.
+   *
+   * Examples:
+   * /admin/login        -> admin
+   * /manager/login      -> manager
+   * /team-member/login  -> team-member
+   *
+   * The URL is only the selected portal.
+   * It does NOT grant the user that role.
+   */
+  const getPortal = () => {
+    const path = location.pathname;
+
+    if (path === "/admin/login") {
+      return "admin";
+    }
+
+    if (path === "/manager/login") {
+      return "manager";
+    }
+
+    if (path === "/team-member/login") {
+      return "team-member";
+    }
+
+    return "default";
+  };
+
+  const portal = getPortal();
+
+  const portalDetails = {
+    admin: {
+      title: "Admin Login",
+      subtitle: "Sign in to the Enclave Admin workspace",
+      registerPath: "/admin/register",
+    },
+
+    manager: {
+      title: "Manager Login",
+      subtitle: "Sign in to the Enclave Manager workspace",
+      registerPath: "/manager/register",
+    },
+
+    "team-member": {
+      title: "Team Member Login",
+      subtitle: "Sign in to your Enclave workspace",
+      registerPath: "/team-member/register",
+    },
+
+    default: {
+      title: "Welcome back",
+      subtitle: "Log in to your Enclave account",
+      registerPath: "/register",
+    },
+  };
+
+  const currentPortal = portalDetails[portal];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Clear the field error as soon as the user starts fixing it
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
     if (fieldErrors[name]) {
-      setFieldErrors((prev) => ({ ...prev, [name]: "" }));
+      setFieldErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
+
+    if (authError) {
+      setAuthError("");
     }
   };
 
@@ -55,28 +111,53 @@ function Login() {
     }
 
     setFieldErrors(errors);
+
     return Object.keys(errors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Prevent multiple submissions while a request is in flight
-    if (isSubmitting) return;
+    if (isSubmitting) {
+      return;
+    }
 
     setAuthError("");
 
-    if (!validate()) return;
+    if (!validate()) {
+      return;
+    }
 
     setIsSubmitting(true);
 
     try {
-      await login(formData.email, formData.password);
-      navigate("/dashboard");
+      const response = await login(
+        formData.email,
+        formData.password
+      );
+
+      /*
+       * Login itself is still handled by the existing backend.
+       *
+       * For now we navigate to the existing dashboard.
+       *
+       * Later, after we connect the authenticated user's actual
+       * organization role, this will become:
+       *
+       * ADMIN       -> Admin dashboard
+       * MANAGER     -> Manager dashboard
+       * TEAM MEMBER  -> Team Member dashboard
+       */
+      if (response?.user) {
+        navigate("/dashboard");
+      } else {
+        navigate("/dashboard");
+      }
+
     } catch (err) {
-      // Show a clean, user-friendly message. Never log tokens here.
       setAuthError(
-        err?.message || "Unable to log in. Please check your credentials."
+        err?.message ||
+          "Unable to log in. Please check your credentials."
       );
     } finally {
       setIsSubmitting(false);
@@ -85,10 +166,11 @@ function Login() {
 
   return (
     <AuthLayout
-      title="Welcome back"
-      subtitle="Log in to your Enclave account"
+      title={currentPortal.title}
+      subtitle={currentPortal.subtitle}
     >
       <form onSubmit={handleSubmit} noValidate>
+
         <InputField
           label="Email"
           name="email"
@@ -113,7 +195,10 @@ function Login() {
         />
 
         {authError && (
-          <p className="login-page__auth-error" role="alert">
+          <p
+            className="login-page__auth-error"
+            role="alert"
+          >
             {authError}
           </p>
         )}
@@ -123,20 +208,32 @@ function Login() {
           className="login-page__submit"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Logging in..." : "Log in"}
+          {isSubmitting
+            ? "Logging in..."
+            : "Log in"}
         </button>
       </form>
 
       <div className="login-page__links">
-        <Link to="/forgot-password" className="login-page__link">
+
+        <Link
+          to="/forgot-password"
+          className="login-page__link"
+        >
           Forgot password?
         </Link>
+
         <p className="login-page__register-text">
           Don&apos;t have an account?{" "}
-          <Link to="/register" className="login-page__link">
+
+          <Link
+            to={currentPortal.registerPath}
+            className="login-page__link"
+          >
             Register
           </Link>
         </p>
+
       </div>
     </AuthLayout>
   );

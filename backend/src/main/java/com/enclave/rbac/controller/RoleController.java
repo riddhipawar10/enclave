@@ -3,7 +3,7 @@ package com.enclave.rbac.controller;
 import com.enclave.rbac.dto.CreateRoleRequest;
 import com.enclave.rbac.dto.RoleResponse;
 import com.enclave.rbac.dto.UpdateRoleRequest;
-import com.enclave.rbac.entity.Role;
+import com.enclave.role.entity.Role;
 import com.enclave.rbac.security.RequirePermission;
 import com.enclave.rbac.service.RoleService;
 import org.springframework.http.HttpStatus;

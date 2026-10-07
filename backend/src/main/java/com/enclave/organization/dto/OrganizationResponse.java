@@ -1,5 +1,6 @@
 package com.enclave.organization.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,10 +10,6 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-/**
- * Response payload representing an Organization returned to the frontend.
- * Contains only fields present on the "organizations" table.
- */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,6 +23,7 @@ public class OrganizationResponse {
 
     private String slug;
 
+    @JsonProperty("isActive")
     private boolean isActive;
 
     private LocalDateTime createdAt;

@@ -5,93 +5,133 @@
 
 import api from "./api";
 import AUTH_ENDPOINTS from "../config/apiEndpoints";
-import { setAccessToken, clearAccessToken } from "../utils/tokenStorage";
+
+import {
+  setAccessToken,
+  setRefreshToken,
+  clearTokens,
+} from "../utils/tokenStorage";
 
 /**
- * register
- * Calls the backend registration endpoint.
+ * Stores the access token and refresh token returned
+ * by the backend.
  *
- * ASSUMPTION (mark and confirm): request body shape is
- *   { name, email, password }
- * Response shape assumed: { user, accessToken } — but backend may
- * only return a success message instead. Adjust once confirmed.
+ * Used after LOGIN and REFRESH.
  */
-export async function register(name, email, password) {
-  const response = await api.post(AUTH_ENDPOINTS.REGISTER, {
-    name,
-    email,
-    password,
-  });
-
-  const data = response.data;
-
-  // If backend logs the user in immediately after registering,
-  // store the access token the same way login() does.
+function storeAuthTokens(data) {
   if (data?.accessToken) {
     setAccessToken(data.accessToken);
   }
 
-  return data;
+  if (data?.refreshToken) {
+    setRefreshToken(data.refreshToken);
+  }
+}
+
+/**
+ * register
+ *
+ * Backend request body:
+ * {
+ *   firstName,
+ *   lastName,
+ *   email,
+ *   password
+ * }
+ *
+ * IMPORTANT:
+ * Registration creates the account only.
+ * It does NOT establish a frontend session.
+ *
+ * The user must log in separately after registration.
+ */
+export async function register(name, email, password) {
+  const nameParts = name.trim().split(/\s+/);
+
+  const firstName = nameParts[0];
+
+  const lastName =
+    nameParts.slice(1).join(" ") || "User";
+
+  const response = await api.post(
+    AUTH_ENDPOINTS.REGISTER,
+    {
+      firstName,
+      lastName,
+      email,
+      password,
+    }
+  );
+
+  /*
+   * Do NOT call storeAuthTokens() here.
+   *
+   * Registration must not automatically log the user in.
+   */
+  return response.data;
 }
 
 /**
  * login
- * Calls the backend login endpoint.
  *
- * ASSUMPTION (mark and confirm): response shape is
- *   { user, accessToken }
- * Refresh token is assumed to be handled separately by the backend
- * (e.g. set as an httpOnly cookie), since it should never be
- * readable by JavaScript. Confirm this with the backend team.
+ * Login establishes the authenticated frontend session.
  */
 export async function login(email, password) {
-  const response = await api.post(AUTH_ENDPOINTS.LOGIN, {
-    email,
-    password,
-  });
+  const response = await api.post(
+    AUTH_ENDPOINTS.LOGIN,
+    {
+      email,
+      password,
+    }
+  );
 
   const data = response.data;
 
-  if (data?.accessToken) {
-    setAccessToken(data.accessToken);
-  }
+  storeAuthTokens(data);
 
   return data;
 }
 
 /**
  * logout
- * Calls the backend logout endpoint (expected to revoke the
- * refresh token server-side), then always clears the local
- * access token regardless of the API call's outcome.
+ *
+ * Backend expects:
+ * {
+ *   refreshToken
+ * }
  */
-export async function logout() {
+export async function logout(refreshToken) {
   try {
-    await api.post(AUTH_ENDPOINTS.LOGOUT);
+    await api.post(
+      AUTH_ENDPOINTS.LOGOUT,
+      {
+        refreshToken,
+      }
+    );
   } finally {
-    clearAccessToken();
+    clearTokens();
   }
 }
 
 /**
  * refreshAccessToken
- * Calls the backend refresh endpoint to get a new access token
- * using the refresh token. Assumed the refresh token itself is
- * sent automatically (e.g. httpOnly cookie) rather than passed
- * in the request body — confirm with backend.
  *
- * Used by AuthContext on app startup to silently restore a
- * session after a page refresh (since the access token is only
- * ever kept in memory, not persisted).
+ * Backend expects:
+ * {
+ *   refreshToken
+ * }
  */
-export async function refreshAccessToken() {
-  const response = await api.post(AUTH_ENDPOINTS.REFRESH);
+export async function refreshAccessToken(refreshToken) {
+  const response = await api.post(
+    AUTH_ENDPOINTS.REFRESH,
+    {
+      refreshToken,
+    }
+  );
 
   const data = response.data;
 
-  if (data?.accessToken) {
-    setAccessToken(data.accessToken);
-  }
+  storeAuthTokens(data);
 
   return data;
 }

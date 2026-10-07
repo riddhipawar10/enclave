@@ -1,0 +1,409 @@
+.my-team-page {
+  width: 100%;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.my-team-header {
+  margin-bottom: 24px;
+}
+
+.my-team-header h1 {
+  margin: 0;
+  color: #111827;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.my-team-header p {
+  margin: 8px 0 0;
+  color: #6b7280;
+  font-size: 15px;
+}
+
+/* ================================
+   Cards
+================================ */
+
+.my-team-card {
+  margin-bottom: 24px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.my-team-card-header {
+  margin-bottom: 20px;
+}
+
+.my-team-card-header h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 20px;
+  font-weight: 650;
+}
+
+.my-team-card-header p {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ================================
+   Team Members Header
+================================ */
+
+.my-team-members-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* ================================
+   Add Member Button
+================================ */
+
+.my-team-add-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 40px;
+  padding: 0 16px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #2563eb;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+}
+
+.my-team-add-button:hover {
+  background: #1d4ed8;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+.my-team-add-button:active {
+  transform: translateY(1px);
+}
+
+.my-team-add-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.my-team-add-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ================================
+   Organization Selector
+================================ */
+
+.my-team-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 420px;
+}
+
+.my-team-selector label {
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.my-team-selector select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.my-team-selector select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ================================
+   Table
+================================ */
+
+.my-team-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.my-team-table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: collapse;
+}
+
+.my-team-table th {
+  padding: 13px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.my-team-table td {
+  padding: 15px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #374151;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.my-team-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.my-team-table tbody tr:hover {
+  background: #fafafa;
+}
+
+/* ================================
+   Member
+================================ */
+
+.my-team-member {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 170px;
+}
+
+.my-team-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #eff6ff;
+  color: #2563eb;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.my-team-member strong {
+  color: #111827;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ================================
+   Role Selector
+================================ */
+
+.my-team-table td select {
+  min-width: 120px;
+  padding: 8px 10px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+
+  background: #ffffff;
+  color: #374151;
+
+  font-size: 13px;
+
+  outline: none;
+  cursor: pointer;
+}
+
+.my-team-table td select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.my-team-table td select:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ================================
+   Status
+================================ */
+
+.my-team-status {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.my-team-status.active {
+  background: #ecfdf3;
+  color: #166534;
+}
+
+.my-team-status.inactive {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+/* ================================
+   Remove Button
+================================ */
+
+.my-team-remove-button {
+  padding: 8px 12px;
+
+  border: 1px solid #fecaca;
+  border-radius: 7px;
+
+  background: #ffffff;
+  color: #dc2626;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.my-team-remove-button:hover {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.my-team-remove-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ================================
+   Messages
+================================ */
+
+.my-team-message {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+}
+
+.my-team-error {
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.my-team-success {
+  border: 1px solid #bbf7d0;
+  background: #f0fdf4;
+  color: #166534;
+}
+
+/* ================================
+   Loading / Empty
+================================ */
+
+.my-team-loading {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.my-team-empty {
+  margin: 0;
+  padding: 20px;
+
+  border: 1px dashed #d1d5db;
+  border-radius: 8px;
+
+  background: #f9fafb;
+  color: #6b7280;
+
+  font-size: 14px;
+  text-align: center;
+}
+
+/* ================================
+   Responsive
+================================ */
+
+@media (max-width: 900px) {
+  .my-team-page {
+    padding: 24px;
+  }
+
+  .my-team-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .my-team-page {
+    padding: 16px;
+  }
+
+  .my-team-header h1 {
+    font-size: 26px;
+  }
+
+  .my-team-card {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .my-team-selector {
+    max-width: none;
+  }
+
+  .my-team-members-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .my-team-add-button {
+    width: 100%;
+  }
+}

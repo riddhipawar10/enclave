@@ -1,5 +1,6 @@
 package com.enclave.organization.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,11 +10,6 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-/**
- * Response payload representing an Organization member returned to the frontend.
- * Exposes only fields required by the UI — never the password hash or full
- * User/Role entities.
- */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,6 +18,8 @@ import java.util.UUID;
 public class OrganizationMemberResponse {
 
     private UUID id;
+
+    private UUID organizationId;
 
     private UUID userId;
 
@@ -37,5 +35,6 @@ public class OrganizationMemberResponse {
 
     private LocalDateTime joinedAt;
 
+    @JsonProperty("isActive")
     private boolean isActive;
 }

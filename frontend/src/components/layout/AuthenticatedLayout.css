@@ -1,0 +1,12 @@
+.authenticated-layout {
+  min-height: 100vh;
+  display: flex;
+  background: #f4f6fa;
+}
+
+.authenticated-layout__content {
+  flex: 1;
+  min-width: 0;
+  min-height: 100vh;
+  overflow-x: auto;
+}

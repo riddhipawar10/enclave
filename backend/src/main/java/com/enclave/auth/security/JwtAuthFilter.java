@@ -2,11 +2,12 @@ package com.enclave.auth.security;
 
 import com.enclave.auth.entity.User;
 import com.enclave.auth.repository.UserRepository;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.lang.NonNull;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -23,46 +24,80 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final UserRepository userRepository;
 
-    public JwtAuthFilter(JwtUtil jwtUtil, UserRepository userRepository) {
+    public JwtAuthFilter(
+            JwtUtil jwtUtil,
+            UserRepository userRepository
+    ) {
         this.jwtUtil = jwtUtil;
         this.userRepository = userRepository;
     }
 
     @Override
     protected void doFilterInternal(
-            @NonNull HttpServletRequest request,
-            @NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain
     ) throws ServletException, IOException {
 
-        String authHeader = request.getHeader("Authorization");
+        String authHeader =
+                request.getHeader("Authorization");
 
-        // No token present, or wrong format -> let the request continue unauthenticated.
-        // Spring Security will reject it later if the endpoint requires authentication.
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+        /*
+         * No Authorization header.
+         * Let Spring Security handle the request later.
+         */
+        if (authHeader == null
+                || !authHeader.startsWith("Bearer ")) {
+
             filterChain.doFilter(request, response);
             return;
         }
 
-        String token = authHeader.substring(7);
+        String token = authHeader.substring(7).trim();
 
-        // Invalid, malformed, or expired token -> do not authenticate, just continue.
+        /*
+         * Empty token.
+         */
+        if (token.isBlank()) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        /*
+         * Invalid or expired JWT.
+         */
         if (!jwtUtil.isTokenValid(token)) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // Only set authentication if the context isn't already populated
-        // (avoids overwriting authentication set earlier in the chain).
-        if (SecurityContextHolder.getContext().getAuthentication() == null) {
+        /*
+         * Don't replace an authentication that has already
+         * been established.
+         */
+        if (SecurityContextHolder
+                .getContext()
+                .getAuthentication() != null) {
+
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        try {
             UUID userId = jwtUtil.extractUserId(token);
 
-            Optional<User> userOptional = userRepository.findById(userId);
+            Optional<User> userOptional =
+                    userRepository.findById(userId);
 
             if (userOptional.isPresent()) {
+
                 User user = userOptional.get();
 
+                /*
+                 * Only active users can authenticate.
+                 */
                 if (user.isActive()) {
+
                     UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(
                                     user,
@@ -70,9 +105,20 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                                     Collections.emptyList()
                             );
 
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                    SecurityContextHolder
+                            .getContext()
+                            .setAuthentication(authentication);
                 }
             }
+
+        } catch (Exception ignored) {
+            /*
+             * If the token cannot be converted to a user,
+             * continue without authentication.
+             *
+             * Spring Security will then reject protected
+             * endpoints with 401/403 as appropriate.
+             */
         }
 
         filterChain.doFilter(request, response);
