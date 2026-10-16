@@ -1,3 +1,4 @@
+
 package com.enclave.auth.service;
 
 import com.enclave.auth.dto.AuthResponse;
@@ -9,16 +10,24 @@ import com.enclave.auth.entity.User;
 import com.enclave.auth.repository.RefreshTokenRepository;
 import com.enclave.auth.repository.UserRepository;
 import com.enclave.auth.security.JwtUtil;
+import com.enclave.organization.entity.Organization;
+import com.enclave.organization.entity.OrganizationMember;
+import com.enclave.organization.repository.OrganizationMemberRepository;
+import com.enclave.role.entity.Role;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.Base64;
+import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 @Service
@@ -28,27 +37,28 @@ public class AuthService {
 
     private final UserRepository userRepository;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final OrganizationMemberRepository organizationMemberRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
 
     public AuthService(
             UserRepository userRepository,
             RefreshTokenRepository refreshTokenRepository,
+            OrganizationMemberRepository organizationMemberRepository,
             PasswordEncoder passwordEncoder,
             JwtUtil jwtUtil
     ) {
         this.userRepository = userRepository;
         this.refreshTokenRepository = refreshTokenRepository;
+        this.organizationMemberRepository = organizationMemberRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtUtil = jwtUtil;
     }
 
     @Transactional
     public AuthResponse register(RegisterRequest request) {
-
-        String normalizedEmail = request.getEmail()
-                .trim()
-                .toLowerCase();
+        String normalizedEmail =
+                request.getEmail().trim().toLowerCase(Locale.ROOT);
 
         if (isEmailTaken(normalizedEmail)) {
             throw new IllegalArgumentException(
@@ -71,19 +81,61 @@ public class AuthService {
         return buildAuthResponse(user);
     }
 
+    /**
+     * Registers a user from a verified organization invitation.
+     * The invitation service supplies the invitation's email,
+     * organization, and assigned role.
+     */
+    @Transactional
+    public AuthResponse registerInvitedUser(
+            String firstName,
+            String lastName,
+            String email,
+            String password,
+            Organization organization,
+            Role role
+    ) {
+        String normalizedEmail =
+                email.trim().toLowerCase(Locale.ROOT);
+
+        if (userRepository.existsByEmail(normalizedEmail)) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "This email is already registered. Please log in instead."
+            );
+        }
+
+        User user = User.builder()
+                .firstName(firstName.trim())
+                .lastName(lastName.trim())
+                .email(normalizedEmail)
+                .passwordHash(passwordEncoder.encode(password))
+                .isActive(true)
+                .build();
+
+        user = userRepository.save(user);
+
+        OrganizationMember membership = new OrganizationMember();
+        membership.setOrganization(organization);
+        membership.setUser(user);
+        membership.setRole(role);
+        membership.setActive(true);
+
+        organizationMemberRepository.save(membership);
+
+        return buildAuthResponse(user);
+    }
+
     @Transactional
     public AuthResponse login(LoginRequest request) {
-
-        String normalizedEmail = request.getEmail()
-                .trim()
-                .toLowerCase();
+        String normalizedEmail =
+                request.getEmail().trim().toLowerCase(Locale.ROOT);
 
         User user = userRepository.findByEmail(normalizedEmail)
                 .orElseThrow(() ->
                         new IllegalArgumentException(
                                 "Invalid email or password"
-                        )
-                );
+                        ));
 
         if (!passwordEncoder.matches(
                 request.getPassword(),
@@ -105,7 +157,6 @@ public class AuthService {
 
     @Transactional
     public AuthResponse refresh(String rawRefreshToken) {
-
         if (rawRefreshToken == null || rawRefreshToken.isBlank()) {
             throw new IllegalArgumentException(
                     "Refresh token is required"
@@ -119,8 +170,7 @@ public class AuthService {
                 .orElseThrow(() ->
                         new IllegalArgumentException(
                                 "Invalid refresh token"
-                        )
-                );
+                        ));
 
         if (storedToken.getRevokedAt() != null) {
             throw new IllegalStateException(
@@ -128,9 +178,7 @@ public class AuthService {
             );
         }
 
-        if (storedToken.getExpiresAt()
-                .isBefore(LocalDateTime.now())) {
-
+        if (storedToken.getExpiresAt().isBefore(LocalDateTime.now())) {
             throw new IllegalStateException(
                     "Refresh token has expired, please log in again"
             );
@@ -144,17 +192,14 @@ public class AuthService {
             );
         }
 
-        // Revoke the old refresh token.
         storedToken.setRevokedAt(LocalDateTime.now());
         refreshTokenRepository.save(storedToken);
 
-        // Generate a new access token and refresh token.
         return buildAuthResponse(user);
     }
 
     @Transactional
     public void logout(String rawRefreshToken) {
-
         if (rawRefreshToken == null || rawRefreshToken.isBlank()) {
             return;
         }
@@ -164,26 +209,20 @@ public class AuthService {
         refreshTokenRepository
                 .findByTokenHash(tokenHash)
                 .ifPresent(storedToken -> {
-
                     if (storedToken.getRevokedAt() == null) {
-                        storedToken.setRevokedAt(
-                                LocalDateTime.now()
-                        );
-
+                        storedToken.setRevokedAt(LocalDateTime.now());
                         refreshTokenRepository.save(storedToken);
                     }
                 });
     }
 
     public boolean isEmailTaken(String email) {
-
         return userRepository.existsByEmail(
-                email.trim().toLowerCase()
+                email.trim().toLowerCase(Locale.ROOT)
         );
     }
 
     private AuthResponse buildAuthResponse(User user) {
-
         String accessToken = jwtUtil.generateAccessToken(
                 user.getId(),
                 user.getEmail()
@@ -211,24 +250,32 @@ public class AuthService {
                 .createdAt(user.getCreatedAt())
                 .build();
 
+        List<String> roles = organizationMemberRepository
+                .findActiveMembershipsByUserId(user.getId())
+                .stream()
+                .map(OrganizationMember::getRole)
+                .filter(role -> role != null)
+                .map(Role::getName)
+                .filter(name -> name != null && !name.isBlank())
+                .distinct()
+                .toList();
+
         return AuthResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(rawRefreshToken)
                 .tokenType("Bearer")
                 .user(userResponse)
+                .roles(roles)
                 .build();
     }
 
     private String generateRawRefreshToken() {
-
         return UUID.randomUUID().toString()
                 + UUID.randomUUID().toString();
     }
 
     private String hash(String value) {
-
         try {
-
             MessageDigest digest =
                     MessageDigest.getInstance("SHA-256");
 
@@ -236,11 +283,9 @@ public class AuthService {
                     value.getBytes(StandardCharsets.UTF_8)
             );
 
-            return Base64.getEncoder()
-                    .encodeToString(hashBytes);
+            return Base64.getEncoder().encodeToString(hashBytes);
 
         } catch (NoSuchAlgorithmException e) {
-
             throw new IllegalStateException(
                     "SHA-256 algorithm not available",
                     e

@@ -135,3 +135,29 @@ export async function refreshAccessToken(refreshToken) {
 
   return data;
 }
+
+
+/**
+ * acceptInvitation
+ *
+ * Creates an account from a verified invitation.
+ * The backend returns an AuthResponse, but this function
+ * deliberately does not store tokens or establish a session.
+ * The user will log in separately, consistent with the
+ * existing registration flow.
+ */
+export async function acceptInvitation(token, registrationData) {
+  const response = await api.post(
+    "/invitations/accept",
+    {
+      firstName: registrationData.firstName,
+      lastName: registrationData.lastName,
+      password: registrationData.password,
+    },
+    {
+      params: { token },
+    }
+  );
+
+  return response.data;
+}

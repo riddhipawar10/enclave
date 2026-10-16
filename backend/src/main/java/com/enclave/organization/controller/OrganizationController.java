@@ -1,6 +1,8 @@
+
 package com.enclave.organization.controller;
 
 import com.enclave.organization.dto.AddMemberRequest;
+import com.enclave.organization.dto.MemberCandidateResponse;
 import com.enclave.organization.dto.MyOrganizationResponse;
 import com.enclave.organization.dto.OrganizationMemberResponse;
 import com.enclave.organization.dto.OrganizationRequest;
@@ -8,7 +10,6 @@ import com.enclave.organization.dto.OrganizationResponse;
 import com.enclave.organization.service.OrganizationService;
 import com.enclave.rbac.dto.RoleResponse;
 import com.enclave.rbac.security.RequirePermission;
-import com.enclave.organization.dto.MemberCandidateResponse;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -29,8 +30,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.UUID;
@@ -52,12 +53,43 @@ public class OrganizationController {
     // =====================================================
 
     @GetMapping
-    public ResponseEntity<List<MyOrganizationResponse>> getMyOrganizations() {
+    public ResponseEntity<List<MyOrganizationResponse>>
+    getMyOrganizations() {
 
         List<MyOrganizationResponse> organizations =
                 organizationService.getMyOrganizations();
 
         return ResponseEntity.ok(organizations);
+    }
+
+    // =====================================================
+    // ALL ORGANIZATIONS - PLATFORM ADMIN ONLY
+    // =====================================================
+
+    @GetMapping("/platform/all")
+    public ResponseEntity<List<OrganizationResponse>>
+    getAllOrganizationsForPlatformAdmin() {
+
+        List<OrganizationResponse> organizations =
+                organizationService
+                        .getAllOrganizationsForPlatformAdmin();
+
+        return ResponseEntity.ok(organizations);
+    }
+
+    // =====================================================
+    // ALL MEMBERS - PLATFORM ADMIN ONLY
+    // =====================================================
+
+    @GetMapping("/platform/members")
+    public ResponseEntity<List<OrganizationMemberResponse>>
+    getAllMembersForPlatformAdmin() {
+
+        List<OrganizationMemberResponse> members =
+                organizationService
+                        .getAllMembersForPlatformAdmin();
+
+        return ResponseEntity.ok(members);
     }
 
     // =====================================================
@@ -122,7 +154,7 @@ public class OrganizationController {
     }
 
     // =====================================================
-    // MY TEAM - LIST MEMBERS
+    // ORGANIZATION MEMBERS - LIST
     // =====================================================
 
     @GetMapping("/{organizationId}/members")
@@ -139,13 +171,18 @@ public class OrganizationController {
 
         return ResponseEntity.ok(members);
     }
-    
+
+    // =====================================================
+    // ORGANIZATION MEMBER CANDIDATE
+    // =====================================================
+
     @GetMapping("/{organizationId}/member-candidates")
     @RequirePermission("MANAGE_MEMBERS")
     public ResponseEntity<MemberCandidateResponse> findMemberCandidate(
             @PathVariable("organizationId") UUID organizationId,
             @RequestParam("email") String email
     ) {
+
         return ResponseEntity.ok(
                 organizationService.findMemberCandidate(
                         organizationId,
@@ -155,7 +192,7 @@ public class OrganizationController {
     }
 
     // =====================================================
-    // MY TEAM - ASSIGNABLE ROLES
+    // ASSIGNABLE ROLES
     // =====================================================
 
     @GetMapping("/{organizationId}/assignable-roles")
@@ -173,7 +210,7 @@ public class OrganizationController {
     }
 
     // =====================================================
-    // MY TEAM - ADD MEMBER
+    // ADD ORGANIZATION MEMBER
     // =====================================================
 
     @PostMapping("/{organizationId}/members")
@@ -195,7 +232,7 @@ public class OrganizationController {
     }
 
     // =====================================================
-    // MY TEAM - REMOVE MEMBER
+    // REMOVE ORGANIZATION MEMBER
     // =====================================================
 
     @DeleteMapping("/{organizationId}/members/{userId}")
@@ -214,7 +251,7 @@ public class OrganizationController {
     }
 
     // =====================================================
-    // MY TEAM - UPDATE MEMBER ROLE
+    // UPDATE ORGANIZATION MEMBER ROLE
     // =====================================================
 
     @PatchMapping("/{organizationId}/members/{userId}/role")
@@ -236,7 +273,6 @@ public class OrganizationController {
         return ResponseEntity.ok(response);
     }
 
-    
     // =====================================================
     // REQUEST DTO
     // =====================================================

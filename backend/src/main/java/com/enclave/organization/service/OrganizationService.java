@@ -28,6 +28,8 @@ public interface OrganizationService {
             UUID organizationId
     );
 
+    List<OrganizationMemberResponse> getAllMembersForPlatformAdmin();
+
     OrganizationMemberResponse addMember(
             UUID organizationId,
             AddMemberRequest request
@@ -45,6 +47,8 @@ public interface OrganizationService {
     );
 
     List<MyOrganizationResponse> getMyOrganizations();
+
+    List<OrganizationResponse> getAllOrganizationsForPlatformAdmin();
 
     List<RoleResponse> getAssignableRoles(
             UUID organizationId

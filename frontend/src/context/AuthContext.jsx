@@ -16,8 +16,8 @@ import {
  * AuthContext
  *
  * Central place for authentication state used across the app:
- * current user, authentication status, loading state, and
- * login/register/logout actions.
+ * current user, roles, authentication status, loading state,
+ * and login/register/logout actions.
  *
  * The access token is kept in memory, so it is lost when the
  * page is refreshed. The refresh token is persisted and is used
@@ -28,6 +28,7 @@ const AuthContext = createContext(undefined);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [roles, setRoles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const isAuthenticated = Boolean(user);
@@ -40,7 +41,6 @@ export function AuthProvider({ children }) {
     async function restoreSession() {
       const refreshToken = getRefreshToken();
 
-      // No refresh token means there is no session to restore.
       if (!refreshToken) {
         setIsLoading(false);
         return;
@@ -52,11 +52,12 @@ export function AuthProvider({ children }) {
 
         if (data?.user) {
           setUser(data.user);
+          setRoles(data.roles ?? []);
         }
       } catch {
-        // Refresh token is invalid, expired, or revoked.
         clearTokens();
         setUser(null);
+        setRoles([]);
       } finally {
         setIsLoading(false);
       }
@@ -75,9 +76,20 @@ export function AuthProvider({ children }) {
 
     if (data?.user) {
       setUser(data.user);
+      setRoles(data.roles ?? []);
     }
 
     return data;
+  };
+
+  // ---------------------------------------------------------
+  // Clear authentication state
+  // ---------------------------------------------------------
+
+  const clearAuthState = () => {
+    clearTokens();
+    setUser(null);
+    setRoles([]);
   };
 
   // ---------------------------------------------------------
@@ -93,11 +105,9 @@ export function AuthProvider({ children }) {
       );
 
     /*
-     * IMPORTANT:
-     *
      * Registration does NOT authenticate the user.
      *
-     * Do not call setUser() here.
+     * Do not call setUser() or setRoles() here.
      *
      * The user must go to the login page and
      * authenticate using their email and password.
@@ -120,6 +130,7 @@ export function AuthProvider({ children }) {
     } finally {
       clearTokens();
       setUser(null);
+      setRoles([]);
     }
   };
 
@@ -129,11 +140,13 @@ export function AuthProvider({ children }) {
 
   const value = {
     user,
+    roles,
     isAuthenticated,
     isLoading,
     login,
     register,
     logout,
+    clearAuthState,
   };
 
   return (

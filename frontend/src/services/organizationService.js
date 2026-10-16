@@ -1,4 +1,5 @@
-// src/services/organizationService.js
+
+ // src/services/organizationService.js
 //
 // Organization Management API calls.
 // Uses the shared `api` axios instance from api.js
@@ -20,6 +21,31 @@ export const getMyOrganizations = async () => {
 
   return response.data;
 };
+
+// Returns all organizations across Enclave.
+// Platform Admin access is verified by the backend.
+export const getAllOrganizationsForPlatformAdmin =
+  async () => {
+    const response = await api.get(
+      ORGANIZATION_ENDPOINTS.PLATFORM_ALL
+    );
+
+    return response.data;
+  };
+
+/**
+ * Returns members across all Enclave organizations.
+ * Platform Admin authorization is enforced by the backend.
+ */
+export const getAllMembersForPlatformAdmin = async () => {
+  const response = await api.get(
+    "/organizations/platform/members"
+  );
+
+  return response.data;
+};
+
+
 
 // Get a single organization by ID.
 export const getOrganizationById = async (
@@ -143,17 +169,72 @@ export const updateMemberRole = async (
 };
 
 // =====================================================
+// Organization Invitations
+// =====================================================
+
+// Get all invitations for an organization.
+export const getOrganizationInvitations = async (
+  organizationId
+) => {
+  const response = await api.get(
+    `/organizations/${organizationId}/invitations`
+  );
+
+  return response.data;
+};
+
+
+export const createOrganizationInvitation = async (
+  organizationId,
+  invitationData
+) => {
+  const response = await api.post(
+    `/organizations/${organizationId}/invitations`,
+    invitationData
+  );
+  return response.data;
+};
+
+
+export const getInvitationLink = async (organizationId, invitationId) => {
+  const response = await api.get(
+    `/organizations/${organizationId}/invitations/${invitationId}/link`
+  );
+
+  return response.data;
+};
+
+
+// Get pending invitations for an organization.
+export const getPendingInvitations = async (
+  organizationId
+) => {
+  const response = await api.get(
+    `/organizations/${organizationId}/invitations/pending`
+  );
+
+  return response.data;
+};
+
+
+// =====================================================
 // Default export
 // =====================================================
 
 export default {
   getMyOrganizations,
+  getAllOrganizationsForPlatformAdmin,
+  getAllMembersForPlatformAdmin,
   getOrganizationById,
   createOrganization,
   updateOrganization,
   deactivateOrganization,
 
   getOrganizationMembers,
+  getOrganizationInvitations,
+  getInvitationLink,
+  getPendingInvitations,
+  createOrganizationInvitation,
   findMemberCandidate,
   addMember,
   removeMember,

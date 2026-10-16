@@ -7,7 +7,7 @@ import PasswordField from "../../components/auth/PasswordField";
 import { useAuth } from "../../context/AuthContext";
 
 function Login() {
-  const { login } = useAuth();
+  const { login, clearAuthState } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -20,31 +20,12 @@ function Login() {
   const [authError, setAuthError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  /*
-   * Determine which portal the user entered.
-   *
-   * Examples:
-   * /admin/login        -> admin
-   * /manager/login      -> manager
-   * /team-member/login  -> team-member
-   *
-   * The URL is only the selected portal.
-   * It does NOT grant the user that role.
-   */
   const getPortal = () => {
     const path = location.pathname;
 
-    if (path === "/admin/login") {
-      return "admin";
-    }
-
-    if (path === "/manager/login") {
-      return "manager";
-    }
-
-    if (path === "/team-member/login") {
-      return "team-member";
-    }
+    if (path === "/admin/login") return "admin";
+    if (path === "/manager/login") return "manager";
+    if (path === "/team-member/login") return "team-member";
 
     return "default";
   };
@@ -56,24 +37,28 @@ function Login() {
       title: "Admin Login",
       subtitle: "Sign in to the Enclave Admin workspace",
       registerPath: "/admin/register",
+      requiredRole: "ADMIN",
     },
 
     manager: {
       title: "Manager Login",
       subtitle: "Sign in to the Enclave Manager workspace",
       registerPath: "/manager/register",
+      requiredRole: "MANAGER",
     },
 
     "team-member": {
       title: "Team Member Login",
       subtitle: "Sign in to your Enclave workspace",
       registerPath: "/team-member/register",
+      requiredRole: "TEAM_MEMBER",
     },
 
     default: {
       title: "Welcome back",
       subtitle: "Log in to your Enclave account",
       registerPath: "/register",
+      requiredRole: null,
     },
   };
 
@@ -118,15 +103,11 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (isSubmitting) {
-      return;
-    }
+    if (isSubmitting) return;
 
     setAuthError("");
 
-    if (!validate()) {
-      return;
-    }
+    if (!validate()) return;
 
     setIsSubmitting(true);
 
@@ -137,23 +118,40 @@ function Login() {
       );
 
       /*
-       * Login itself is still handled by the existing backend.
+       * The backend authenticates the credentials first.
        *
-       * For now we navigate to the existing dashboard.
-       *
-       * Later, after we connect the authenticated user's actual
-       * organization role, this will become:
-       *
-       * ADMIN       -> Admin dashboard
-       * MANAGER     -> Manager dashboard
-       * TEAM MEMBER  -> Team Member dashboard
+       * The selected portal then determines which role is
+       * allowed to continue through this login page.
        */
-      if (response?.user) {
-        navigate("/dashboard");
+      const userRoles = response?.roles ?? [];
+
+      if (
+        currentPortal.requiredRole &&
+        !userRoles.includes(currentPortal.requiredRole)
+      ) {
+        clearAuthState();
+
+        setAuthError(
+          `You do not have ${currentPortal.requiredRole.replace(
+            "_",
+            " "
+          )} access. Please use the correct workspace.`
+        );
+
+        return;
+      }
+
+      /*
+       * Admin has a dedicated Admin Dashboard.
+       *
+       * Manager and Team Member continue using the existing
+       * common dashboard.
+       */
+      if (currentPortal.requiredRole === "ADMIN") {
+        navigate("/admin-dashboard");
       } else {
         navigate("/dashboard");
       }
-
     } catch (err) {
       setAuthError(
         err?.message ||
@@ -170,7 +168,6 @@ function Login() {
       subtitle={currentPortal.subtitle}
     >
       <form onSubmit={handleSubmit} noValidate>
-
         <InputField
           label="Email"
           name="email"
@@ -208,14 +205,11 @@ function Login() {
           className="login-page__submit"
           disabled={isSubmitting}
         >
-          {isSubmitting
-            ? "Logging in..."
-            : "Log in"}
+          {isSubmitting ? "Logging in..." : "Log in"}
         </button>
       </form>
 
       <div className="login-page__links">
-
         <Link
           to="/forgot-password"
           className="login-page__link"
@@ -225,7 +219,6 @@ function Login() {
 
         <p className="login-page__register-text">
           Don&apos;t have an account?{" "}
-
           <Link
             to={currentPortal.registerPath}
             className="login-page__link"
@@ -233,7 +226,6 @@ function Login() {
             Register
           </Link>
         </p>
-
       </div>
     </AuthLayout>
   );

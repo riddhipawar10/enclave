@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
@@ -16,7 +17,14 @@ import "./OrganizationDetails.css";
 function OrganizationDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, roles } = useAuth();
+
+  // Use the existing application role to determine navigation.
+  const isAdmin = roles?.includes("ADMIN");
+
+  const backPath = isAdmin
+    ? "/admin/organizations"
+    : "/organizations";
 
   const [organization, setOrganization] = useState(null);
   const [members, setMembers] = useState([]);
@@ -33,6 +41,7 @@ function OrganizationDetails() {
     const fetchOrganization = async () => {
       try {
         setError("");
+        setNotFound(false);
 
         const data = await getOrganizationById(id);
         setOrganization(data);
@@ -79,7 +88,7 @@ function OrganizationDetails() {
         <button
           type="button"
           className="organization-details-back-button"
-          onClick={() => navigate("/organizations")}
+          onClick={() => navigate(backPath)}
         >
           &larr; Back to Dashboard
         </button>
@@ -95,7 +104,7 @@ function OrganizationDetails() {
         <button
           type="button"
           className="organization-details-back-button"
-          onClick={() => navigate("/organizations")}
+          onClick={() => navigate(backPath)}
         >
           &larr; Back to Dashboard
         </button>
@@ -107,28 +116,21 @@ function OrganizationDetails() {
     (member) => member.userId === user?.id
   );
 
-  const isAdmin =
+  const canEditOrganization =
     currentUserMembership?.roleName === "ADMIN";
 
   return (
     <div className="organization-details-page">
-
-      {/* Back Button */}
-
       <button
         type="button"
         className="organization-details-back-button"
-        onClick={() => navigate("/organizations")}
+        onClick={() => navigate(backPath)}
       >
         &larr; Back to Dashboard
       </button>
 
-      {/* Organization Header */}
-
       <div className="organization-details-header">
-
         <div className="organization-details-header-info">
-
           <h2>{organization.name}</h2>
 
           <p className="organization-details-slug">
@@ -142,16 +144,12 @@ function OrganizationDetails() {
                 : "organization-status inactive"
             }
           >
-            {organization.isActive
-              ? "Active"
-              : "Inactive"}
+            {organization.isActive ? "Active" : "Inactive"}
           </span>
-
         </div>
 
         <div className="organization-details-actions">
-
-          {isAdmin && (
+          {canEditOrganization && (
             <button
               type="button"
               className="organization-details-edit-button"
@@ -172,12 +170,8 @@ function OrganizationDetails() {
           >
             Manage Members
           </button>
-
         </div>
-
       </div>
-
-      {/* Members */}
 
       <h3 className="organization-details-members-title">
         Members
@@ -188,7 +182,6 @@ function OrganizationDetails() {
         isLoading={membersLoading}
         error={membersError}
       />
-
     </div>
   );
 }

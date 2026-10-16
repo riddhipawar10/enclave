@@ -1,0 +1,136 @@
+
+.organization-settings-details-page {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 24px 28px;
+  color: #111827;
+}
+
+.organization-settings-details-page > button {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #2563eb;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.organization-settings-details-page h2 {
+  margin: 0 0 8px;
+  color: #111827;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.organization-settings-details-page > p {
+  margin: 0 0 24px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.organization-settings-details-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.organization-settings-details-page form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.organization-settings-details-page label {
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.organization-settings-details-page input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #111827;
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.organization-settings-details-page input[type="text"]:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+.organization-settings-details-page small {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.organization-settings-details-page form > div:has(input[type="checkbox"]) {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.organization-settings-details-page input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: #2563eb;
+}
+
+.organization-settings-details-page form > div:has(input[type="checkbox"]) label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.organization-settings-details-page form > button {
+  align-self: flex-start;
+  padding: 10px 18px;
+  border: 1px solid #2563eb;
+  border-radius: 7px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.organization-settings-details-page form > button:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+}
+
+.organization-settings-details-page form > button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.organization-settings-details-page [role="status"] {
+  margin: 0 0 16px;
+  color: #047857;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .organization-settings-details-page {
+    padding: 20px 16px;
+  }
+
+  .organization-settings-details-page form {
+    padding: 18px;
+  }
+}

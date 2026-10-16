@@ -43,23 +43,13 @@ public class PermissionAspect {
 
         User currentUser = getCurrentUser();
 
-        String requiredPermission =
-                requirePermission.value();
-
-        UUID organizationId =
-                extractOrganizationId(joinPoint);
+        String requiredPermission = requirePermission.value();
 
         /*
          * CREATE_ORGANIZATION is a special case.
          *
-         * The organization does not exist yet, so the user cannot
-         * already have a membership in that organization.
-         *
-         * For organization creation, permission is checked against
-         * any active organization membership.
-         *
-         * For all existing organization operations, permission is
-         * checked against the specific target organization.
+         * The organization does not exist yet, so permission is
+         * checked against any active organization membership.
          */
         if ("CREATE_ORGANIZATION".equals(requiredPermission)) {
 
@@ -72,9 +62,22 @@ public class PermissionAspect {
         }
 
         /*
+         * Platform Admin can access organization-specific operations
+         * across organizations.
+         *
+         * This uses the trusted backend User entity rather than
+         * frontend role information.
+         */
+        if (currentUser.isPlatformAdmin()) {
+            return;
+        }
+
+        /*
          * All other organization-specific operations must contain
          * an organizationId.
          */
+        UUID organizationId = extractOrganizationId(joinPoint);
+
         if (organizationId == null) {
 
             throw new AccessDeniedException(
@@ -197,11 +200,9 @@ public class PermissionAspect {
 
         Method method = getMethod(joinPoint);
 
-        Parameter[] parameters =
-                method.getParameters();
+        Parameter[] parameters = method.getParameters();
 
-        Object[] arguments =
-                joinPoint.getArgs();
+        Object[] arguments = joinPoint.getArgs();
 
         for (int i = 0; i < parameters.length; i++) {
 
@@ -257,8 +258,7 @@ public class PermissionAspect {
             );
         }
 
-        Object principal =
-                authentication.getPrincipal();
+        Object principal = authentication.getPrincipal();
 
         if (!(principal instanceof User)) {
 

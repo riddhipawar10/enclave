@@ -1,0 +1,111 @@
+.admin-organizations {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.admin-organizations__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.admin-organizations__eyebrow {
+  margin: 0 0 8px;
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.admin-organizations__header h2 {
+  margin: 0;
+  color: var(--text-primary, #1f2937);
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.admin-organizations__header > div > p:last-child {
+  margin: 8px 0 0;
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.admin-organizations__summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.admin-organizations__summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 100px;
+  padding: 22px;
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.admin-organizations__summary-card span {
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.9rem;
+}
+
+.admin-organizations__summary-card strong {
+  color: var(--text-primary, #1f2937);
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.admin-organizations__list-section {
+  min-width: 0;
+}
+
+.admin-organizations__list-header {
+  margin-bottom: 18px;
+}
+
+.admin-organizations__list-header h3 {
+  margin: 0;
+  color: var(--text-primary, #1f2937);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.admin-organizations__list-header p {
+  margin: 6px 0 0;
+  color: var(--text-secondary, #6b7280);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  .admin-organizations__summary {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .admin-organizations__summary-card {
+    min-height: 85px;
+    padding: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-organizations {
+    padding: 16px;
+  }
+
+  .admin-organizations__header h2 {
+    font-size: 1.45rem;
+  }
+}

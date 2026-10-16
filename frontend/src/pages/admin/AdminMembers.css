@@ -1,0 +1,256 @@
+
+.admin-members-page {
+  width: 100%;
+  min-width: 0;
+  padding: 28px;
+  color: #1f2937;
+}
+
+.admin-members-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.admin-members-eyebrow {
+  margin: 0 0 8px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.admin-members-header h1 {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.25;
+}
+
+.admin-members-subtitle {
+  margin: 10px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.admin-members-total {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 150px;
+  padding: 18px 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.admin-members-total span {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.admin-members-total strong {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.admin-members-panel {
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.admin-members-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-members-toolbar h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.admin-members-toolbar p {
+  margin: 7px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.admin-members-search {
+  width: min(100%, 320px);
+  min-height: 42px;
+  padding: 10px 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #1f2937;
+  font: inherit;
+}
+
+.admin-members-search:focus {
+  border-color: #64748b;
+  box-shadow: 0 0 0 3px rgb(100 116 139 / 15%);
+}
+
+.admin-members-results {
+  padding: 16px 24px 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.admin-members-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 12px 24px 24px;
+}
+
+.admin-members-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-members-table th {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.admin-members-table td {
+  padding: 16px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.admin-members-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-members-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.admin-members-person {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 160px;
+  font-weight: 600;
+}
+
+.admin-members-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.admin-members-role,
+.admin-members-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.admin-members-role {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.admin-members-status.is-active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.admin-members-status.is-inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.admin-members-message {
+  padding: 40px 24px;
+  color: #64748b;
+  text-align: center;
+}
+
+.admin-members-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 32px 24px;
+  color: #b91c1c;
+  text-align: center;
+}
+
+.admin-members-error button {
+  padding: 8px 13px;
+  border: 1px solid #fecaca;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #991b1b;
+  cursor: pointer;
+  font: inherit;
+}
+
+.admin-members-error button:hover {
+  background: #fef2f2;
+}
+
+@media (max-width: 768px) {
+  .admin-members-page {
+    padding: 18px;
+  }
+
+  .admin-members-header {
+    flex-direction: column;
+  }
+
+  .admin-members-total {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .admin-members-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 18px;
+  }
+
+  .admin-members-search {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .admin-members-table-wrapper {
+    padding: 12px 12px 18px;
+  }
+
+  .admin-members-table th,
+  .admin-members-table td {
+    padding: 12px;
+  }
+}

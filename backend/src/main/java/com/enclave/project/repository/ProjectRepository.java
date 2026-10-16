@@ -8,5 +8,9 @@ import java.util.UUID;
 
 public interface ProjectRepository extends JpaRepository<Project, UUID> {
 
-    List<Project> findByOrganizationIdAndArchivedFalse(UUID organizationId);
+    List<Project> findByOrganizationIdAndArchivedFalse(
+            UUID organizationId
+    );
+
+    long countByOrganizationId(UUID organizationId);
 }

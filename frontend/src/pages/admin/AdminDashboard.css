@@ -1,0 +1,242 @@
+.admin-dashboard {
+  min-height: 100%;
+  padding: 32px;
+}
+
+.admin-dashboard__header {
+  margin-bottom: 28px;
+}
+
+.admin-dashboard__eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.admin-dashboard__title {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.admin-dashboard__subtitle {
+  max-width: 720px;
+  margin: 10px 0 0;
+  line-height: 1.6;
+  opacity: 0.7;
+}
+
+.admin-dashboard__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.admin-dashboard__stat-card,
+.admin-dashboard__panel {
+  border: 1px solid rgba(127, 127, 127, 0.2);
+  border-radius: 16px;
+  background: var(--card-background, #ffffff);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.admin-dashboard__stat-card {
+  padding: 22px;
+}
+
+.admin-dashboard__stat-label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0.65;
+}
+
+.admin-dashboard__stat-value {
+  display: block;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.admin-dashboard__stat-description {
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.55;
+}
+
+.admin-dashboard__content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr);
+  gap: 22px;
+  margin-bottom: 22px;
+}
+
+.admin-dashboard__bottom-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(300px, 1fr);
+  gap: 22px;
+}
+
+.admin-dashboard__panel {
+  padding: 24px;
+}
+
+.admin-dashboard__panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.admin-dashboard__panel-eyebrow {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.admin-dashboard__panel-title {
+  margin: 0;
+  font-size: 20px;
+}
+
+.admin-dashboard__analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.admin-dashboard__analytics-card {
+  min-height: 120px;
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(127, 127, 127, 0.07);
+}
+
+.admin-dashboard__analytics-card span {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 13px;
+  opacity: 0.65;
+}
+
+.admin-dashboard__analytics-card strong {
+  font-size: 24px;
+}
+
+.admin-dashboard__alerts {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-dashboard__alert {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(127, 127, 127, 0.07);
+}
+
+.admin-dashboard__alert-icon {
+  display: flex;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 700;
+  background: rgba(127, 127, 127, 0.15);
+}
+
+.admin-dashboard__alert strong {
+  display: block;
+  font-size: 14px;
+}
+
+.admin-dashboard__alert p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0.6;
+}
+
+.admin-dashboard__empty-state {
+  padding: 28px 10px;
+  text-align: center;
+}
+
+.admin-dashboard__empty-state strong {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.admin-dashboard__empty-state p {
+  max-width: 500px;
+  margin: 0 auto;
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.6;
+}
+
+.admin-dashboard__quick-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-dashboard__quick-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 4px;
+  border-bottom: 1px solid rgba(127, 127, 127, 0.14);
+  font-size: 14px;
+}
+
+.admin-dashboard__quick-item:last-child {
+  border-bottom: none;
+}
+
+.admin-dashboard__quick-item span:last-child {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.65;
+}
+
+@media (max-width: 1100px) {
+  .admin-dashboard__stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-dashboard__content-grid,
+  .admin-dashboard__bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-dashboard {
+    padding: 20px;
+  }
+
+  .admin-dashboard__stats {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-dashboard__analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-dashboard__title {
+    font-size: 26px;
+  }
+}

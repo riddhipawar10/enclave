@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 import { getManagerDashboard } from "../../services/dashboardService";
 
 import "./ManagerDashboard.css";
 
-function ManagerDashboard({ organizationId }) {
+function ManagerDashboard() {
   const navigate = useNavigate();
+  const { organizationId } = useParams();
 
   const [dashboard, setDashboard] =
     useState(null);

@@ -46,6 +46,9 @@ public class User {
 
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
+    
+    @Column(name = "is_platform_admin", nullable = false)
+    private boolean isPlatformAdmin = false;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

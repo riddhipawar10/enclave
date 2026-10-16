@@ -9,6 +9,15 @@ import ForgotPassword from "./pages/auth/ForgotPassword";
 
 import Landing from "./pages/Landing";
 
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminOrganizations from "./pages/admin/AdminOrganizations";
+import AdminMembers from "./pages/admin/AdminMembers";
+import AdminInvitations from "./pages/admin/AdminInvitations";
+import OrganizationSettings from "./pages/organization/OrganizationSettings";
+import OrganizationSettingsDetails from "./pages/organization/OrganizationSettingsDetails";
+
+import AcceptInvitation from "./pages/auth/AcceptInvitation";
+
 import Dashboard from "./pages/user/Dashboard";
 import Profile from "./pages/user/Profile";
 import NotFound from "./pages/NotFound";
@@ -32,11 +41,8 @@ import CreateSprint from "./pages/sprint/CreateSprint";
 import EditSprint from "./pages/sprint/EditSprint";
 
 import Calendar from "./pages/Calendar/Calendar";
-
 import Analytics from "./pages/Analytics/Analytics";
-
 import Notifications from "./pages/Notifications/Notifications";
-
 import Settings from "./pages/settings/Settings";
 
 import OrganizationDashboard from "./pages/organization/OrganizationDashboard";
@@ -44,7 +50,6 @@ import CreateOrganization from "./pages/organization/CreateOrganization";
 import OrganizationDetails from "./pages/organization/OrganizationDetails";
 import EditOrganization from "./pages/organization/EditOrganization";
 import ManageMembers from "./pages/organization/ManageMembers";
-
 
 import Roles from "./pages/rbac/Roles";
 import CreateRole from "./pages/rbac/CreateRole";
@@ -59,7 +64,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-
         {/* Public landing page */}
         <Route path="/" element={<Landing />} />
 
@@ -85,18 +89,50 @@ function App() {
           element={<AccessDenied />}
         />
 
-        {/* =====================================================
-            AUTHENTICATED ROUTES
-            ProtectedRoute checks authentication.
-            AuthenticatedLayout provides the common sidebar.
-           ===================================================== */}
-
+        {/* Authenticated routes */}
         <Route element={<ProtectedRoute />}>
           <Route element={<AuthenticatedLayout />}>
-
             <Route
               path="/dashboard"
               element={<Dashboard />}
+            />
+
+            {/* Admin-only routes */}
+            <Route element={<ProtectedRoute requiredRole="ADMIN" />}>
+              <Route
+                path="/admin-dashboard"
+                element={<AdminDashboard />}
+              />
+
+              <Route
+                path="/admin/organizations"
+                element={<AdminOrganizations />}
+              />
+            </Route>
+
+            <Route
+              path="/admin/members"
+              element={<AdminMembers />}
+            />
+
+            <Route
+              path="/admin/invitations"
+              element={<AdminInvitations />}
+            />
+
+            <Route
+              path="/admin/organizations/settings"
+              element={<OrganizationSettings />}
+            />
+
+            <Route
+              path="/organizations/:id/settings"
+              element={<OrganizationSettingsDetails />}
+            />
+
+            <Route
+              path="/accept-invitation"
+              element={<AcceptInvitation />}
             />
 
             {/* Manager Dashboard */}
@@ -127,7 +163,6 @@ function App() {
             />
 
             {/* Tasks */}
-
             <Route
               path="/tasks"
               element={<Tasks />}
@@ -148,9 +183,9 @@ function App() {
               element={<MyTeam />}
             />
 
-            <Route 
-              path="/team/add" 
-              element={<AddMember />} 
+            <Route
+              path="/team/add"
+              element={<AddMember />}
             />
 
             {/* Board */}
@@ -160,10 +195,11 @@ function App() {
             />
 
             {/* Sprints */}
-            <Route 
-              path="/sprints" 
-              element={<Sprints />} 
+            <Route
+              path="/sprints"
+              element={<Sprints />}
             />
+
             <Route
               path="/sprints/create/:organizationId/:projectId"
               element={<CreateSprint />}
@@ -184,14 +220,14 @@ function App() {
               element={<Analytics />}
             />
 
-            <Route 
-              path="/notifications" 
-              element={<Notifications />} 
+            <Route
+              path="/notifications"
+              element={<Notifications />}
             />
 
-            <Route 
-              path="/settings" 
-              element={<Settings />} 
+            <Route
+              path="/settings"
+              element={<Settings />}
             />
 
             <Route
@@ -240,22 +276,16 @@ function App() {
               path="/rbac-dashboard"
               element={<RBACDashboard />}
             />
-
           </Route>
         </Route>
 
-        {/* =====================================================
-            RBAC ROUTES REQUIRING MANAGE_ROLES
-           ===================================================== */}
-
+        {/* RBAC routes requiring MANAGE_ROLES */}
         <Route
           element={
             <ProtectedRoute requiredPermission="MANAGE_ROLES" />
           }
         >
-          <Route
-            element={<AuthenticatedLayout />}
-          >
+          <Route element={<AuthenticatedLayout />}>
             <Route
               path="/roles/create"
               element={<CreateRole />}
@@ -273,18 +303,13 @@ function App() {
           </Route>
         </Route>
 
-        {/* =====================================================
-            ASSIGN ROLE REQUIRES MANAGE_MEMBERS
-           ===================================================== */}
-
+        {/* Assign role requires MANAGE_MEMBERS */}
         <Route
           element={
             <ProtectedRoute requiredPermission="MANAGE_MEMBERS" />
           }
         >
-          <Route
-            element={<AuthenticatedLayout />}
-          >
+          <Route element={<AuthenticatedLayout />}>
             <Route
               path="/organizations/:organizationId/assign-role"
               element={<AssignRole />}
@@ -297,7 +322,6 @@ function App() {
           path="*"
           element={<NotFound />}
         />
-
       </Routes>
     </BrowserRouter>
   );

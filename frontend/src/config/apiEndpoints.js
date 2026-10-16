@@ -21,6 +21,7 @@ const AUTH_ENDPOINTS = {
 
 const ORGANIZATION_ENDPOINTS = {
   LIST_ALL: "/organizations",
+  PLATFORM_ALL: "/organizations/platform/all",
   CREATE: "/organizations",
   BY_ID: (organizationId) =>
     `/organizations/${organizationId}`,

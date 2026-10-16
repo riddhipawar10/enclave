@@ -1,16 +1,18 @@
-import { NavLink, useNavigate } from "react-router-dom";
+
+import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { getUnreadNotificationCount } from "../../services/notificationService";
 import "./Sidebar.css";
 
 function Sidebar() {
-  const navigate = useNavigate();
-  const { user, logout } = useAuth();
+  const { user, roles, logout } = useAuth();
 
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [unreadNotificationCount, setUnreadNotificationCount] =
     useState(0);
+
+  const isAdmin = roles?.includes("ADMIN");
 
   const handleLogout = async () => {
     if (isLoggingOut) {
@@ -19,10 +21,20 @@ function Sidebar() {
 
     setIsLoggingOut(true);
 
+    let loginPath = "/login";
+
+    if (roles?.includes("ADMIN")) {
+      loginPath = "/admin/login";
+    } else if (roles?.includes("MANAGER")) {
+      loginPath = "/manager/login";
+    } else if (roles?.includes("TEAM_MEMBER")) {
+      loginPath = "/team-member/login";
+    }
+
     try {
       await logout();
     } finally {
-      navigate("/login");
+      window.location.href = loginPath;
     }
   };
 
@@ -74,53 +86,58 @@ function Sidebar() {
     };
   }, [user?.id]);
 
-  const navItems = [
-    {
-      label: "Dashboard",
-      to: "/dashboard",
-    },
-    {
-      label: "Organizations",
-      to: "/organizations",
-    },
-    {
-      label: "My Projects",
-      to: "/projects",
-    },
-    {
-      label: "My Team",
-      to: "/team",
-    },
-    {
-      label: "Tasks",
-      to: "/tasks",
-    },
-    {
-      label: "Board",
-      to: "/board",
-    },
-    {
-      label: "Sprints",
-      to: "/sprints",
-    },
-    {
-      label: "Calendar",
-      to: "/calendar",
-    },
-    {
-      label: "Analytics",
-      to: "/analytics",
-    },
+  // Keep the existing Manager navigation unchanged.
+  const managerNavItems = [
+    { label: "Dashboard", to: "/dashboard" },
+    { label: "Organizations", to: "/organizations" },
+    { label: "My Projects", to: "/projects" },
+    { label: "My Team", to: "/team" },
+    { label: "Tasks", to: "/tasks" },
+    { label: "Board", to: "/board" },
+    { label: "Sprints", to: "/sprints" },
+    { label: "Calendar", to: "/calendar" },
+    { label: "Analytics", to: "/analytics" },
     {
       label: "Notifications",
       to: "/notifications",
       notificationCount: unreadNotificationCount,
     },
-    {
-      label: "Settings",
-      to: "/settings",
-    },
+    { label: "Settings", to: "/settings" },
   ];
+
+  // Admin navigation. Future pages will be added as their routes are implemented.
+  const adminNavItems = [
+    { label: "Dashboard", to: "/admin-dashboard" },
+    {
+      label: "Organization Overview",
+      to: "/admin/organizations",
+    },
+    {
+      label: "Members",
+      to: "/admin/members",
+    },
+    {
+      label: "Invitations",
+      to: "/admin/invitations",
+    },
+    {
+      label: "Organization Settings",
+      to: "/admin/organizations/settings",
+    },
+    { label: "Projects", to: "/admin/projects" },
+    { label: "Tasks", to: "/admin/tasks" },
+    { label: "Analytics", to: "/admin/analytics" },
+    { label: "Audit Logs", to: "/admin/audit-logs" },
+    { label: "Role Management", to: "/admin/roles" },
+    {
+      label: "Notifications",
+      to: "/notifications",
+      notificationCount: unreadNotificationCount,
+    },
+    { label: "Settings", to: "/settings" },
+  ];
+
+  const navItems = isAdmin ? adminNavItems : managerNavItems;
 
   return (
     <aside className="sidebar">
@@ -133,6 +150,13 @@ function Sidebar() {
           <NavLink
             key={item.to}
             to={item.to}
+            end={
+              item.to === "/dashboard" ||
+              item.to === "/admin-dashboard" ||
+              item.to === "/admin/organizations" ||
+              item.to === "/admin/members" ||
+              item.to === "/admin/invitations"
+            }
             className={({ isActive }) =>
               `sidebar__link ${
                 isActive ? "sidebar__link--active" : ""

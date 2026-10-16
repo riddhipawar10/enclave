@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,4 +23,7 @@ public class AuthResponse {
     private String tokenType = "Bearer";
 
     private UserResponse user;
+
+    @Builder.Default
+    private List<String> roles = List.of();
 }
