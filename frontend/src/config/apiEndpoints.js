@@ -44,6 +44,8 @@ const ROLE_ENDPOINTS = {
   CREATE: "/roles",
   BY_ID: (roleId) =>
     `/roles/${roleId}`,
+  ROLE_PERMISSIONS: (roleId) =>
+    `/roles/${roleId}/permissions`,
 };
 
 // ---------------------------------------------------------

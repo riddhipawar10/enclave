@@ -1,0 +1,129 @@
+
+.create-admin-project {
+  max-width: 900px;
+  padding: 28px;
+  color: #202938;
+}
+
+.create-admin-project__header {
+  margin-bottom: 24px;
+}
+
+.create-admin-project__eyebrow {
+  margin: 0 0 8px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.create-admin-project__header h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.create-admin-project__header > div > p:last-child {
+  color: #64748b;
+}
+
+.create-admin-project__card {
+  padding: 26px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.create-admin-project__field {
+  margin-bottom: 20px;
+}
+
+.create-admin-project__field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.create-admin-project__field input,
+.create-admin-project__field select,
+.create-admin-project__field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  color: #202938;
+  font: inherit;
+}
+
+.create-admin-project__field textarea {
+  resize: vertical;
+}
+
+.create-admin-project__date-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.create-admin-project__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.create-admin-project__cancel,
+.create-admin-project__submit {
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.create-admin-project__cancel {
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #334155;
+}
+
+.create-admin-project__submit {
+  border: none;
+  background: #4f46e5;
+  color: #fff;
+}
+
+.create-admin-project__submit:hover {
+  background: #4338ca;
+}
+
+.create-admin-project__submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.create-admin-project__error {
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+@media (max-width: 600px) {
+  .create-admin-project {
+    padding: 16px;
+  }
+
+  .create-admin-project__card {
+    padding: 18px;
+  }
+
+  .create-admin-project__date-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

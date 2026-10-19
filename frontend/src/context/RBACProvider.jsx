@@ -1,10 +1,30 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import RBACContext from "./RBACContext";
+import { useAuth } from "./AuthContext";
 
 export const RBACProvider = ({ children }) => {
+  const { roles: authRoles } = useAuth();
+
   const [roles, setRolesState] = useState([]);
   const [permissions, setPermissionsState] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const userRoles = Array.isArray(authRoles) ? authRoles : [];
+
+    setRolesState(userRoles);
+
+    // Temporary permission mapping until permissions are
+    // returned directly by the backend during login.
+    if (userRoles.includes("ADMIN")) {
+      setPermissionsState([
+        "VIEW_ROLES",
+        "MANAGE_ROLES",
+      ]);
+    } else {
+      setPermissionsState([]);
+    }
+  }, [authRoles]);
 
   const setRoles = useCallback((newRoles) => {
     setRolesState(Array.isArray(newRoles) ? newRoles : []);

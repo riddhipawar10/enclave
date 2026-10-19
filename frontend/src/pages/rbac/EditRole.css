@@ -1,0 +1,84 @@
+
+.edit-role-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 32px 40px;
+  box-sizing: border-box;
+  color: #111827;
+}
+
+.edit-role-back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 9px 0;
+  border: none;
+  background: transparent;
+  color: #4f46e5;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.edit-role-back-button:hover {
+  color: #3730a3;
+  text-decoration: underline;
+}
+
+.edit-role-header {
+  margin-bottom: 28px;
+}
+
+.edit-role-header h1 {
+  margin: 0 0 8px;
+  color: #111827;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+}
+
+.edit-role-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.edit-role-content {
+  width: 100%;
+}
+
+.edit-role-content .role-form {
+  max-width: 680px;
+}
+
+.edit-role-success {
+  max-width: 680px;
+  box-sizing: border-box;
+  margin: 0 0 20px;
+  padding: 13px 16px;
+  border: 1px solid #a7f3d0;
+  border-radius: 10px;
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .edit-role-page {
+    padding: 22px 18px 32px;
+  }
+
+  .edit-role-header h1 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .edit-role-page {
+    padding: 18px 14px 28px;
+  }
+}

@@ -1,3 +1,4 @@
+
 package com.enclave.project.controller;
 
 import com.enclave.auth.entity.User;
@@ -24,46 +25,55 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
+    // Get all active projects for an organization.
     @GetMapping
     @RequirePermission("VIEW_PROJECT")
     public ResponseEntity<List<Project>> getProjects(
             @PathVariable("organizationId") UUID organizationId
     ) {
-
         List<Project> projects =
                 projectService.getActiveProjects(organizationId);
 
         return ResponseEntity.ok(projects);
     }
 
+    // Get one project and verify its organization.
+    @GetMapping("/{projectId}")
+    @RequirePermission("VIEW_PROJECT")
+    public ResponseEntity<Project> getProjectById(
+            @PathVariable("organizationId") UUID organizationId,
+            @PathVariable("projectId") UUID projectId
+    ) {
+        Project project = projectService.getProjectById(
+                organizationId,
+                projectId
+        );
+
+        return ResponseEntity.ok(project);
+    }
+
+    // Create a project.
     @PostMapping
     @RequirePermission("CREATE_PROJECT")
     public ResponseEntity<Project> createProject(
             @PathVariable("organizationId") UUID organizationId,
             @RequestBody CreateProjectRequest request
     ) {
+        UUID currentUserId = getCurrentUserId();
 
-        Authentication authentication =
-                SecurityContextHolder
-                        .getContext()
-                        .getAuthentication();
-
-        User currentUser =
-                (User) authentication.getPrincipal();
-
-        Project project =
-                projectService.createProject(
-                        organizationId,
-                        currentUser.getId(),
-                        request.name(),
-                        request.description(),
-                        request.startDate(),
-                        request.endDate()
-                );
+        Project project = projectService.createProject(
+                organizationId,
+                currentUserId,
+                request.name(),
+                request.description(),
+                request.startDate(),
+                request.endDate()
+        );
 
         return ResponseEntity.ok(project);
     }
 
+    // Update an existing project.
     @PutMapping("/{projectId}")
     @RequirePermission("UPDATE_PROJECT")
     public ResponseEntity<Project> updateProject(
@@ -71,18 +81,76 @@ public class ProjectController {
             @PathVariable("projectId") UUID projectId,
             @RequestBody UpdateProjectRequest request
     ) {
-
-    	Project project =
-    	        projectService.updateProject(
-    	                organizationId,
-    	                projectId,
-    	                request.name(),
-    	                request.description(),
-    	                request.startDate(),
-    	                request.endDate()
-    	        );
+        Project project = projectService.updateProject(
+                organizationId,
+                projectId,
+                getCurrentUserId(),
+                request.name(),
+                request.description(),
+                request.startDate(),
+                request.endDate()
+        );
 
         return ResponseEntity.ok(project);
+    }
+
+    // Archive a project.
+    @PatchMapping("/{projectId}/archive")
+    @RequirePermission("UPDATE_PROJECT")
+    public ResponseEntity<Project> archiveProject(
+            @PathVariable("organizationId") UUID organizationId,
+            @PathVariable("projectId") UUID projectId
+    ) {
+        Project project = projectService.archiveProject(
+                organizationId,
+                projectId,
+                getCurrentUserId()
+        );
+
+        return ResponseEntity.ok(project);
+    }
+
+    // Restore an archived project.
+    @PatchMapping("/{projectId}/restore")
+    @RequirePermission("UPDATE_PROJECT")
+    public ResponseEntity<Project> restoreProject(
+            @PathVariable("organizationId") UUID organizationId,
+            @PathVariable("projectId") UUID projectId
+    ) {
+        Project project = projectService.restoreProject(
+                organizationId,
+                projectId,
+                getCurrentUserId()
+        );
+
+        return ResponseEntity.ok(project);
+    }
+
+    // Get archived projects for an organization.
+    @GetMapping("/archived")
+    @RequirePermission("VIEW_PROJECT")
+    public ResponseEntity<List<Project>> getArchivedProjects(
+            @PathVariable("organizationId") UUID organizationId
+    ) {
+        List<Project> projects =
+                projectService.getArchivedProjects(organizationId);
+
+        return ResponseEntity.ok(projects);
+    }
+
+    // Safely identify the authenticated user.
+    private UUID getCurrentUserId() {
+        Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null
+                || !(authentication.getPrincipal() instanceof User currentUser)) {
+            throw new IllegalStateException(
+                    "Authenticated user could not be identified"
+            );
+        }
+
+        return currentUser.getId();
     }
 
     public record CreateProjectRequest(
@@ -90,14 +158,12 @@ public class ProjectController {
             String description,
             LocalDate startDate,
             LocalDate endDate
-    ) {
-    }
+    ) {}
 
     public record UpdateProjectRequest(
             String name,
             String description,
             LocalDate startDate,
             LocalDate endDate
-    ) {
-    }
+    ) {}
 }

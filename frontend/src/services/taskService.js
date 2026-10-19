@@ -1,5 +1,8 @@
+
 import api from "./api";
 
+// Get tasks for one project.
+// Existing Manager Tasks functionality.
 export const getTasks = async (organizationId, projectId) => {
   const response = await api.get(
     `/organizations/${organizationId}/projects/${projectId}/tasks`
@@ -8,6 +11,17 @@ export const getTasks = async (organizationId, projectId) => {
   return response.data;
 };
 
+// Get every task belonging to one organization.
+// Used by the Admin Tasks page.
+export const getOrganizationTasks = async (organizationId) => {
+  const response = await api.get(
+    `/organizations/${organizationId}/tasks`
+  );
+
+  return response.data;
+};
+
+// Create a task.
 export const createTask = async (
   organizationId,
   projectId,
@@ -21,6 +35,7 @@ export const createTask = async (
   return response.data;
 };
 
+// Update a task.
 export const updateTask = async (
   organizationId,
   projectId,
@@ -35,6 +50,7 @@ export const updateTask = async (
   return response.data;
 };
 
+// Mark a task as completed.
 export const markTaskAsCompleted = async (
   organizationId,
   projectId,
@@ -57,6 +73,7 @@ export const markTaskAsCompleted = async (
   return response.data;
 };
 
+// Delete a task.
 export const deleteTask = async (
   organizationId,
   projectId,
@@ -69,6 +86,7 @@ export const deleteTask = async (
 
 export default {
   getTasks,
+  getOrganizationTasks,
   createTask,
   updateTask,
   markTaskAsCompleted,

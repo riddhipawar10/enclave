@@ -1,0 +1,107 @@
+
+.admin-settings {
+  padding: 28px;
+  color: #1f2937;
+}
+
+.admin-settings__header {
+  margin-bottom: 28px;
+}
+
+.admin-settings__header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.admin-settings__header p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.admin-settings__layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.admin-settings__tabs,
+.admin-settings__content {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.admin-settings__tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+}
+
+.admin-settings__tabs button {
+  padding: 12px 14px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #4b5563;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.admin-settings__tabs button:hover {
+  background: #f3f4f6;
+}
+
+.admin-settings__tabs button.active {
+  background: #eef2ff;
+  color: #4338ca;
+  font-weight: 600;
+}
+
+.admin-settings__content {
+  min-height: 280px;
+  padding: 24px;
+}
+
+.admin-settings__content h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.admin-settings__content p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.admin-settings__notice {
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .admin-settings {
+    padding: 16px;
+  }
+
+  .admin-settings__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-settings__tabs {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-settings__content {
+    padding: 18px;
+  }
+}

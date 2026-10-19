@@ -1,0 +1,190 @@
+
+.admin-archived-projects {
+  padding: 28px;
+  color: #202938;
+}
+
+.admin-archived-projects__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.admin-archived-projects__eyebrow {
+  margin: 0 0 8px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.admin-archived-projects__header h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.admin-archived-projects__header p:last-child,
+.admin-archived-projects__list-header p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+
+.admin-archived-projects__back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #2563eb;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.admin-archived-projects__back:hover {
+  background: transparent;
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.admin-archived-projects__back:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 4px;
+}
+
+
+.admin-archived-projects__restore {
+  background: #16a34a;
+  color: #fff;
+}
+
+.admin-archived-projects__restore:hover {
+  background: #15803d;
+}
+
+.admin-archived-projects__restore:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-archived-projects__panel {
+  margin-bottom: 24px;
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.admin-archived-projects__panel > label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-archived-projects__panel select {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  color: #202938;
+  padding: 11px 12px;
+  font: inherit;
+}
+
+.admin-archived-projects__list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.admin-archived-projects__list-header h3 {
+  margin: 0 0 8px;
+  font-size: 19px;
+}
+
+.admin-archived-projects__list-header > span {
+  color: #64748b;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.admin-archived-projects__table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin-archived-projects__table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-archived-projects__table th,
+.admin-archived-projects__table td {
+  padding: 14px 12px;
+  border-bottom: 1px solid #e2e8f0;
+  vertical-align: top;
+  font-size: 14px;
+}
+
+.admin-archived-projects__table th {
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.admin-archived-projects__table td {
+  overflow-wrap: anywhere;
+}
+
+.admin-archived-projects__empty {
+  padding: 28px 16px;
+  color: #64748b;
+  text-align: center;
+}
+
+.admin-archived-projects__message {
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.admin-archived-projects__message--error {
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.admin-archived-projects__message--success {
+  border: 1px solid #bbf7d0;
+  background: #f0fdf4;
+  color: #166534;
+}
+
+@media (max-width: 768px) {
+  .admin-archived-projects {
+    padding: 16px;
+  }
+
+  .admin-archived-projects__header,
+  .admin-archived-projects__list-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

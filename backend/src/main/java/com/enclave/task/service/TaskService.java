@@ -1,3 +1,4 @@
+
 package com.enclave.task.service;
 
 import com.enclave.notification.dto.CreateNotificationRequest;
@@ -30,8 +31,14 @@ public class TaskService {
         this.notificationService = notificationService;
     }
 
+    // Get all tasks for a particular project.
     public List<Task> getTasksByProject(UUID projectId) {
         return taskRepository.findByProjectIdOrderByPositionAsc(projectId);
+    }
+
+    // Get all tasks belonging to projects in an organization.
+    public List<Task> getTasksByOrganization(UUID organizationId) {
+        return taskRepository.findByOrganizationId(organizationId);
     }
 
     public Task getTask(UUID taskId) {
@@ -70,16 +77,14 @@ public class TaskService {
         task.setCreatedAt(now);
         task.setUpdatedAt(now);
 
-        // If the task is created directly as DONE,
-        // record the completion time.
+        // Record the completion time if created directly as DONE.
         if (DONE_STATUS_ID.equals(statusId)) {
             task.setCompletedAt(now);
         }
 
         Task savedTask = taskRepository.save(task);
 
-        // Notify the assigned user when a task is
-        // assigned during creation.
+        // Notify the assigned user when a task is assigned.
         if (assignedTo != null) {
             createTaskAssignedNotification(savedTask);
         }
@@ -109,20 +114,7 @@ public class TaskService {
         String previousTitle = task.getTitle();
         String previousDescription = task.getDescription();
 
-        /*
-         * Detect meaningful task-detail changes.
-         *
-         * These changes create TASK_UPDATED:
-         * - title
-         * - description
-         * - priority
-         * - due date
-         * - sprint
-         *
-         * Status and position changes are intentionally excluded
-         * because Board drag-and-drop should not create noisy
-         * TASK_UPDATED notifications.
-         */
+        // Detect meaningful task-detail changes.
         boolean taskDetailsChanged =
                 !Objects.equals(previousTitle, title)
                         || !Objects.equals(previousDescription, description)
@@ -140,9 +132,7 @@ public class TaskService {
         task.setSprintId(sprintId);
         task.setUpdatedAt(LocalDateTime.now());
 
-        /*
-         * Detect whether the task has just been completed.
-         */
+        // Detect whether the task has just been completed.
         boolean taskCompleted =
                 DONE_STATUS_ID.equals(statusId)
                         && !DONE_STATUS_ID.equals(previousStatusId);
@@ -150,21 +140,18 @@ public class TaskService {
         if (taskCompleted) {
             task.setCompletedAt(LocalDateTime.now());
         } else if (!DONE_STATUS_ID.equals(statusId)) {
-            // Task moved back from DONE.
+            // Clear completion time if moved back from DONE.
             task.setCompletedAt(null);
         }
 
         Task savedTask = taskRepository.save(task);
 
-        /*
-         * Detect assignment changes.
-         */
+        // Detect assignment changes.
         boolean assigneeChanged =
                 assignedTo != null
                         && !assignedTo.equals(previousAssignedTo);
 
         if (assigneeChanged) {
-
             if (previousAssignedTo == null) {
                 createTaskAssignedNotification(savedTask);
             } else {
@@ -172,18 +159,12 @@ public class TaskService {
             }
         }
 
-        /*
-         * Create completion notification when the task
-         * changes into DONE.
-         */
+        // Notify when the task changes to DONE.
         if (taskCompleted) {
             createTaskCompletedNotification(savedTask);
         }
 
-        /*
-         * Create TASK_UPDATED notification for meaningful
-         * task-detail changes.
-         */
+        // Notify about meaningful task-detail changes.
         if (taskDetailsChanged) {
             createTaskUpdatedNotification(savedTask);
         }
@@ -193,7 +174,6 @@ public class TaskService {
 
     public void deleteTask(UUID taskId) {
         Task task = getTask(taskId);
-
         taskRepository.delete(task);
     }
 
@@ -201,7 +181,6 @@ public class TaskService {
      * Notification for a newly assigned task.
      */
     private void createTaskAssignedNotification(Task task) {
-
         CreateNotificationRequest request =
                 new CreateNotificationRequest(
                         task.getAssignedTo(),
@@ -218,11 +197,9 @@ public class TaskService {
     }
 
     /**
-     * Notification when a task is reassigned
-     * from one user to another.
+     * Notification when a task is reassigned.
      */
     private void createTaskReassignedNotification(Task task) {
-
         CreateNotificationRequest request =
                 new CreateNotificationRequest(
                         task.getAssignedTo(),
@@ -239,13 +216,9 @@ public class TaskService {
     }
 
     /**
-     * Notification when a task is completed.
-     *
-     * If the task has an assignee, notify the assignee.
-     * Otherwise, notify the task creator.
+     * Notification when the task is completed.
      */
     private void createTaskCompletedNotification(Task task) {
-
         UUID notificationUserId;
 
         if (task.getAssignedTo() != null) {
@@ -275,12 +248,8 @@ public class TaskService {
 
     /**
      * Notification when meaningful task details are updated.
-     *
-     * If the task has an assignee, notify the assignee.
-     * Otherwise, notify the task creator.
      */
     private void createTaskUpdatedNotification(Task task) {
-
         UUID notificationUserId;
 
         if (task.getAssignedTo() != null) {

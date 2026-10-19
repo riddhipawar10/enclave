@@ -1,0 +1,142 @@
+
+.edit-admin-project {
+  max-width: 900px;
+  padding: 28px;
+  color: #202938;
+}
+
+.edit-admin-project__header {
+  margin-bottom: 24px;
+}
+
+.edit-admin-project__eyebrow {
+  margin: 0 0 8px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+}
+
+.edit-admin-project__header h2 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.edit-admin-project__header > div > p:last-child {
+  color: #64748b;
+}
+
+.edit-admin-project__card {
+  padding: 26px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.edit-admin-project__field {
+  margin-bottom: 20px;
+}
+
+.edit-admin-project__field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.edit-admin-project__field input,
+.edit-admin-project__field select,
+.edit-admin-project__field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  background: #fff;
+  color: #202938;
+  font: inherit;
+}
+
+.edit-admin-project__field select:disabled {
+  background: #f8fafc;
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.edit-admin-project__field small {
+  display: block;
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.edit-admin-project__field textarea {
+  resize: vertical;
+}
+
+.edit-admin-project__date-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.edit-admin-project__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.edit-admin-project__cancel,
+.edit-admin-project__submit {
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.edit-admin-project__cancel {
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #334155;
+}
+
+.edit-admin-project__submit {
+  border: none;
+  background: #4f46e5;
+  color: #fff;
+}
+
+.edit-admin-project__submit:hover {
+  background: #4338ca;
+}
+
+.edit-admin-project__submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.edit-admin-project__error {
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+@media (max-width: 600px) {
+  .edit-admin-project {
+    padding: 16px;
+  }
+
+  .edit-admin-project__card {
+    padding: 18px;
+  }
+
+  .edit-admin-project__date-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

@@ -7,9 +7,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.UUID;
 
-public interface RolePermissionRepository extends JpaRepository<RolePermission, RolePermissionId> {
+public interface RolePermissionRepository
+        extends JpaRepository<RolePermission, RolePermissionId> {
 
-    boolean existsByRole_IdAndPermission_Name(UUID roleId, String permissionName);
+    boolean existsByRole_IdAndPermission_Name(
+            UUID roleId,
+            String permissionName
+    );
 
     List<RolePermission> findByRole_Id(UUID roleId);
+
+    // Add this method
+    void deleteAllByRole_Id(UUID roleId);
 }

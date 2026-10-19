@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import ProtectedRoute from "./components/common/ProtectedRoute";
@@ -15,6 +16,15 @@ import AdminMembers from "./pages/admin/AdminMembers";
 import AdminInvitations from "./pages/admin/AdminInvitations";
 import OrganizationSettings from "./pages/organization/OrganizationSettings";
 import OrganizationSettingsDetails from "./pages/organization/OrganizationSettingsDetails";
+import AdminProjects from "./pages/admin/AdminProjects";
+import CreateAdminProject from "./pages/admin/CreateAdminProject";
+import AdminProjectDetails from "./pages/admin/AdminProjectDetails";
+import EditAdminProject from "./pages/admin/EditAdminProject";
+import AdminArchivedProjects from "./pages/admin/AdminArchivedProjects";
+import AdminTasks from "./pages/admin/AdminTasks";
+import AdminAnalytics from "./pages/admin/AdminAnalytics";
+import AdminAuditLogs from "./pages/admin/AdminAuditLogs";
+import AdminSettings from "./pages/admin/AdminSettings";
 
 import AcceptInvitation from "./pages/auth/AcceptInvitation";
 
@@ -130,18 +140,64 @@ function App() {
               element={<OrganizationSettingsDetails />}
             />
 
+            {/* Admin projects */}
+            <Route
+              path="/admin/projects"
+              element={<AdminProjects />}
+            />
+
+            <Route
+              path="/admin/projects/create"
+              element={<CreateAdminProject />}
+            />
+
+            <Route
+              path="/admin/projects/:projectId"
+              element={<AdminProjectDetails />}
+            />
+
+            <Route
+              path="/admin/projects/:projectId/edit"
+              element={<EditAdminProject />}
+            />
+
+            <Route
+              path="/admin/projects/archived"
+              element={<AdminArchivedProjects />}
+            />
+
+            <Route
+              path="/admin/tasks"
+              element={<AdminTasks />}
+            />
+
+            <Route
+              path="/admin/analytics"
+              element={<AdminAnalytics />}
+            />
+
+            <Route
+              path="/admin/audit-logs"
+              element={<AdminAuditLogs />}
+            />
+
+            <Route
+              path="/admin/settings"
+              element={<AdminSettings />}
+            />
+
             <Route
               path="/accept-invitation"
               element={<AcceptInvitation />}
             />
 
-            {/* Manager Dashboard */}
+            {/* Manager dashboard */}
             <Route
               path="/manager-dashboard/:organizationId"
               element={<ManagerDashboard />}
             />
 
-            {/* Manager Projects */}
+            {/* Manager projects */}
             <Route
               path="/projects"
               element={<ProjectDashboard />}
@@ -235,7 +291,7 @@ function App() {
               element={<Profile />}
             />
 
-            {/* Organization Management */}
+            {/* Organization management */}
             <Route
               path="/organizations"
               element={<OrganizationDashboard />}
@@ -261,7 +317,7 @@ function App() {
               element={<ManageMembers />}
             />
 
-            {/* RBAC - read-only */}
+            {/* Existing role routes: preserve old links */}
             <Route
               path="/roles"
               element={<Roles />}
@@ -272,6 +328,17 @@ function App() {
               element={<RoleDetails />}
             />
 
+            {/* Admin role-management aliases */}
+            <Route
+              path="/admin/roles"
+              element={<Roles />}
+            />
+
+            <Route
+              path="/admin/roles/:id"
+              element={<RoleDetails />}
+            />
+
             <Route
               path="/rbac-dashboard"
               element={<RBACDashboard />}
@@ -279,13 +346,14 @@ function App() {
           </Route>
         </Route>
 
-        {/* RBAC routes requiring MANAGE_ROLES */}
+        {/* Role management actions require MANAGE_ROLES */}
         <Route
           element={
             <ProtectedRoute requiredPermission="MANAGE_ROLES" />
           }
         >
           <Route element={<AuthenticatedLayout />}>
+            {/* Existing URLs retained */}
             <Route
               path="/roles/create"
               element={<CreateRole />}
@@ -298,6 +366,22 @@ function App() {
 
             <Route
               path="/roles/:id/permissions"
+              element={<Permissions />}
+            />
+
+            {/* Admin URL aliases */}
+            <Route
+              path="/admin/roles/create"
+              element={<CreateRole />}
+            />
+
+            <Route
+              path="/admin/roles/:id/edit"
+              element={<EditRole />}
+            />
+
+            <Route
+              path="/admin/roles/:id/permissions"
               element={<Permissions />}
             />
           </Route>

@@ -1,5 +1,7 @@
+
 package com.enclave.notification.controller;
 
+import com.enclave.auth.entity.User;
 import com.enclave.notification.dto.CreateNotificationRequest;
 import com.enclave.notification.dto.NotificationResponse;
 import com.enclave.notification.service.NotificationService;
@@ -7,6 +9,7 @@ import com.enclave.notification.service.NotificationService;
 import jakarta.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,24 +28,28 @@ public class NotificationController {
     }
 
     /**
-     * Get all notifications for a user.
+     * Get notifications for the authenticated user.
      */
     @GetMapping
     public ResponseEntity<List<NotificationResponse>> getNotifications(
-            @RequestParam UUID userId
+            Authentication authentication
     ) {
+        UUID userId = getAuthenticatedUserId(authentication);
+
         return ResponseEntity.ok(
                 notificationService.getNotifications(userId)
         );
     }
 
     /**
-     * Get unread notification count for a user.
+     * Get unread notification count for the authenticated user.
      */
     @GetMapping("/unread-count")
     public ResponseEntity<Long> getUnreadCount(
-            @RequestParam UUID userId
+            Authentication authentication
     ) {
+        UUID userId = getAuthenticatedUserId(authentication);
+
         return ResponseEntity.ok(
                 notificationService.getUnreadCount(userId)
         );
@@ -50,6 +57,7 @@ public class NotificationController {
 
     /**
      * Create a notification.
+     * Existing task services use this service directly.
      */
     @PostMapping
     public ResponseEntity<NotificationResponse> createNotification(
@@ -61,13 +69,15 @@ public class NotificationController {
     }
 
     /**
-     * Mark one notification as read.
+     * Mark one of the authenticated user's notifications as read.
      */
     @PutMapping("/{notificationId}/read")
     public ResponseEntity<Void> markAsRead(
             @PathVariable UUID notificationId,
-            @RequestParam UUID userId
+            Authentication authentication
     ) {
+        UUID userId = getAuthenticatedUserId(authentication);
+
         notificationService.markAsRead(
                 userId,
                 notificationId
@@ -77,14 +87,29 @@ public class NotificationController {
     }
 
     /**
-     * Mark all notifications as read.
+     * Mark all of the authenticated user's notifications as read.
      */
     @PutMapping("/read-all")
     public ResponseEntity<Void> markAllAsRead(
-            @RequestParam UUID userId
+            Authentication authentication
     ) {
+        UUID userId = getAuthenticatedUserId(authentication);
+
         notificationService.markAllAsRead(userId);
 
         return ResponseEntity.noContent().build();
+    }
+
+    private UUID getAuthenticatedUserId(
+            Authentication authentication
+    ) {
+        if (authentication == null
+                || !(authentication.getPrincipal() instanceof User user)) {
+            throw new org.springframework.security.access.AccessDeniedException(
+                    "Authenticated user not found"
+            );
+        }
+
+        return user.getId();
     }
 }

@@ -1,151 +1,378 @@
+
 .permissions-page {
-  padding: 28px;
-  background-color: #f9fafb;
-  min-height: 100%;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 32px 40px;
+  box-sizing: border-box;
+  color: #111827;
 }
 
 .permissions-back-button {
-  background: none;
+  margin-bottom: 24px;
+  padding: 8px 0;
   border: none;
-  color: #2563eb;
-  font-size: 13px;
-  font-weight: 500;
+  background: transparent;
+  color: #4f46e5;
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  padding: 0;
-  margin-bottom: 18px;
 }
 
 .permissions-back-button:hover {
+  color: #3730a3;
   text-decoration: underline;
 }
 
 .permissions-header {
   display: flex;
+  align-items: flex-end;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 16px;
+  gap: 24px;
+  margin-bottom: 24px;
 }
 
-.permissions-header h2 {
-  font-size: 20px;
+.permissions-heading {
+  min-width: 0;
+}
+
+.permissions-eyebrow {
+  display: inline-block;
+  margin-bottom: 9px;
+  color: #4f46e5;
+  font-size: 11px;
   font-weight: 700;
-  color: #111827;
-  margin: 0 0 4px 0;
+  letter-spacing: 1.4px;
 }
 
-.permissions-role-name {
+.permissions-heading h1 {
+  margin: 0 0 8px;
+  color: #111827;
+  font-size: 29px;
+  font-weight: 750;
+  letter-spacing: -0.6px;
+}
+
+.permissions-heading > p {
+  margin: 0 0 14px;
   color: #6b7280;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.permissions-role-label {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 8px 12px;
+  border: 1px solid #e0e7ff;
+  border-radius: 8px;
+  background: #eef2ff;
+  color: #4338ca;
   font-size: 13px;
-  margin: 0;
+}
+
+.permissions-role-label strong {
+  overflow-wrap: anywhere;
 }
 
 .permissions-save-button {
-  background-color: #2563eb;
-  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  min-height: 43px;
+  padding: 11px 19px;
   border: none;
-  border-radius: 8px;
-  padding: 10px 18px;
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #4f46e5, #4338ca);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.18);
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .permissions-save-button:hover:not(:disabled) {
-  background-color: #1d4ed8;
+  background: #3730a3;
+  transform: translateY(-1px);
 }
 
 .permissions-save-button:disabled {
-  background-color: #93b4f0;
+  opacity: 0.55;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
-.permissions-readonly-notice {
-  background-color: #fef3c7;
+.permissions-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.permissions-summary > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 175px;
+  padding: 19px 22px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.035);
+}
+
+.permissions-summary-label {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.permissions-summary strong {
+  color: #111827;
+  font-size: 25px;
+  font-weight: 750;
+}
+
+.permissions-notice {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  background: #fffbeb;
   color: #92400e;
   font-size: 13px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin-bottom: 16px;
+  line-height: 1.6;
 }
 
 .permissions-save-success {
-  background-color: #dcfce7;
-  color: #166534;
+  margin-bottom: 20px;
+  padding: 13px 16px;
+  border: 1px solid #a7f3d0;
+  border-radius: 10px;
+  background: #ecfdf5;
+  color: #047857;
   font-size: 13px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin-bottom: 16px;
-}
-
-.permissions-empty-state {
-  color: #9ca3af;
-  font-size: 14px;
-  text-align: center;
-  padding: 48px 24px;
-  background-color: #ffffff;
-  border: 1px dashed #e5e7eb;
-  border-radius: 12px;
+  font-weight: 600;
 }
 
 .permissions-groups {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 20px;
 }
 
 .permissions-group {
-  background-color: #ffffff;
+  min-width: 0;
+  overflow: hidden;
   border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 13px;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.035);
 }
 
-.permissions-group h3 {
-  font-size: 13px;
+.permissions-group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 19px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fafaff;
+}
+
+.permissions-group-header h2 {
+  margin: 0 0 5px;
+  color: #111827;
+  font-size: 15px;
   font-weight: 700;
-  color: #374151;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  margin: 0 0 14px 0;
+}
+
+.permissions-group-header p {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.permissions-group-count {
+  flex-shrink: 0;
+  padding: 5px 8px;
+  border-radius: 20px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-size: 10px;
+  font-weight: 600;
 }
 
 .permissions-group-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
 }
 
 .permissions-checkbox-item {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  padding: 8px;
-  border-radius: 8px;
+  gap: 12px;
+  padding: 15px 8px;
+  border-bottom: 1px solid #f1f5f9;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.permissions-checkbox-item:last-child {
+  border-bottom: none;
 }
 
 .permissions-checkbox-item:hover {
-  background-color: #f9fafb;
+  background: #fafaff;
+}
+
+.permissions-checkbox-item.is-selected {
+  background: #f5f6ff;
 }
 
 .permissions-checkbox-item input[type="checkbox"] {
-  margin-top: 3px;
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+  margin: 2px 0 0;
+  accent-color: #4f46e5;
   cursor: pointer;
+}
+
+.permissions-checkbox-item input[type="checkbox"]:disabled {
+  cursor: not-allowed;
 }
 
 .permissions-checkbox-label {
   display: flex;
   flex-direction: column;
-  font-size: 13px;
+  gap: 5px;
+  min-width: 0;
 }
 
 .permissions-checkbox-label strong {
-  color: #111827;
-  font-weight: 600;
+  color: #1f2937;
+  font-size: 12px;
+  font-weight: 650;
+  overflow-wrap: anywhere;
 }
 
 .permissions-checkbox-description {
-  color: #9ca3af;
-  font-size: 12px;
-  margin-top: 2px;
+  color: #6b7280;
+  font-size: 11px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.permissions-empty-state {
+  padding: 32px 24px;
+  border: 1px dashed #d1d5db;
+  border-radius: 12px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.permissions-empty-state h3 {
+  margin: 0 0 8px;
+  color: #111827;
+  font-size: 17px;
+}
+
+.permissions-empty-state p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.permissions-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 18px 0 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.permissions-cancel-button {
+  min-height: 43px;
+  padding: 10px 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.permissions-cancel-button:hover:not(:disabled) {
+  background: #f9fafb;
+}
+
+.permissions-cancel-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 1000px) {
+  .permissions-groups {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .permissions-page {
+    padding: 22px 18px 32px;
+  }
+
+  .permissions-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .permissions-heading h1 {
+    font-size: 25px;
+  }
+
+  .permissions-summary > div {
+    flex: 1;
+    min-width: 130px;
+  }
+
+  .permissions-header > .permissions-save-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .permissions-page {
+    padding: 18px 12px 26px;
+  }
+
+  .permissions-summary {
+    flex-direction: column;
+  }
+
+  .permissions-summary > div {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .permissions-group-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .permissions-footer {
+    flex-direction: column-reverse;
+  }
+
+  .permissions-footer button {
+    width: 100%;
+  }
 }

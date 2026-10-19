@@ -1,19 +1,12 @@
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import RoleForm from "../../components/rbac/RoleForm";
 import { getRoleById, updateRole } from "../../services/rbacService";
 import ErrorMessage from "../../components/common/ErrorMessage";
 import LoadingSpinner from "../../components/common/LoadingSpinner";
+import "./EditRole.css";
 
-/**
- * EditRole
- *
- * Wraps RoleForm for editing an existing role. Mirrors CreateRole.jsx's
- * pattern exactly, plus a fetch-on-mount to load the role's current
- * name/description into the form via RoleForm's `initialData` prop.
- *
- * Route: /roles/:id/edit
- */
 function EditRole() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -50,12 +43,15 @@ function EditRole() {
       setSubmitError("");
       await updateRole(id, formData);
       setSuccess(true);
+
       setTimeout(() => {
-        navigate(`/roles/${id}`);
+        navigate(`/admin/roles/${id}`);
       }, 800);
     } catch (err) {
       const backendMessage = err.response?.data?.message;
-      setSubmitError(backendMessage || "Failed to update role. Please try again.");
+      setSubmitError(
+        backendMessage || "Failed to update role. Please try again."
+      );
     }
   };
 
@@ -63,30 +59,58 @@ function EditRole() {
     return <LoadingSpinner message="Loading role..." />;
   }
 
-  if (notFound) {
+  if (notFound || (loadError && !role)) {
     return (
-      <div className="create-role-page">
-        <p>Role not found.</p>
-        <button onClick={() => navigate("/roles")}>Back to Roles</button>
-      </div>
-    );
-  }
+      <div className="edit-role-page">
+        <button
+          type="button"
+          className="edit-role-back-button"
+          onClick={() => navigate("/admin/roles")}
+        >
+          ← Back to Role Management
+        </button>
 
-  if (loadError && !role) {
-    return (
-      <div className="create-role-page">
-        <ErrorMessage message={loadError} />
-        <button onClick={() => navigate("/roles")}>Back to Roles</button>
+        {notFound ? (
+          <ErrorMessage message="Role not found." />
+        ) : (
+          <ErrorMessage message={loadError} />
+        )}
       </div>
     );
   }
 
   return (
-    <div className="create-role-page">
-      <h2>Edit Role</h2>
-      <ErrorMessage message={submitError} />
-      {success && <p className="create-role-success">Role updated successfully.</p>}
-      <RoleForm initialData={role} onSubmit={handleSubmit} submitLabel="Save Changes" />
+    <div className="edit-role-page">
+      <button
+        type="button"
+        className="edit-role-back-button"
+        onClick={() => navigate("/admin/roles")}
+      >
+        ← Back to Role Management
+      </button>
+
+      <div className="edit-role-header">
+        <div>
+          <h1>Edit Role</h1>
+          <p>Update the role name and description for your organization.</p>
+        </div>
+      </div>
+
+      <div className="edit-role-content">
+        <ErrorMessage message={submitError} />
+
+        {success && (
+          <p className="edit-role-success">
+            Role updated successfully. Redirecting...
+          </p>
+        )}
+
+        <RoleForm
+          initialData={role}
+          onSubmit={handleSubmit}
+          submitLabel="Save Changes"
+        />
+      </div>
     </div>
   );
 }

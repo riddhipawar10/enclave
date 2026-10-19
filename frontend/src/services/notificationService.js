@@ -1,50 +1,22 @@
+
 import api from "./api";
 
-export const getNotifications = async (userId) => {
-  const response = await api.get("/notifications", {
-    params: {
-      userId,
-    },
-  });
-
+export const getNotifications = async () => {
+  const response = await api.get("/notifications");
   return response.data;
 };
 
-export const getUnreadNotificationCount = async (userId) => {
-  const response = await api.get("/notifications/unread-count", {
-    params: {
-      userId,
-    },
-  });
-
+export const getUnreadNotificationCount = async () => {
+  const response = await api.get("/notifications/unread-count");
   return response.data;
 };
 
-export const markNotificationAsRead = async (
-  userId,
-  notificationId
-) => {
-  await api.put(
-    `/notifications/${notificationId}/read`,
-    null,
-    {
-      params: {
-        userId,
-      },
-    }
-  );
+export const markNotificationAsRead = async (notificationId) => {
+  await api.put(`/notifications/${notificationId}/read`);
 };
 
-export const markAllNotificationsAsRead = async (userId) => {
-  await api.put(
-    "/notifications/read-all",
-    null,
-    {
-      params: {
-        userId,
-      },
-    }
-  );
+export const markAllNotificationsAsRead = async () => {
+  await api.put("/notifications/read-all");
 };
 
 export default {
