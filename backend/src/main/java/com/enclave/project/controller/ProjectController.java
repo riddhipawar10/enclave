@@ -25,28 +25,34 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
-    // Get all active projects for an organization.
+    // Get active projects visible to the authenticated user.
     @GetMapping
     @RequirePermission("VIEW_PROJECT")
     public ResponseEntity<List<Project>> getProjects(
             @PathVariable("organizationId") UUID organizationId
     ) {
+        UUID currentUserId = getCurrentUserId();
+
         List<Project> projects =
-                projectService.getActiveProjects(organizationId);
+                projectService.getActiveProjectsForUser(
+                        organizationId,
+                        currentUserId
+                );
 
         return ResponseEntity.ok(projects);
     }
 
-    // Get one project and verify its organization.
+    // Get one project only if the user is allowed to view it.
     @GetMapping("/{projectId}")
     @RequirePermission("VIEW_PROJECT")
     public ResponseEntity<Project> getProjectById(
             @PathVariable("organizationId") UUID organizationId,
             @PathVariable("projectId") UUID projectId
     ) {
-        Project project = projectService.getProjectById(
+        Project project = projectService.getProjectByIdForUser(
                 organizationId,
-                projectId
+                projectId,
+                getCurrentUserId()
         );
 
         return ResponseEntity.ok(project);
@@ -167,3 +173,5 @@ public class ProjectController {
             LocalDate endDate
     ) {}
 }
+
+

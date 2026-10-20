@@ -134,6 +134,14 @@ export function AuthProvider({ children }) {
     }
   };
 
+  
+  const updateUser = (updatedUser) => {
+    setUser((currentUser) => ({
+      ...currentUser,
+      ...updatedUser,
+    }));
+  };
+
   // ---------------------------------------------------------
   // Context value
   // ---------------------------------------------------------
@@ -147,6 +155,7 @@ export function AuthProvider({ children }) {
     register,
     logout,
     clearAuthState,
+    updateUser,
   };
 
   return (

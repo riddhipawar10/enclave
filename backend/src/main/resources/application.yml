@@ -1,3 +1,4 @@
+
 spring:
   application:
     name: enclave-backend
@@ -30,3 +31,8 @@ server:
 jwt:
   secret: enclave-development-secret-key-must-be-at-least-32-bytes-long
   access-token-expiry-ms: 900000
+
+openai:
+  api-key: ${OPENAI_API_KEY}
+  model: gpt-4.1-mini
+  base-url: https://api.openai.com/v1

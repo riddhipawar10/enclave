@@ -15,6 +15,13 @@ const AUTH_ENDPOINTS = {
   REFRESH: "/auth/refresh",
 };
 
+
+const USER_ENDPOINTS = {
+  ME: "/users/me",
+  UPDATE_PROFILE: "/users/me",
+  CHANGE_PASSWORD: "/users/me/password",
+};
+
 // ---------------------------------------------------------
 // ORGANIZATION
 // ---------------------------------------------------------
@@ -64,6 +71,7 @@ const PERMISSION_ENDPOINTS = {
 
 export {
   AUTH_ENDPOINTS,
+  USER_ENDPOINTS,
   ORGANIZATION_ENDPOINTS,
   ROLE_ENDPOINTS,
   PERMISSION_ENDPOINTS,

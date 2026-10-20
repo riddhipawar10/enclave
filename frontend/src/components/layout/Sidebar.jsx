@@ -13,6 +13,7 @@ function Sidebar() {
     useState(0);
 
   const isAdmin = roles?.includes("ADMIN");
+  const isTeamMember = roles?.includes("TEAM_MEMBER");
 
   const handleLogout = async () => {
     if (isLoggingOut) {
@@ -86,7 +87,7 @@ function Sidebar() {
     };
   }, [user?.id]);
 
-  // Keep the existing Manager navigation unchanged.
+  // Existing Manager navigation — unchanged.
   const managerNavItems = [
     { label: "Dashboard", to: "/dashboard" },
     { label: "Organizations", to: "/organizations" },
@@ -105,7 +106,7 @@ function Sidebar() {
     { label: "Settings", to: "/settings" },
   ];
 
-  // Admin navigation. Future pages will be added as their routes are implemented.
+  // Existing Admin navigation — unchanged.
   const adminNavItems = [
     { label: "Dashboard", to: "/admin-dashboard" },
     {
@@ -137,7 +138,28 @@ function Sidebar() {
     { label: "Settings", to: "/settings" },
   ];
 
-  const navItems = isAdmin ? adminNavItems : managerNavItems;
+  // New Team Member navigation.
+  const teamMemberNavItems = [
+    { label: "Dashboard", to: "/dashboard" },
+    { label: "My Tasks", to: "/tasks" },
+    { label: "My Projects", to: "/projects" },
+    { label: "My Board", to: "/board" },
+    { label: "Calendar", to: "/calendar" },
+    {
+      label: "Notifications",
+      to: "/notifications",
+      notificationCount: unreadNotificationCount,
+    },
+    { label: "AI Assistant", to: "/ai-assistant" },
+    { label: "Profile", to: "/profile" },
+  ];
+
+  // Select the correct menu based on the user's role.
+  const navItems = isAdmin
+    ? adminNavItems
+    : isTeamMember
+      ? teamMemberNavItems
+      : managerNavItems;
 
   return (
     <aside className="sidebar">

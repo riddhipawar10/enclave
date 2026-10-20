@@ -1,8 +1,11 @@
+
 package com.enclave.organization.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
@@ -18,10 +21,15 @@ import java.util.Map;
 /**
  * Global exception handler for the Organization Management module.
  * Returns clean, consistent JSON error responses without exposing
- * stack traces or internal implementation details.
+ * stack traces or internal implementation details to clients.
  */
 @RestControllerAdvice
 public class OrganizationGlobalExceptionHandler {
+
+    private static final Logger logger =
+            LoggerFactory.getLogger(
+                    OrganizationGlobalExceptionHandler.class
+            );
 
     @ExceptionHandler(OrganizationNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleOrganizationNotFound(
@@ -119,11 +127,18 @@ public class OrganizationGlobalExceptionHandler {
                 .body(body);
     }
 
+    /**
+     * Logs unexpected exceptions for debugging while keeping
+     * internal details out of the HTTP response.
+     */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGenericException(
             Exception ex) {
 
-//        ex.printStackTrace();
+        logger.error(
+                "Unhandled exception while processing request",
+                ex
+        );
 
         ErrorResponse body = new ErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),

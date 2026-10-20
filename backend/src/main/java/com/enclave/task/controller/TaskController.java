@@ -1,3 +1,4 @@
+
 package com.enclave.task.controller;
 
 import com.enclave.auth.entity.User;
@@ -32,8 +33,14 @@ public class TaskController {
             @PathVariable("organizationId") UUID organizationId,
             @PathVariable("projectId") UUID projectId
     ) {
+        User currentUser = getCurrentUser();
+
         return ResponseEntity.ok(
-                taskService.getTasksByProject(projectId)
+                taskService.getTasksByProjectForUser(
+                        organizationId,
+                        projectId,
+                        currentUser.getId()
+                )
         );
     }
 
@@ -44,14 +51,18 @@ public class TaskController {
             @PathVariable("projectId") UUID projectId,
             @Valid @RequestBody CreateTaskRequest request
     ) {
+        User currentUser = getCurrentUser();
 
-        Authentication authentication =
-                SecurityContextHolder
-                        .getContext()
-                        .getAuthentication();
+        taskService.validateProjectAccess(
+                organizationId,
+                projectId,
+                currentUser.getId()
+        );
 
-        User currentUser =
-                (User) authentication.getPrincipal();
+        taskService.ensureNotTeamMember(
+                organizationId,
+                currentUser.getId()
+        );
 
         Task task = taskService.createTask(
                 projectId,
@@ -76,8 +87,26 @@ public class TaskController {
             @PathVariable("taskId") UUID taskId,
             @Valid @RequestBody UpdateTaskRequest request
     ) {
+        User currentUser = getCurrentUser();
 
-        Task task = taskService.updateTask(
+        if (taskService.isTeamMember(
+                organizationId,
+                currentUser.getId()
+        )) {
+            Task task = taskService.updateTaskStatusForUser(
+                    organizationId,
+                    projectId,
+                    taskId,
+                    currentUser.getId(),
+                    request.statusId()
+            );
+
+            return ResponseEntity.ok(task);
+        }
+
+        Task task = taskService.updateTaskForProject(
+                organizationId,
+                projectId,
                 taskId,
                 request.title(),
                 request.description(),
@@ -99,10 +128,25 @@ public class TaskController {
             @PathVariable("projectId") UUID projectId,
             @PathVariable("taskId") UUID taskId
     ) {
+        User currentUser = getCurrentUser();
 
-        taskService.deleteTask(taskId);
+        taskService.deleteTaskForProject(
+                organizationId,
+                projectId,
+                taskId,
+                currentUser.getId()
+        );
 
         return ResponseEntity.noContent().build();
+    }
+
+    private User getCurrentUser() {
+        Authentication authentication =
+                SecurityContextHolder
+                        .getContext()
+                        .getAuthentication();
+
+        return (User) authentication.getPrincipal();
     }
 
     public record CreateTaskRequest(

@@ -1,8 +1,9 @@
-
 package com.enclave.project.service;
 
 import com.enclave.audit.service.AuditLogService;
+import com.enclave.organization.repository.OrganizationMemberRepository;
 import com.enclave.project.entity.Project;
+import com.enclave.project.repository.ProjectMemberRepository;
 import com.enclave.project.repository.ProjectRepository;
 
 import org.springframework.stereotype.Service;
@@ -18,18 +19,97 @@ public class ProjectService {
 
     private final ProjectRepository projectRepository;
     private final AuditLogService auditLogService;
+    private final ProjectMemberRepository projectMemberRepository;
+    private final OrganizationMemberRepository organizationMemberRepository;
 
     public ProjectService(
             ProjectRepository projectRepository,
-            AuditLogService auditLogService
+            AuditLogService auditLogService,
+            ProjectMemberRepository projectMemberRepository,
+            OrganizationMemberRepository organizationMemberRepository
     ) {
         this.projectRepository = projectRepository;
         this.auditLogService = auditLogService;
+        this.projectMemberRepository = projectMemberRepository;
+        this.organizationMemberRepository = organizationMemberRepository;
     }
 
+    // Get all active projects for an organization.
+    // Existing behavior is preserved for existing callers.
     public List<Project> getActiveProjects(UUID organizationId) {
         return projectRepository
                 .findByOrganizationIdAndArchivedFalse(organizationId);
+    }
+
+    // Get active projects visible to a specific user.
+    // Team Members see only projects they belong to.
+    public List<Project> getActiveProjectsForUser(
+            UUID organizationId,
+            UUID userId
+    ) {
+        String roleName = getActiveOrganizationRole(
+                organizationId,
+                userId
+        );
+
+        if (!"TEAM_MEMBER".equalsIgnoreCase(roleName)) {
+            return getActiveProjects(organizationId);
+        }
+
+        List<UUID> projectIds = projectMemberRepository
+                .findByUserId(userId)
+                .stream()
+                .map(projectMember -> projectMember.getProjectId())
+                .toList();
+
+        return projectRepository
+                .findByOrganizationIdAndArchivedFalse(organizationId)
+                .stream()
+                .filter(project -> projectIds.contains(project.getId()))
+                .toList();
+    }
+
+    // Get one project only if the user is allowed to view it.
+    public Project getProjectByIdForUser(
+            UUID organizationId,
+            UUID projectId,
+            UUID userId
+    ) {
+        String roleName = getActiveOrganizationRole(
+                organizationId,
+                userId
+        );
+
+        Project project = getProjectById(
+                organizationId,
+                projectId
+        );
+
+        if ("TEAM_MEMBER".equalsIgnoreCase(roleName)
+                && !projectMemberRepository
+                        .existsByProjectIdAndUserId(projectId, userId)) {
+            throw new RuntimeException(
+                    "You are not a member of this project"
+            );
+        }
+
+        return project;
+    }
+
+    // Get the user's active organization role.
+    private String getActiveOrganizationRole(
+            UUID organizationId,
+            UUID userId
+    ) {
+        return organizationMemberRepository
+                .findByOrganization_IdAndUser_Id(organizationId, userId)
+                .filter(membership -> membership.isActive())
+                .map(membership -> membership.getRole().getName())
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Active organization membership not found"
+                        )
+                );
     }
 
     // Get one project and verify its organization.
@@ -90,7 +170,7 @@ public class ProjectService {
         return savedProject;
     }
 
-    // Update a project and record the action.
+    // Update an existing project and record the action.
     @Transactional
     public Project updateProject(
             UUID organizationId,
@@ -101,6 +181,7 @@ public class ProjectService {
             LocalDate startDate,
             LocalDate endDate
     ) {
+    	ensureNotTeamMember(organizationId, actorId);
         Project project = getProjectById(organizationId, projectId);
 
         project.setName(name);
@@ -130,6 +211,8 @@ public class ProjectService {
             UUID projectId,
             UUID actorId
     ) {
+    	ensureNotTeamMember(organizationId, actorId);
+    	
         Project project = getProjectById(organizationId, projectId);
 
         if (project.isArchived()) {
@@ -153,13 +236,15 @@ public class ProjectService {
         return savedProject;
     }
 
-    // Restore a project and record the action.
+    // Restore an archived project and record the action.
     @Transactional
     public Project restoreProject(
             UUID organizationId,
             UUID projectId,
             UUID actorId
     ) {
+    	ensureNotTeamMember(organizationId, actorId);
+    	
         Project project = getProjectById(organizationId, projectId);
 
         if (!project.isArchived()) {
@@ -198,5 +283,18 @@ public class ProjectService {
                         .replace("\"", "\\\"");
 
         return "{\"projectName\":\"" + safeName + "\"}";
+    }
+    
+    private void ensureNotTeamMember(UUID organizationId, UUID userId) {
+        String roleName = getActiveOrganizationRole(
+                organizationId,
+                userId
+        );
+
+        if ("TEAM_MEMBER".equalsIgnoreCase(roleName)) {
+            throw new org.springframework.security.access.AccessDeniedException(
+                    "Team Members cannot modify project details"
+            );
+        }
     }
 }

@@ -75,6 +75,13 @@ function Tasks() {
               project.id
             );
 
+            console.log("Task assignment details:", {
+              title: tasks[0]?.title,
+              assignedTo: tasks[0]?.assignedTo,
+              dueDate: tasks[0]?.dueDate,
+              statusId: tasks[0]?.statusId,
+            });
+
             groups.push({
               organizationId:
                 organization.id,

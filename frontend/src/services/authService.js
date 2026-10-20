@@ -6,6 +6,9 @@
 import api from "./api";
 import AUTH_ENDPOINTS from "../config/apiEndpoints";
 
+import { USER_ENDPOINTS } from "../config/apiEndpoints";
+
+
 import {
   setAccessToken,
   setRefreshToken,
@@ -161,3 +164,36 @@ export async function acceptInvitation(token, registrationData) {
 
   return response.data;
 }
+
+
+/**
+ * Get the authenticated user's profile.
+ */
+export async function getCurrentUser() {
+  const response = await api.get(USER_ENDPOINTS.ME);
+  return response.data;
+}
+
+/**
+ * Update the authenticated user's profile.
+ *
+ * Backend expects:
+ * {
+ *   firstName,
+ *   lastName,
+ *   email
+ * }
+ */
+export async function updateProfile(profileData) {
+  const response = await api.put(
+    USER_ENDPOINTS.UPDATE_PROFILE,
+    {
+      firstName: profileData.firstName.trim(),
+      lastName: profileData.lastName.trim(),
+      email: profileData.email.trim(),
+    }
+  );
+
+  return response.data;
+}
+
