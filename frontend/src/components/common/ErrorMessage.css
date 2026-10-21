@@ -3,10 +3,10 @@
 .error-message {
   margin: 4px 0 0 0;
   padding: 10px 12px;
-  background-color: #fdecea;
-  border: 1px solid #f3c1bd;
+  background-color: rgba(255, 77, 125, 0.16);
+  border: 1px solid rgba(255, 77, 125, 0.42);
   border-radius: 8px;
-  color: #b3261e;
+  color: #ff8fb0;
   font-size: 13px;
   line-height: 1.4;
   word-break: break-word;

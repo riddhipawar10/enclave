@@ -14,12 +14,12 @@
   margin: 0;
   font-size: 30px;
   font-weight: 700;
-  color: #111827;
+  color: #f6f3ff;
 }
 
 .manager-dashboard-header p {
   margin: 8px 0 0;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 15px;
 }
 
@@ -33,25 +33,28 @@
 }
 
 .manager-dashboard-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: rgba(24, 12, 58, 0.86);
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 14px;
   padding: 22px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 8px rgba(4, 0, 20, 0.128);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .manager-dashboard-card h3 {
   margin: 0 0 12px;
   font-size: 14px;
   font-weight: 600;
-  color: #6b7280;
+  color: #b3a9e6;
 }
 
 .manager-dashboard-card p {
   margin: 0;
   font-size: 30px;
   font-weight: 700;
-  color: #111827;
+  color: #f6f3ff;
 }
 
 /* Sections */
@@ -64,7 +67,7 @@
   margin: 0 0 16px;
   font-size: 20px;
   font-weight: 700;
-  color: #111827;
+  color: #f6f3ff;
 }
 
 /* Project progress */
@@ -76,11 +79,14 @@
 }
 
 .manager-dashboard-project-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: rgba(24, 12, 58, 0.86);
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 14px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 8px rgba(4, 0, 20, 0.128);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .manager-dashboard-project-header {
@@ -95,26 +101,26 @@
   margin: 0;
   font-size: 16px;
   font-weight: 600;
-  color: #111827;
+  color: #f6f3ff;
 }
 
 .manager-dashboard-project-header span {
   font-size: 14px;
   font-weight: 700;
-  color: #4f46e5;
+  color: #7fd8ff;
 }
 
 .manager-dashboard-progress {
   width: 100%;
   height: 8px;
   overflow: hidden;
-  background: #e5e7eb;
+  background: rgba(48, 26, 104, 0.55);
   border-radius: 999px;
 }
 
 .manager-dashboard-progress-bar {
   height: 100%;
-  background: #4f46e5;
+  background: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
   border-radius: 999px;
   transition: width 0.3s ease;
 }
@@ -122,16 +128,19 @@
 /* Placeholder sections */
 
 .manager-dashboard-placeholder {
-  background: #ffffff;
-  border: 1px dashed #d1d5db;
+  background: rgba(24, 12, 58, 0.86);
+  border: 1px dashed rgba(176, 140, 255, 0.26);
   border-radius: 14px;
   padding: 28px;
   text-align: center;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .manager-dashboard-placeholder p {
   margin: 0;
-  color: #9ca3af;
+  color: #c9c1f0;
   font-size: 14px;
 }
 
@@ -139,7 +148,7 @@
 
 .manager-dashboard > p {
   padding: 32px;
-  color: #6b7280;
+  color: #b3a9e6;
 }
 
 /* Responsive */
@@ -185,7 +194,7 @@
 
 .manager-dashboard-section-header p {
   margin: 0;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 13px;
 }
 
@@ -203,9 +212,12 @@
   justify-content: space-between;
   gap: 20px;
   padding: 16px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: rgba(24, 12, 58, 0.86);
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 10px;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 
@@ -221,8 +233,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #e5e7eb;
-  color: #374151;
+  background: rgba(48, 26, 104, 0.55);
+  color: #e4dfff;
 
   display: flex;
   align-items: center;
@@ -236,12 +248,12 @@
 .manager-dashboard-workload-member h3 {
   margin: 0 0 3px;
   font-size: 14px;
-  color: #111827;
+  color: #f6f3ff;
 }
 
 
 .manager-dashboard-workload-member span {
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 12px;
 }
 
@@ -263,13 +275,13 @@
 
 .manager-dashboard-workload-stats strong {
   font-size: 18px;
-  color: #111827;
+  color: #f6f3ff;
 }
 
 
 .manager-dashboard-workload-stats span {
   font-size: 11px;
-  color: #6b7280;
+  color: #b3a9e6;
 }
 
 
@@ -292,18 +304,21 @@
 
   padding: 16px;
 
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: rgba(24, 12, 58, 0.86);
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 10px;
 
   cursor: pointer;
   transition: box-shadow 0.15s ease,
               transform 0.15s ease;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 
 .manager-dashboard-urgent-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(4, 0, 20, 0.256);
   transform: translateY(-1px);
 }
 
@@ -323,14 +338,14 @@
 
 .manager-dashboard-urgent-title-row h3 {
   margin: 0;
-  color: #111827;
+  color: #f6f3ff;
   font-size: 14px;
 }
 
 
 .manager-dashboard-urgent-main p {
   margin: 6px 0 0;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 12px;
 }
 
@@ -345,14 +360,14 @@
 
 
 .manager-dashboard-priority.urgent {
-  background: #fee2e2;
-  color: #991b1b;
+  background: rgba(255, 77, 125, 0.16);
+  color: #ff8fb0;
 }
 
 
 .manager-dashboard-priority.high {
-  background: #ffedd5;
-  color: #9a3412;
+  background: rgba(255, 190, 70, 0.16);
+  color: #fcd34d;
 }
 
 
@@ -373,14 +388,14 @@
 
 
 .manager-dashboard-urgent-details span {
-  color: #9ca3af;
+  color: #c9c1f0;
   font-size: 10px;
   text-transform: uppercase;
 }
 
 
 .manager-dashboard-urgent-details strong {
-  color: #374151;
+  color: #e4dfff;
   font-size: 12px;
   font-weight: 600;
 }

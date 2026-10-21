@@ -2,7 +2,7 @@
 .create-admin-project {
   max-width: 900px;
   padding: 28px;
-  color: #202938;
+  color: #f6f3ff;
 }
 
 .create-admin-project__header {
@@ -11,7 +11,7 @@
 
 .create-admin-project__eyebrow {
   margin: 0 0 8px;
-  color: #64748b;
+  color: #b3a9e6;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1.4px;
@@ -23,14 +23,17 @@
 }
 
 .create-admin-project__header > div > p:last-child {
-  color: #64748b;
+  color: #b3a9e6;
 }
 
 .create-admin-project__card {
   padding: 26px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
-  background: #fff;
+  background: rgba(24, 12, 58, 0.86);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .create-admin-project__field {
@@ -50,11 +53,13 @@
   box-sizing: border-box;
   width: 100%;
   padding: 12px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 7px;
-  background: #fff;
-  color: #202938;
+  background: rgba(24, 12, 58, 0.86);
+  color: #f6f3ff;
   font: inherit;
+  /* enclave 3D depth */
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.07), 0 1px 0 rgba(176, 140, 255, 0.12);
 }
 
 .create-admin-project__field textarea {
@@ -84,19 +89,25 @@
 }
 
 .create-admin-project__cancel {
-  border: 1px solid #cbd5e1;
-  background: #fff;
-  color: #334155;
+  border: 1px solid rgba(176, 140, 255, 0.26);
+  background: rgba(24, 12, 58, 0.86);
+  color: #e4dfff;
 }
 
 .create-admin-project__submit {
   border: none;
-  background: #4f46e5;
-  color: #fff;
+  background: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
+  color: #ffffff;
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .create-admin-project__submit:hover {
-  background: #4338ca;
+  background: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .create-admin-project__submit:disabled {
@@ -107,10 +118,10 @@
 .create-admin-project__error {
   margin-bottom: 20px;
   padding: 13px 16px;
-  border: 1px solid #fecaca;
+  border: 1px solid rgba(255, 77, 125, 0.42);
   border-radius: 8px;
-  background: #fef2f2;
-  color: #b91c1c;
+  background: rgba(255, 77, 125, 0.16);
+  color: #ff8fb0;
 }
 
 @media (max-width: 600px) {

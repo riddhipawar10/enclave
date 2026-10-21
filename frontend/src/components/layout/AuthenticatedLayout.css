@@ -1,7 +1,7 @@
 .authenticated-layout {
   min-height: 100vh;
   display: flex;
-  background: #f4f6fa;
+  background: rgba(34, 18, 78, 0.78);
 }
 
 .authenticated-layout__content {

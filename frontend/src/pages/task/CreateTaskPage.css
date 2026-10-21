@@ -9,14 +9,14 @@
   background: transparent;
   padding: 0;
   margin-bottom: 24px;
-  color: #2563eb;
+  color: #7fd8ff;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
 
 .create-task-back-button:hover {
-  color: #1d4ed8;
+  color: #7fd8ff;
 }
 
 .create-task-page-header {
@@ -25,27 +25,27 @@
 
 .create-task-page-header h1 {
   margin: 0;
-  color: #1f2937;
+  color: #f6f3ff;
   font-size: 32px;
   font-weight: 700;
 }
 
 .create-task-page-header p {
   margin: 8px 0 0;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 15px;
 }
 
 .create-task-page-header strong {
-  color: #374151;
+  color: #e4dfff;
 }
 
 .create-task-page-error {
   padding: 16px;
-  border: 1px solid #fecaca;
+  border: 1px solid rgba(255, 77, 125, 0.42);
   border-radius: 8px;
-  background: #fef2f2;
-  color: #b91c1c;
+  background: rgba(255, 77, 125, 0.16);
+  color: #ff8fb0;
 }
 
 @media (max-width: 700px) {

@@ -1,7 +1,7 @@
 
 .admin-projects {
   padding: 28px;
-  color: #202938;
+  color: #f6f3ff;
 }
 
 /* Header */
@@ -15,7 +15,7 @@
 
 .admin-projects__eyebrow {
   margin: 0 0 8px;
-  color: #64748b;
+  color: #b3a9e6;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1.4px;
@@ -29,7 +29,7 @@
 .admin-projects__header p:last-child,
 .admin-projects__list-header p {
   margin: 0;
-  color: #64748b;
+  color: #b3a9e6;
   line-height: 1.5;
 }
 
@@ -52,9 +52,9 @@
   min-height: 42px;
   margin: 0;
   padding: 11px 17px;
-  border: 1px solid #4f46e5;
+  border: 1px solid #c13bf0;
   border-radius: 8px;
-  background: #4f46e5;
+  background: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
   color: #ffffff;
   font-family: inherit;
   font-size: 14px;
@@ -64,11 +64,17 @@
   cursor: pointer;
   box-shadow: none;
   transition: background 0.2s ease, border-color 0.2s ease;
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .admin-projects .admin-projects__header-actions .admin-projects__primary-button:hover {
-  background: #4338ca;
-  border-color: #4338ca;
+  background: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
+  border-color: #c13bf0;
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .admin-projects .admin-projects__header-actions .admin-projects__primary-button:disabled {
@@ -85,10 +91,10 @@
   min-height: 42px;
   margin: 0;
   padding: 11px 17px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 8px;
-  background: #ffffff;
-  color: #334155;
+  background: rgba(24, 12, 58, 0.86);
+  color: #e4dfff;
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
@@ -100,9 +106,9 @@
 }
 
 .admin-projects .admin-projects__header-actions .admin-projects__archived-button:hover {
-  background: #f8fafc;
-  border-color: #94a3b8;
-  color: #1e293b;
+  background: rgba(34, 18, 78, 0.78);
+  border-color: rgba(176, 140, 255, 0.26);
+  color: #f6f3ff;
 }
 
 .admin-projects .admin-projects__header-actions .admin-projects__archived-button:disabled {
@@ -111,7 +117,7 @@
 }
 
 .admin-projects .admin-projects__header-actions button:focus-visible {
-  outline: 2px solid #4f46e5;
+  outline: 2px solid #c13bf0;
   outline-offset: 3px;
 }
 
@@ -121,9 +127,12 @@
 .admin-projects__list-section {
   margin-bottom: 24px;
   padding: 22px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
-  background: #ffffff;
+  background: rgba(24, 12, 58, 0.86);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .admin-projects__organization label,
@@ -140,12 +149,14 @@
 .admin-projects__field textarea {
   box-sizing: border-box;
   width: 100%;
-  border: 1px solid #cbd5e1;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 7px;
-  background: #ffffff;
-  color: #202938;
+  background: rgba(24, 12, 58, 0.86);
+  color: #f6f3ff;
   padding: 11px 12px;
   font: inherit;
+  /* enclave 3D depth */
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.07), 0 1px 0 rgba(176, 140, 255, 0.12);
 }
 
 .admin-projects__organization select {
@@ -154,7 +165,7 @@
 
 .admin-projects__organization-name {
   margin: 12px 0 0;
-  color: #64748b;
+  color: #b3a9e6;
   font-size: 13px;
 }
 
@@ -171,18 +182,21 @@
   flex-direction: column;
   gap: 12px;
   padding: 22px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
-  background: #ffffff;
+  background: rgba(24, 12, 58, 0.86);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .admin-projects__summary-card span {
-  color: #64748b;
+  color: #b3a9e6;
   font-size: 14px;
 }
 
 .admin-projects__summary-card strong {
-  color: #202938;
+  color: #f6f3ff;
   font-size: 30px;
 }
 
@@ -220,15 +234,15 @@
 }
 
 .admin-projects__message--error {
-  border: 1px solid #fecaca;
-  background: #fef2f2;
-  color: #b91c1c;
+  border: 1px solid rgba(255, 77, 125, 0.42);
+  background: rgba(255, 77, 125, 0.16);
+  color: #ff8fb0;
 }
 
 .admin-projects__message--success {
-  border: 1px solid #bbf7d0;
-  background: #f0fdf4;
-  color: #166534;
+  border: 1px solid rgba(52, 224, 160, 0.42);
+  background: rgba(52, 224, 160, 0.16);
+  color: #6ee7b7;
 }
 
 /* Projects list heading */
@@ -241,7 +255,7 @@
 }
 
 .admin-projects__count {
-  color: #64748b;
+  color: #b3a9e6;
   font-size: 13px;
   white-space: nowrap;
 }
@@ -261,14 +275,14 @@
 .admin-projects__table th,
 .admin-projects__table td {
   padding: 14px 12px;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid rgba(176, 140, 255, 0.26);
   vertical-align: top;
   font-size: 14px;
 }
 
 .admin-projects__table th {
-  background: #f8fafc;
-  color: #475569;
+  background: rgba(34, 18, 78, 0.78);
+  color: #e4dfff;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -288,19 +302,19 @@
 }
 
 .admin-projects__status--active {
-  background: #dcfce7;
-  color: #166534;
+  background: rgba(52, 224, 160, 0.16);
+  color: #6ee7b7;
 }
 
 .admin-projects__status--archived {
-  background: #e2e8f0;
-  color: #475569;
+  background: rgba(48, 26, 104, 0.55);
+  color: #e4dfff;
 }
 
 /* Empty/loading state */
 .admin-projects__empty {
   padding: 32px 16px;
-  color: #64748b;
+  color: #b3a9e6;
   text-align: center;
 }
 
@@ -342,3 +356,21 @@
   gap: 8px;
   flex-wrap: wrap;
 }
+
+
+/* Enclave theme fix: project table View Details / Archive actions. */
+.admin-projects .admin-projects__row-actions .admin-projects__primary-button,
+.admin-projects .admin-projects__row-actions .admin-projects__archived-button {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 32px; padding: 7px 12px; margin: 2px 3px 2px 0;
+  border: 1px solid rgba(255,255,255,.28); border-radius: 999px;
+  color: #fff; background: linear-gradient(180deg,#d23cf2 0%,#7f2fe6 100%);
+  font-family: inherit; font-size: 12px; font-weight: 700; line-height: 1.2;
+  white-space: nowrap; cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 3px 0 #4b1090, 0 7px 15px -7px rgba(214,0,220,.55);
+  transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
+}
+.admin-projects .admin-projects__row-actions .admin-projects__archived-button { background: rgba(24,12,58,.9); border-color: rgba(193,59,240,.65); color: #eadfff; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+.admin-projects .admin-projects__row-actions .admin-projects__primary-button:hover:not(:disabled),
+.admin-projects .admin-projects__row-actions .admin-projects__archived-button:hover:not(:disabled) { background: linear-gradient(180deg,#e04bff 0%,#9a35f5 100%); color: #fff; filter: brightness(1.05); transform: translateY(-1px); }
+.admin-projects .admin-projects__row-actions button:disabled { opacity: .58; cursor: not-allowed; }

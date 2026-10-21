@@ -1,7 +1,7 @@
 
 .admin-settings {
   padding: 28px;
-  color: #1f2937;
+  color: #f6f3ff;
 }
 
 .admin-settings__header {
@@ -16,7 +16,7 @@
 
 .admin-settings__header p {
   margin: 0;
-  color: #6b7280;
+  color: #b3a9e6;
   line-height: 1.6;
 }
 
@@ -29,9 +29,12 @@
 
 .admin-settings__tabs,
 .admin-settings__content {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: rgba(24, 12, 58, 0.86);
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .admin-settings__tabs {
@@ -46,19 +49,19 @@
   border: none;
   border-radius: 8px;
   background: transparent;
-  color: #4b5563;
+  color: #e4dfff;
   text-align: left;
   font-size: 14px;
   cursor: pointer;
 }
 
 .admin-settings__tabs button:hover {
-  background: #f3f4f6;
+  background: rgba(34, 18, 78, 0.78);
 }
 
 .admin-settings__tabs button.active {
-  background: #eef2ff;
-  color: #4338ca;
+  background: rgba(34, 18, 78, 0.78);
+  color: #7fd8ff;
   font-weight: 600;
 }
 
@@ -73,17 +76,17 @@
 }
 
 .admin-settings__content p {
-  color: #6b7280;
+  color: #b3a9e6;
   line-height: 1.6;
 }
 
 .admin-settings__notice {
   margin-top: 20px;
   padding: 16px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 8px;
-  background: #f9fafb;
-  color: #4b5563;
+  background: rgba(34, 18, 78, 0.78);
+  color: #e4dfff;
   line-height: 1.6;
 }
 

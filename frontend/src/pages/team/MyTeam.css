@@ -10,14 +10,14 @@
 
 .my-team-header h1 {
   margin: 0;
-  color: #111827;
+  color: #f6f3ff;
   font-size: 30px;
   font-weight: 700;
 }
 
 .my-team-header p {
   margin: 8px 0 0;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 15px;
 }
 
@@ -28,10 +28,13 @@
 .my-team-card {
   margin-bottom: 24px;
   padding: 24px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: rgba(24, 12, 58, 0.86);
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 8px rgba(4, 0, 20, 0.128);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .my-team-card-header {
@@ -40,14 +43,14 @@
 
 .my-team-card-header h2 {
   margin: 0;
-  color: #111827;
+  color: #f6f3ff;
   font-size: 20px;
   font-weight: 650;
 }
 
 .my-team-card-header p {
   margin: 6px 0 0;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 14px;
 }
 
@@ -77,7 +80,7 @@
   border: none;
   border-radius: 8px;
 
-  background: #2563eb;
+  background: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
   color: #ffffff;
 
   font-size: 14px;
@@ -91,11 +94,17 @@
     background 0.2s ease,
     box-shadow 0.2s ease,
     transform 0.1s ease;
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .my-team-add-button:hover {
-  background: #1d4ed8;
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+  background: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
+  box-shadow: 0 4px 10px rgba(200, 40, 230, 0.3);
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .my-team-add-button:active {
@@ -104,7 +113,7 @@
 
 .my-team-add-button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 3px rgba(200, 40, 230, 0.225);
 }
 
 .my-team-add-button:disabled {
@@ -125,7 +134,7 @@
 }
 
 .my-team-selector label {
-  color: #374151;
+  color: #e4dfff;
   font-size: 14px;
   font-weight: 600;
 }
@@ -133,19 +142,21 @@
 .my-team-selector select {
   width: 100%;
   padding: 11px 12px;
-  border: 1px solid #d1d5db;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 8px;
-  background: #ffffff;
-  color: #111827;
+  background: rgba(24, 12, 58, 0.86);
+  color: #f6f3ff;
   font-size: 14px;
   outline: none;
   cursor: pointer;
   box-sizing: border-box;
+  /* enclave 3D depth */
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.07), 0 1px 0 rgba(176, 140, 255, 0.12);
 }
 
 .my-team-selector select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: #c13bf0;
+  box-shadow: 0 0 0 3px rgba(200, 40, 230, 0.15);
 }
 
 /* ================================
@@ -165,9 +176,9 @@
 
 .my-team-table th {
   padding: 13px 14px;
-  border-bottom: 1px solid #e5e7eb;
-  background: #f9fafb;
-  color: #6b7280;
+  border-bottom: 1px solid rgba(176, 140, 255, 0.26);
+  background: rgba(34, 18, 78, 0.78);
+  color: #b3a9e6;
   font-size: 12px;
   font-weight: 700;
   text-align: left;
@@ -178,8 +189,8 @@
 
 .my-team-table td {
   padding: 15px 14px;
-  border-bottom: 1px solid #f1f5f9;
-  color: #374151;
+  border-bottom: 1px solid rgba(176, 140, 255, 0.26);
+  color: #e4dfff;
   font-size: 14px;
   vertical-align: middle;
 }
@@ -189,7 +200,7 @@
 }
 
 .my-team-table tbody tr:hover {
-  background: #fafafa;
+  background: rgba(34, 18, 78, 0.78);
 }
 
 /* ================================
@@ -215,15 +226,15 @@
 
   border-radius: 50%;
 
-  background: #eff6ff;
-  color: #2563eb;
+  background: rgba(34, 18, 78, 0.78);
+  color: #7fd8ff;
 
   font-size: 15px;
   font-weight: 700;
 }
 
 .my-team-member strong {
-  color: #111827;
+  color: #f6f3ff;
   font-size: 14px;
   font-weight: 600;
 }
@@ -236,21 +247,23 @@
   min-width: 120px;
   padding: 8px 10px;
 
-  border: 1px solid #d1d5db;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 7px;
 
-  background: #ffffff;
-  color: #374151;
+  background: rgba(24, 12, 58, 0.86);
+  color: #e4dfff;
 
   font-size: 13px;
 
   outline: none;
   cursor: pointer;
+  /* enclave 3D depth */
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.07), 0 1px 0 rgba(176, 140, 255, 0.12);
 }
 
 .my-team-table td select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+  border-color: #c13bf0;
+  box-shadow: 0 0 0 3px rgba(200, 40, 230, 0.12);
 }
 
 .my-team-table td select:disabled {
@@ -275,13 +288,13 @@
 }
 
 .my-team-status.active {
-  background: #ecfdf3;
-  color: #166534;
+  background: rgba(52, 224, 160, 0.16);
+  color: #6ee7b7;
 }
 
 .my-team-status.inactive {
-  background: #f3f4f6;
-  color: #6b7280;
+  background: rgba(34, 18, 78, 0.78);
+  color: #b3a9e6;
 }
 
 /* ================================
@@ -291,11 +304,11 @@
 .my-team-remove-button {
   padding: 8px 12px;
 
-  border: 1px solid #fecaca;
+  border: 1px solid rgba(255, 77, 125, 0.42);
   border-radius: 7px;
 
-  background: #ffffff;
-  color: #dc2626;
+  background: rgba(24, 12, 58, 0.86);
+  color: #ff8fb0;
 
   font-size: 13px;
   font-weight: 600;
@@ -308,8 +321,8 @@
 }
 
 .my-team-remove-button:hover {
-  background: #fef2f2;
-  border-color: #fca5a5;
+  background: rgba(255, 77, 125, 0.16);
+  border-color: rgba(255, 77, 125, 0.42);
 }
 
 .my-team-remove-button:disabled {
@@ -331,15 +344,15 @@
 }
 
 .my-team-error {
-  border: 1px solid #fecaca;
-  background: #fef2f2;
-  color: #b91c1c;
+  border: 1px solid rgba(255, 77, 125, 0.42);
+  background: rgba(255, 77, 125, 0.16);
+  color: #ff8fb0;
 }
 
 .my-team-success {
-  border: 1px solid #bbf7d0;
-  background: #f0fdf4;
-  color: #166534;
+  border: 1px solid rgba(52, 224, 160, 0.42);
+  background: rgba(52, 224, 160, 0.16);
+  color: #6ee7b7;
 }
 
 /* ================================
@@ -348,7 +361,7 @@
 
 .my-team-loading {
   margin: 0;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 14px;
 }
 
@@ -356,11 +369,11 @@
   margin: 0;
   padding: 20px;
 
-  border: 1px dashed #d1d5db;
+  border: 1px dashed rgba(176, 140, 255, 0.26);
   border-radius: 8px;
 
-  background: #f9fafb;
-  color: #6b7280;
+  background: rgba(34, 18, 78, 0.78);
+  color: #b3a9e6;
 
   font-size: 14px;
   text-align: center;

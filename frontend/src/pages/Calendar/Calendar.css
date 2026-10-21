@@ -1,7 +1,7 @@
 .calendar-page {
   padding: 32px;
   min-height: 100%;
-  background: #f9fafb;
+  background: rgba(34, 18, 78, 0.78);
 }
 
 /* =========================
@@ -18,14 +18,14 @@
 
 .calendar-header h1 {
   margin: 0;
-  color: #111827;
+  color: #f6f3ff;
   font-size: 28px;
   font-weight: 700;
 }
 
 .calendar-header p {
   margin: 8px 0 0;
-  color: #6b7280;
+  color: #b3a9e6;
 }
 
 /* =========================
@@ -40,7 +40,7 @@
 }
 
 .calendar-project-selector label {
-  color: #374151;
+  color: #e4dfff;
   font-size: 14px;
   font-weight: 600;
 }
@@ -48,20 +48,21 @@
 .calendar-project-selector select {
   min-width: 240px;
   padding: 9px 12px;
-  border: 1px solid #d1d5db;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 8px;
-  background: #ffffff;
-  color: #111827;
+  background: rgba(24, 12, 58, 0.86);
+  color: #f6f3ff;
   font-size: 14px;
   cursor: pointer;
   outline: none;
+  /* enclave 3D depth */
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.07), 0 1px 0 rgba(176, 140, 255, 0.12);
 }
 
 .calendar-project-selector select:focus {
-  border-color: #2563eb;
-  box-shadow:
-    0 0 0 3px
-    rgba(37, 99, 235, 0.1);
+  border-color: #c13bf0;
+  box-shadow: 0 0 0 3px
+    rgba(200, 40, 230, 0.15);
 }
 
 /* =========================
@@ -72,15 +73,21 @@
   border: none;
   border-radius: 8px;
   padding: 10px 16px;
-  background: #2563eb;
+  background: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .calendar-today-button:hover {
-  background: #1d4ed8;
+  background: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 /* =========================
@@ -91,8 +98,8 @@
   margin-bottom: 16px;
   padding: 12px 16px;
   border-radius: 8px;
-  background: #fee2e2;
-  color: #b91c1c;
+  background: rgba(255, 77, 125, 0.16);
+  color: #ff8fb0;
   font-size: 14px;
 }
 
@@ -102,12 +109,14 @@
 
 .calendar-card {
   overflow: hidden;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
-  background: #ffffff;
-  box-shadow:
-    0 1px 3px
-    rgba(0, 0, 0, 0.05);
+  background: rgba(24, 12, 58, 0.86);
+  box-shadow: 0 1px 3px
+    rgba(4, 0, 20, 0.16);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 /* =========================
@@ -120,14 +129,14 @@
   justify-content: center;
   gap: 20px;
   padding: 18px 20px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid rgba(176, 140, 255, 0.26);
 }
 
 .calendar-toolbar h2 {
   min-width: 180px;
   margin: 0;
   text-align: center;
-  color: #111827;
+  color: #f6f3ff;
   font-size: 18px;
   font-weight: 700;
 }
@@ -138,17 +147,17 @@
   justify-content: center;
   width: 34px;
   height: 34px;
-  border: 1px solid #d1d5db;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 8px;
-  background: #ffffff;
-  color: #374151;
+  background: rgba(24, 12, 58, 0.86);
+  color: #e4dfff;
   font-size: 24px;
   line-height: 1;
   cursor: pointer;
 }
 
 .calendar-toolbar button:hover {
-  background: #f3f4f6;
+  background: rgba(34, 18, 78, 0.78);
 }
 
 /* =========================
@@ -159,14 +168,14 @@
   display: grid;
   grid-template-columns:
     repeat(7, minmax(0, 1fr));
-  border-bottom: 1px solid #e5e7eb;
-  background: #f9fafb;
+  border-bottom: 1px solid rgba(176, 140, 255, 0.26);
+  background: rgba(34, 18, 78, 0.78);
 }
 
 .calendar-weekdays div {
   padding: 12px 8px;
   text-align: center;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
@@ -185,9 +194,9 @@
 .calendar-day {
   min-height: 130px;
   padding: 10px;
-  border-right: 1px solid #e5e7eb;
-  border-bottom: 1px solid #e5e7eb;
-  background: #ffffff;
+  border-right: 1px solid rgba(176, 140, 255, 0.26);
+  border-bottom: 1px solid rgba(176, 140, 255, 0.26);
+  background: rgba(24, 12, 58, 0.86);
 }
 
 .calendar-day:nth-child(7n) {
@@ -195,16 +204,16 @@
 }
 
 .calendar-day-outside {
-  background: #f9fafb;
+  background: rgba(34, 18, 78, 0.78);
 }
 
 .calendar-day-outside
   .calendar-day-number {
-  color: #c4c7ce;
+  color: #c9c1f0;
 }
 
 .calendar-day-today {
-  background: #eff6ff;
+  background: rgba(34, 18, 78, 0.78);
 }
 
 /* =========================
@@ -219,14 +228,14 @@
   height: 26px;
   margin-bottom: 8px;
   border-radius: 50%;
-  color: #374151;
+  color: #e4dfff;
   font-size: 13px;
   font-weight: 600;
 }
 
 .calendar-day-today
   .calendar-day-number {
-  background: #2563eb;
+  background: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
   color: #ffffff;
 }
 
@@ -245,21 +254,24 @@
   flex-direction: column;
   width: 100%;
   padding: 7px 8px;
-  border: 1px solid #dbeafe;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 6px;
-  background: #eff6ff;
+  background: rgba(34, 18, 78, 0.78);
   text-align: left;
   cursor: pointer;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .calendar-task:hover {
-  border-color: #93c5fd;
-  background: #dbeafe;
+  border-color: rgba(139, 92, 246, 0.42);
+  background: rgba(48, 26, 104, 0.55);
 }
 
 .calendar-task-title {
   overflow: hidden;
-  color: #1e3a8a;
+  color: #7fd8ff;
   font-size: 12px;
   font-weight: 600;
   line-height: 1.4;
@@ -269,7 +281,7 @@
 
 .calendar-task-meta {
   margin-top: 3px;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 10px;
   font-weight: 600;
 }
@@ -281,7 +293,7 @@
 .calendar-loading {
   padding: 60px 20px;
   text-align: center;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 14px;
 }
 
@@ -291,12 +303,12 @@
 
 .calendar-summary {
   margin-top: 16px;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 13px;
 }
 
 .calendar-summary strong {
-  color: #374151;
+  color: #e4dfff;
 }
 
 /* =========================
@@ -365,19 +377,22 @@
   gap: 4px;
   margin-bottom: 20px;
   padding: 12px 16px;
-  border: 1px solid #dbeafe;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 10px;
-  background: #eff6ff;
+  background: rgba(34, 18, 78, 0.78);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .calendar-sprint-info strong {
-  color: #1e3a8a;
+  color: #7fd8ff;
   font-size: 14px;
   font-weight: 700;
 }
 
 .calendar-sprint-info span {
-  color: #4b5563;
+  color: #e4dfff;
   font-size: 13px;
   line-height: 1.5;
 }
@@ -389,12 +404,14 @@
 .calendar-section {
   margin-top: 24px;
   padding: 20px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
-  background: #ffffff;
-  box-shadow:
-    0 1px 3px
-    rgba(0, 0, 0, 0.04);
+  background: rgba(24, 12, 58, 0.86);
+  box-shadow: 0 1px 3px
+    rgba(4, 0, 20, 0.128);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .calendar-section-header {
@@ -407,14 +424,14 @@
 
 .calendar-section-header h2 {
   margin: 0;
-  color: #111827;
+  color: #f6f3ff;
   font-size: 17px;
   font-weight: 700;
 }
 
 .calendar-section-header p {
   margin: 5px 0 0;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 13px;
 }
 
@@ -426,8 +443,8 @@
   height: 28px;
   padding: 0 8px;
   border-radius: 999px;
-  background: #eff6ff;
-  color: #1d4ed8;
+  background: rgba(34, 18, 78, 0.78);
+  color: #7fd8ff;
   font-size: 12px;
   font-weight: 700;
 }
@@ -444,28 +461,30 @@
   gap: 18px;
   width: 100%;
   padding: 14px 16px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 9px;
-  background: #ffffff;
+  background: rgba(24, 12, 58, 0.86);
   text-align: left;
   cursor: pointer;
   transition:
     border-color 0.15s ease,
     background-color 0.15s ease,
     box-shadow 0.15s ease;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .calendar-deadline-card:hover {
-  border-color: #bfdbfe;
-  background: #f8fbff;
-  box-shadow:
-    0 2px 6px
-    rgba(0, 0, 0, 0.05);
+  border-color: rgba(139, 92, 246, 0.42);
+  background: rgba(24, 12, 58, 0.86);
+  box-shadow: 0 2px 6px
+    rgba(4, 0, 20, 0.16);
 }
 
 .calendar-deadline-date {
   min-width: 90px;
-  color: #2563eb;
+  color: #7fd8ff;
   font-size: 13px;
   font-weight: 700;
 }
@@ -477,22 +496,22 @@
 }
 
 .calendar-deadline-content strong {
-  color: #111827;
+  color: #f6f3ff;
   font-size: 14px;
   font-weight: 600;
 }
 
 .calendar-deadline-content span {
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 12px;
 }
 
 .calendar-section-empty {
   padding: 18px;
-  border: 1px dashed #d1d5db;
+  border: 1px dashed rgba(176, 140, 255, 0.26);
   border-radius: 8px;
-  background: #f9fafb;
-  color: #9ca3af;
+  background: rgba(34, 18, 78, 0.78);
+  color: #c9c1f0;
   text-align: center;
   font-size: 13px;
 }
@@ -502,27 +521,27 @@
    ========================= */
 
 .calendar-overdue-section {
-  border-color: #fecaca;
+  border-color: rgba(255, 77, 125, 0.42);
 }
 
 .calendar-overdue-count {
-  background: #fee2e2;
-  color: #b91c1c;
+  background: rgba(255, 77, 125, 0.16);
+  color: #ff8fb0;
 }
 
 .calendar-overdue-card {
-  border-color: #fecaca;
-  background: #fffafa;
+  border-color: rgba(255, 77, 125, 0.42);
+  background: rgba(24, 12, 58, 0.86);
 }
 
 .calendar-overdue-card:hover {
-  border-color: #fca5a5;
-  background: #fff5f5;
+  border-color: rgba(255, 77, 125, 0.42);
+  background: rgba(255, 77, 125, 0.16);
 }
 
 .calendar-overdue-card
   .calendar-deadline-date {
-  color: #dc2626;
+  color: #ff8fb0;
 }
 
 /* =========================

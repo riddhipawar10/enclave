@@ -13,8 +13,8 @@
 .loading-spinner__circle {
   width: 36px;
   height: 36px;
-  border: 3px solid #e0e3ea;
-  border-top-color: #4a6cf7;
+  border: 3px solid rgba(176, 140, 255, 0.26);
+  border-top-color: #c13bf0;
   border-radius: 50%;
   animation: loading-spinner-rotate 0.8s linear infinite;
 }
@@ -22,7 +22,7 @@
 .loading-spinner__message {
   margin: 0;
   font-size: 13px;
-  color: #6b6b6b;
+  color: #b3a9e6;
   text-align: center;
 }
 

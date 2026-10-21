@@ -9,16 +9,16 @@
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background-color: #f5f6fa;
+  background-color: rgba(34, 18, 78, 0.78);
   box-sizing: border-box;
 }
 
 .auth-layout__card {
   width: 100%;
   max-width: 400px;
-  background-color: #ffffff;
+  background-color: rgba(24, 12, 58, 0.86);
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(4, 0, 20, 0.256);
   padding: 32px 28px;
   box-sizing: border-box;
 }
@@ -27,14 +27,14 @@
   margin: 0 0 8px 0;
   font-size: 24px;
   font-weight: 600;
-  color: #1a1a1a;
+  color: #f6f3ff;
   text-align: center;
 }
 
 .auth-layout__subtitle {
   margin: 0 0 24px 0;
   font-size: 14px;
-  color: #6b6b6b;
+  color: #b3a9e6;
   text-align: center;
 }
 

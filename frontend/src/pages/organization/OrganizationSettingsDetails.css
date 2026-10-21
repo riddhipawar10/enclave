@@ -4,7 +4,7 @@
   max-width: 100%;
   box-sizing: border-box;
   padding: 24px 28px;
-  color: #111827;
+  color: #f6f3ff;
 }
 
 .organization-settings-details-page > button {
@@ -14,21 +14,21 @@
   padding: 0;
   border: none;
   background: transparent;
-  color: #2563eb;
+  color: #7fd8ff;
   font-size: 13px;
   cursor: pointer;
 }
 
 .organization-settings-details-page h2 {
   margin: 0 0 8px;
-  color: #111827;
+  color: #f6f3ff;
   font-size: 20px;
   font-weight: 700;
 }
 
 .organization-settings-details-page > p {
   margin: 0 0 24px;
-  color: #64748b;
+  color: #b3a9e6;
   font-size: 14px;
 }
 
@@ -38,9 +38,12 @@
   gap: 20px;
   max-width: 720px;
   padding: 24px;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: rgba(24, 12, 58, 0.86);
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .organization-settings-details-page form > div {
@@ -50,7 +53,7 @@
 }
 
 .organization-settings-details-page label {
-  color: #334155;
+  color: #e4dfff;
   font-size: 13px;
   font-weight: 600;
 }
@@ -59,22 +62,24 @@
   width: 100%;
   box-sizing: border-box;
   padding: 10px 12px;
-  border: 1px solid #d1d5db;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 6px;
-  background: #ffffff;
-  color: #111827;
+  background: rgba(24, 12, 58, 0.86);
+  color: #f6f3ff;
   font: inherit;
   font-size: 14px;
   outline: none;
+  /* enclave 3D depth */
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.07), 0 1px 0 rgba(176, 140, 255, 0.12);
 }
 
 .organization-settings-details-page input[type="text"]:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+  border-color: #c13bf0;
+  box-shadow: 0 0 0 2px rgba(200, 40, 230, 0.18);
 }
 
 .organization-settings-details-page small {
-  color: #64748b;
+  color: #b3a9e6;
   font-size: 12px;
 }
 
@@ -88,7 +93,7 @@
   width: 16px;
   height: 16px;
   margin: 0;
-  accent-color: #2563eb;
+  accent-color: #7fd8ff;
 }
 
 .organization-settings-details-page form > div:has(input[type="checkbox"]) label {
@@ -100,18 +105,24 @@
 .organization-settings-details-page form > button {
   align-self: flex-start;
   padding: 10px 18px;
-  border: 1px solid #2563eb;
+  border: 1px solid #c13bf0;
   border-radius: 7px;
-  background: #2563eb;
+  background: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
   color: #ffffff;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .organization-settings-details-page form > button:hover {
-  background: #1d4ed8;
-  border-color: #1d4ed8;
+  background: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
+  border-color: #c13bf0;
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .organization-settings-details-page form > button:disabled {
@@ -121,7 +132,7 @@
 
 .organization-settings-details-page [role="status"] {
   margin: 0 0 16px;
-  color: #047857;
+  color: #6ee7b7;
   font-size: 13px;
 }
 

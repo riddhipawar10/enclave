@@ -5,7 +5,7 @@
 .project-details {
   padding: 32px;
   min-height: 100%;
-  background: #f9fafb;
+  background: rgba(34, 18, 78, 0.78);
   box-sizing: border-box;
 }
 
@@ -21,7 +21,7 @@
   border: none;
   background: transparent;
 
-  color: #2563eb;
+  color: #7fd8ff;
 
   padding: 0;
   margin: 0 0 24px;
@@ -35,12 +35,12 @@
 }
 
 .project-details-back-button:hover {
-  color: #1d4ed8;
+  color: #7fd8ff;
   text-decoration: underline;
 }
 
 .project-details-back-button:focus-visible {
-  outline: 2px solid #93c5fd;
+  outline: 2px solid rgba(139, 92, 246, 0.42);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -58,14 +58,17 @@
   padding: 28px;
   margin-bottom: 24px;
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
 
-  background: #ffffff;
+  background: rgba(24, 12, 58, 0.86);
 
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 8px rgba(4, 0, 20, 0.128);
 
   box-sizing: border-box;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .project-details-header-content {
@@ -80,13 +83,13 @@
   line-height: 1.2;
   font-weight: 700;
 
-  color: #111827;
+  color: #f6f3ff;
 }
 
 .project-details-header p {
   margin: 0;
 
-  color: #6b7280;
+  color: #b3a9e6;
 
   font-size: 14px;
   line-height: 1.6;
@@ -108,7 +111,7 @@
   border: none;
   border-radius: 7px;
 
-  background: #2563eb;
+  background: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
   color: #ffffff;
 
   padding: 9px 16px;
@@ -118,32 +121,36 @@
 
   cursor: pointer;
 
-  box-shadow: 0 1px 2px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 1px 2px rgba(200, 40, 230, 0.225);
 
   transition:
     background-color 0.15s ease,
     transform 0.15s ease,
     box-shadow 0.15s ease;
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .project-details-edit-button:hover {
-  background: #1d4ed8;
+  background: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
 
   transform: translateY(-1px);
 
-  box-shadow:
-    0 4px 10px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 4px 10px rgba(200, 40, 230, 0.3);
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .project-details-edit-button:active {
   transform: translateY(0);
 
-  box-shadow:
-    0 1px 3px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 1px 3px rgba(200, 40, 230, 0.225);
 }
 
 .project-details-edit-button:focus-visible {
-  outline: 2px solid #93c5fd;
+  outline: 2px solid rgba(139, 92, 246, 0.42);
   outline-offset: 2px;
 }
 
@@ -163,12 +170,15 @@
 .project-details-info > div {
   padding: 20px;
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
 
-  background: #ffffff;
+  background: rgba(24, 12, 58, 0.86);
 
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 8px rgba(4, 0, 20, 0.128);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .project-details-info h3 {
@@ -177,7 +187,7 @@
   font-size: 13px;
   font-weight: 600;
 
-  color: #6b7280;
+  color: #b3a9e6;
 }
 
 .project-details-info p {
@@ -186,7 +196,7 @@
   font-size: 16px;
   font-weight: 600;
 
-  color: #111827;
+  color: #f6f3ff;
 }
 
 /* =========================================================
@@ -209,14 +219,17 @@
 
   padding: 24px;
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
 
-  background: #ffffff;
+  background: rgba(24, 12, 58, 0.86);
 
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 8px rgba(4, 0, 20, 0.128);
 
   box-sizing: border-box;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .project-details-section h2 {
@@ -225,13 +238,13 @@
   font-size: 18px;
   font-weight: 700;
 
-  color: #111827;
+  color: #f6f3ff;
 }
 
 .project-details-section p {
   margin: 6px 0 0;
 
-  color: #6b7280;
+  color: #b3a9e6;
 
   font-size: 13px;
   line-height: 1.5;
@@ -269,21 +282,23 @@
 .task-list-item {
   padding: 16px;
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 10px;
 
-  background: #ffffff;
+  background: rgba(24, 12, 58, 0.86);
 
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .task-list-item:hover {
-  border-color: #d1d5db;
+  border-color: rgba(176, 140, 255, 0.26);
 
-  box-shadow:
-    0 2px 8px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 8px rgba(4, 0, 20, 0.128);
 }
 
 .task-list-main h3 {
@@ -292,13 +307,13 @@
   font-size: 15px;
   font-weight: 600;
 
-  color: #111827;
+  color: #f6f3ff;
 }
 
 .task-list-main p {
   margin: 0;
 
-  color: #6b7280;
+  color: #b3a9e6;
 
   font-size: 12px;
   line-height: 1.5;
@@ -313,9 +328,9 @@
   margin-top: 14px;
   padding-top: 12px;
 
-  border-top: 1px solid #f3f4f6;
+  border-top: 1px solid rgba(176, 140, 255, 0.26);
 
-  color: #6b7280;
+  color: #b3a9e6;
 
   font-size: 12px;
 }
@@ -323,12 +338,12 @@
 .task-list-empty {
   padding: 24px;
 
-  border: 1px dashed #d1d5db;
+  border: 1px dashed rgba(176, 140, 255, 0.26);
   border-radius: 10px;
 
   text-align: center;
 
-  color: #6b7280;
+  color: #b3a9e6;
 
   font-size: 13px;
 }
@@ -342,7 +357,7 @@
 
   background: transparent;
 
-  color: #111827;
+  color: #f6f3ff;
 
   font-size: 16px;
   font-weight: 600;
@@ -355,12 +370,12 @@
 }
 
 .task-list-title:hover {
-  color: #2563eb;
+  color: #7fd8ff;
   text-decoration: underline;
 }
 
 .task-list-title:focus-visible {
-  outline: 2px solid #93c5fd;
+  outline: 2px solid rgba(139, 92, 246, 0.42);
   outline-offset: 2px;
   border-radius: 3px;
 }
@@ -404,7 +419,7 @@
   border: none;
   border-radius: 7px;
 
-  background: #2563eb;
+  background: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
   color: #ffffff;
 
   padding: 8px 14px;
@@ -414,22 +429,26 @@
 
   cursor: pointer;
 
-  box-shadow:
-    0 1px 2px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 1px 2px rgba(200, 40, 230, 0.225);
 
   transition:
     background-color 0.15s ease,
     transform 0.15s ease,
     box-shadow 0.15s ease;
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .project-details-action-button:hover {
-  background: #1d4ed8;
+  background: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
 
   transform: translateY(-1px);
 
-  box-shadow:
-    0 4px 10px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 4px 10px rgba(200, 40, 230, 0.3);
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .project-details-action-button:active {
@@ -437,7 +456,7 @@
 }
 
 .project-details-action-button:focus-visible {
-  outline: 2px solid #93c5fd;
+  outline: 2px solid rgba(139, 92, 246, 0.42);
   outline-offset: 2px;
 }
 
@@ -460,21 +479,23 @@
 
   padding: 12px;
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 8px;
 
-  background: #ffffff;
+  background: rgba(24, 12, 58, 0.86);
 
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .project-details-member-card:hover {
-  border-color: #d1d5db;
+  border-color: rgba(176, 140, 255, 0.26);
 
-  box-shadow:
-    0 2px 8px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 8px rgba(4, 0, 20, 0.128);
 }
 
 .project-details-member-avatar {
@@ -489,8 +510,8 @@
 
   border-radius: 50%;
 
-  background: #eef2ff;
-  color: #4a6cf7;
+  background: rgba(34, 18, 78, 0.78);
+  color: #7fd8ff;
 
   font-size: 13px;
   font-weight: 700;
@@ -509,7 +530,7 @@
 .project-details-member-info strong {
   overflow: hidden;
 
-  color: #111827;
+  color: #f6f3ff;
 
   font-size: 13px;
   font-weight: 600;
@@ -521,7 +542,7 @@
 .project-details-member-info span {
   overflow: hidden;
 
-  color: #6b7280;
+  color: #b3a9e6;
 
   font-size: 11px;
 
@@ -541,13 +562,13 @@
 }
 
 .project-details-member-status.active {
-  background: #dcfce7;
-  color: #166534;
+  background: rgba(52, 224, 160, 0.16);
+  color: #6ee7b7;
 }
 
 .project-details-member-status.inactive {
-  background: #fee2e2;
-  color: #991b1b;
+  background: rgba(255, 77, 125, 0.16);
+  color: #ff8fb0;
 }
 
 /* =========================================================
@@ -564,21 +585,23 @@
 .project-details-sprint-card {
   padding: 14px;
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 8px;
 
-  background: #ffffff;
+  background: rgba(24, 12, 58, 0.86);
 
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .project-details-sprint-card:hover {
-  border-color: #d1d5db;
+  border-color: rgba(176, 140, 255, 0.26);
 
-  box-shadow:
-    0 2px 8px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 8px rgba(4, 0, 20, 0.128);
 }
 
 .project-details-sprint-header {
@@ -598,7 +621,7 @@
 
   overflow: hidden;
 
-  color: #111827;
+  color: #f6f3ff;
 
   font-size: 14px;
   font-weight: 600;
@@ -614,8 +637,8 @@
 
   border-radius: 999px;
 
-  background: #fef3c7;
-  color: #92400e;
+  background: rgba(255, 190, 70, 0.16);
+  color: #fcd34d;
 
   font-size: 10px;
   font-weight: 600;
@@ -624,7 +647,7 @@
 .project-details-sprint-card > p {
   margin: 0 0 12px;
 
-  color: #6b7280;
+  color: #b3a9e6;
 
   font-size: 12px;
   line-height: 1.5;
@@ -639,7 +662,7 @@
 
   padding-top: 10px;
 
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid rgba(176, 140, 255, 0.26);
 }
 
 .project-details-sprint-dates div {
@@ -650,7 +673,7 @@
 }
 
 .project-details-sprint-dates small {
-  color: #9ca3af;
+  color: #c9c1f0;
 
   font-size: 10px;
   font-weight: 600;
@@ -659,7 +682,7 @@
 }
 
 .project-details-sprint-dates strong {
-  color: #374151;
+  color: #e4dfff;
 
   font-size: 12px;
   font-weight: 600;
@@ -675,13 +698,15 @@
   margin-top: 24px;
   padding: 28px;
 
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
 
-  background: #ffffff;
+  background: rgba(24, 12, 58, 0.86);
 
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(4, 0, 20, 0.128);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .project-details form > div {
@@ -693,7 +718,7 @@
 
   margin-bottom: 8px;
 
-  color: #374151;
+  color: #e4dfff;
 
   font-size: 14px;
   font-weight: 600;
@@ -708,24 +733,25 @@
 
   padding: 11px 12px;
 
-  border: 1px solid #d1d5db;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 8px;
 
-  background: #ffffff;
-  color: #111827;
+  background: rgba(24, 12, 58, 0.86);
+  color: #f6f3ff;
 
   font-size: 14px;
 
   outline: none;
+  /* enclave 3D depth */
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.07), 0 1px 0 rgba(176, 140, 255, 0.12);
 }
 
 .project-details form input:focus,
 .project-details form textarea:focus,
 .project-details form select:focus {
-  border-color: #2563eb;
+  border-color: #c13bf0;
 
-  box-shadow:
-    0 0 0 3px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 3px rgba(200, 40, 230, 0.15);
 }
 
 .project-details form textarea {
@@ -749,21 +775,27 @@
 .project-details form button[type="button"] {
   margin-right: 10px;
 
-  background: #f3f4f6;
-  color: #374151;
+  background: rgba(34, 18, 78, 0.78);
+  color: #e4dfff;
 }
 
 .project-details form button[type="button"]:hover {
-  background: #e5e7eb;
+  background: rgba(48, 26, 104, 0.55);
 }
 
 .project-details form button[type="submit"] {
-  background: #2563eb;
+  background: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
   color: #ffffff;
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .project-details form button[type="submit"]:hover {
-  background: #1d4ed8;
+  background: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .project-details form button:disabled {

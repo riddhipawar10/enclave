@@ -1,6 +1,6 @@
 .assign-role-page {
   padding: 28px;
-  background-color: #f9fafb;
+  background-color: rgba(34, 18, 78, 0.78);
   min-height: 100%;
   max-width: 560px;
 }
@@ -8,7 +8,7 @@
 .assign-role-back-button {
   background: none;
   border: none;
-  color: #2563eb;
+  color: #7fd8ff;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -23,13 +23,13 @@
 .assign-role-page h2 {
   font-size: 20px;
   font-weight: 700;
-  color: #111827;
+  color: #f6f3ff;
   margin: 0 0 16px 0;
 }
 
 .assign-role-denied {
-  background-color: #fef2f2;
-  color: #b91c1c;
+  background-color: rgba(255, 77, 125, 0.16);
+  color: #ff8fb0;
   padding: 14px 16px;
   border-radius: 8px;
   font-size: 14px;
@@ -37,8 +37,8 @@
 }
 
 .assign-role-success {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: rgba(52, 224, 160, 0.16);
+  color: #6ee7b7;
   padding: 10px 14px;
   border-radius: 8px;
   font-size: 14px;
@@ -49,11 +49,14 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background-color: #ffffff;
-  border: 1px solid #e5e7eb;
+  background-color: rgba(24, 12, 58, 0.86);
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
   padding: 28px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 2px rgba(4, 0, 20, 0.128);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .assign-role-field {
@@ -65,36 +68,39 @@
 .assign-role-field label {
   font-size: 13px;
   font-weight: 600;
-  color: #374151;
+  color: #e4dfff;
 }
 
 .assign-role-field select {
   padding: 10px 12px;
-  border: 1px solid #d1d5db;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 8px;
   font-size: 14px;
-  color: #111827;
-  background-color: #fff;
+  color: #f6f3ff;
+  background-color: rgba(24, 12, 58, 0.86);
+  /* enclave 3D depth */
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.07), 0 1px 0 rgba(176, 140, 255, 0.12);
 }
 
 .assign-role-field select:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  border-color: #c13bf0;
+  box-shadow: 0 0 0 3px rgba(200, 40, 230, 0.18);
 }
 
 .assign-role-field select:disabled {
-  background-color: #f3f4f6;
+  background-color: rgba(34, 18, 78, 0.78);
   cursor: not-allowed;
 }
 
 .assign-role-hint {
   font-size: 12px;
-  color: #9ca3af;
+  color: #c9c1f0;
 }
 
 .assign-role-submit-button {
-  background-color: #2563eb;
+  background-color: #a22bdc;
+  background-image: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -103,13 +109,20 @@
   font-weight: 500;
   cursor: pointer;
   width: fit-content;
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .assign-role-submit-button:hover:not(:disabled) {
-  background-color: #1d4ed8;
+  background-color: #a22bdc;
+  background-image: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .assign-role-submit-button:disabled {
-  background-color: #93b4f0;
+  background-color: rgba(139, 92, 246, 0.24);
   cursor: not-allowed;
 }

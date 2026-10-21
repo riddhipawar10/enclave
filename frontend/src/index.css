@@ -5,26 +5,30 @@
    shared resets, typography, and base element defaults so the
    whole app looks consistent. */
 
-/* ---------- Design tokens ---------- */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap");
+@import "./enclave-3d.css";
+
+/* ---------- Design tokens (Enclave 3D palette) ---------- */
 :root {
-  --color-primary: #4a6cf7;
-  --color-primary-dark: #3a5ce0;
-  --color-bg: #f5f6fa;
-  --color-surface: #ffffff;
-  --color-text: #1a1a1a;
-  --color-text-muted: #6b6b6b;
-  --color-border: #d0d3d9;
-  --color-error: #b3261e;
-  --color-error-bg: #fdecea;
-  --color-error-border: #f3c1bd;
+  color-scheme: dark;
+  --color-primary: #c13bf0;
+  --color-primary-dark: #9a35f5;
+  --color-bg: #12002e;
+  --color-surface: rgba(24, 12, 58, 0.86);
+  --color-text: #f6f3ff;
+  --color-text-muted: #b3a9e6;
+  --color-border: rgba(176, 140, 255, 0.26);
+  --color-error: #ff8fb0;
+  --color-error-bg: rgba(255, 77, 125, 0.14);
+  --color-error-border: rgba(255, 77, 125, 0.42);
 
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-md: 12px;
+  --radius-lg: 22px;
 
-  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.08);
-  --shadow-header: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
+  --shadow-header: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
 
-  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  --font-family-base: "Lato", "Segoe UI", system-ui, -apple-system, Roboto,
     Helvetica, Arial, sans-serif;
 }
 
@@ -44,7 +48,7 @@ body,
 body {
   margin: 0;
   font-family: var(--font-family-base);
-  background-color: var(--color-bg);
+  background-color: transparent;
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -70,7 +74,7 @@ h4 {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 26px;
 }
 
 h2 {
@@ -113,19 +117,19 @@ input {
 
 input:focus {
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.15);
+  box-shadow: 0 0 0 3px rgba(214, 0, 220, 0.25);
 }
 
 input:disabled {
-  background-color: #f2f3f5;
-  color: #9a9a9a;
+  background-color: rgba(255, 255, 255, 0.06);
+  color: rgba(179, 169, 230, 0.55);
   cursor: not-allowed;
 }
 
 label {
   font-size: 14px;
   font-weight: 500;
-  color: #333333;
+  color: #c9c1f0;
 }
 
 form {
@@ -155,23 +159,39 @@ button:disabled {
   font-size: 14px;
   color: #ffffff;
   background-color: var(--color-primary);
+  background-image: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  letter-spacing: 0.04em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45),
+    0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: var(--color-primary-dark);
+  background-image: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5), 0 2px 0 rgba(40, 0, 90, 0.9),
+    0 6px 12px -4px rgba(214, 0, 220, 0.5);
 }
 
 .btn-secondary {
   padding: 8px 16px;
   font-size: 13px;
-  color: var(--color-primary);
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-primary);
+  color: #f0dcff;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(214, 120, 255, 0.75);
+  border-radius: 999px;
 }
 
 .btn-secondary:hover:not(:disabled) {
   background-color: var(--color-primary);
   color: #ffffff;
+  box-shadow: inset 0 0 18px rgba(255, 60, 255, 0.35), 0 0 26px -2px rgba(255, 60, 255, 0.6);
 }
 
 /* ---------- Auth card (shared shape for Login/Register/ForgotPassword) ---------- */
@@ -231,5 +251,68 @@ button:disabled {
 
   h2 {
     font-size: 18px;
+  }
+}
+
+/* ---------- Enclave auth submit buttons (global entry stylesheet) ----------
+   Login.css and Register.css are not imported by the current auth components,
+   so these scoped rules ensure the existing buttons receive the Enclave theme. */
+.login-page__submit,
+.register-page__submit {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  margin: 12px 0 0;
+  padding: 12px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 10px;
+  background: linear-gradient(135deg, #e34cff 0%, #b32cf0 48%, #792be5 100%);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.075em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.32), 0 4px 0 #4b168d,
+    0 9px 22px rgba(202, 42, 255, .30);
+  transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.login-page__submit:hover:not(:disabled),
+.register-page__submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #f06aff 0%, #c13cff 48%, #913bfa 100%);
+  filter: brightness(1.06);
+  transform: translateY(-2px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.38), 0 6px 0 #4b168d,
+    0 13px 28px rgba(202, 42, 255, .42);
+}
+.login-page__submit:active:not(:disabled),
+.register-page__submit:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.24), 0 2px 0 #4b168d,
+    0 5px 12px rgba(202, 42, 255, .24);
+}
+.login-page__submit:focus-visible,
+.register-page__submit:focus-visible {
+  outline: 2px solid #f1a1ff;
+  outline-offset: 3px;
+}
+.login-page__submit:disabled,
+.register-page__submit:disabled {
+  background: linear-gradient(135deg, #9b59b6, #6940a0);
+  opacity: .72;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+@media (max-width: 480px) {
+  .login-page__submit,
+  .register-page__submit {
+    min-height: 46px;
+    font-size: 12px;
   }
 }

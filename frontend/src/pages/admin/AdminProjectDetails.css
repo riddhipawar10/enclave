@@ -1,7 +1,7 @@
 
 .admin-project-details {
   padding: 24px;
-  color: #243047;
+  color: #f6f3ff;
 }
 
 .admin-project-details__back {
@@ -11,18 +11,21 @@
   padding: 10px 16px;
   border: none;
   border-radius: 8px;
-  background: #f1f5f9;
-  color: #334155;
+  background: rgba(34, 18, 78, 0.78);
+  color: #e4dfff;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   margin-bottom: 24px;
   transition: background 0.2s ease, color 0.2s ease;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .admin-project-details__back:hover {
-  background: #e2e8f0;
-  color: #1e293b;
+  background: rgba(48, 26, 104, 0.55);
+  color: #f6f3ff;
 }
 
 
@@ -35,7 +38,7 @@
 }
 
 .admin-project-details__eyebrow {
-  color: #64748b;
+  color: #b3a9e6;
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -49,7 +52,7 @@
 }
 
 .admin-project-details__subtitle {
-  color: #64748b;
+  color: #b3a9e6;
   margin-top: 8px;
 }
 
@@ -63,21 +66,24 @@
 }
 
 .admin-project-details__status--active {
-  background: #dcfce7;
-  color: #166534;
+  background: rgba(52, 224, 160, 0.16);
+  color: #6ee7b7;
 }
 
 .admin-project-details__status--archived {
-  background: #e2e8f0;
-  color: #475569;
+  background: rgba(48, 26, 104, 0.55);
+  color: #e4dfff;
 }
 
 .admin-project-details__card {
-  background: #fff;
-  border: 1px solid #e2e8f0;
+  background: rgba(24, 12, 58, 0.86);
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 14px;
   padding: 24px;
-  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 3px 12px rgba(4, 0, 20, 0.128);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .admin-project-details__card h3 {
@@ -99,7 +105,7 @@
 }
 
 .admin-project-details__field > span {
-  color: #64748b;
+  color: #b3a9e6;
   font-size: 13px;
 }
 
@@ -110,7 +116,7 @@
 
 .admin-project-details__field p {
   margin: 0;
-  color: #334155;
+  color: #e4dfff;
   line-height: 1.6;
   overflow-wrap: anywhere;
 }
@@ -128,8 +134,8 @@
 .admin-project-details__error {
   padding: 16px;
   border-radius: 8px;
-  background: #fef2f2;
-  color: #b91c1c;
+  background: rgba(255, 77, 125, 0.16);
+  color: #ff8fb0;
 }
 
 @media (max-width: 640px) {
@@ -166,8 +172,8 @@
   padding: 10px 16px;
   border: none;
   border-radius: 8px;
-  background: #4f46e5;
-  color: #fff;
+  background: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
+  color: #ffffff;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -175,7 +181,7 @@
 }
 
 .admin-project-details__edit:hover {
-  background: #4338ca;
+  background: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
 }
 
 @media (max-width: 600px) {
@@ -187,9 +193,10 @@
 
 .admin-project-details__archive {
   padding: 10px 16px;
-  border: 1px solid #b42318;
+  border: 1px solid #ff4d7d;
   border-radius: 8px;
-  background-color: #b42318;
+  background-color: #a22bdc;
+  background-image: linear-gradient(180deg, #ff4d85 0%, #c81e5a 100%);
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
@@ -198,7 +205,8 @@
 }
 
 .admin-project-details__archive:hover:not(:disabled) {
-  background-color: #8f1d14;
+  background-color: #a22bdc;
+  background-image: linear-gradient(180deg, #ff6a98 0%, #d62861 100%);
 }
 
 .admin-project-details__archive:disabled {
@@ -209,16 +217,16 @@
 .admin-project-details__success {
   margin: 16px 0;
   padding: 12px 16px;
-  border: 1px solid #a7d7b5;
+  border: 1px solid #34e0a0;
   border-radius: 8px;
-  background-color: #edf9f0;
-  color: #176b35;
+  background-color: rgba(52, 224, 160, 0.16);
+  color: #6ee7b7;
 }
 
 .admin-project-details__restore {
   border: none;
   border-radius: 6px;
-  background: #16a34a;
+  background: linear-gradient(180deg, #34dba0 0%, #13a070 100%);
   color: #ffffff;
   padding: 9px 14px;
   font-size: 12px;
@@ -228,7 +236,7 @@
 }
 
 .admin-project-details__restore:hover {
-  background: #15803d;
+  background: linear-gradient(180deg, #46e8b0 0%, #16a877 100%);
 }
 
 .admin-project-details__restore:disabled {

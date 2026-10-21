@@ -1,7 +1,7 @@
 .board-page {
   padding: 32px;
   min-height: 100%;
-  background: #f9fafb;
+  background: rgba(34, 18, 78, 0.78);
 }
 
 /* =========================
@@ -20,12 +20,12 @@
   margin: 0;
   font-size: 28px;
   font-weight: 700;
-  color: #111827;
+  color: #f6f3ff;
 }
 
 .board-header p {
   margin: 8px 0 0;
-  color: #6b7280;
+  color: #b3a9e6;
 }
 
 /* =========================
@@ -41,7 +41,7 @@
 
 .board-project-selector label {
   min-width: 34px;
-  color: #374151;
+  color: #e4dfff;
   font-size: 14px;
   font-weight: 600;
 }
@@ -49,10 +49,10 @@
 .board-project-selector select {
   min-width: 240px;
   padding: 9px 12px;
-  border: 1px solid #d1d5db;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 8px;
-  background: #ffffff;
-  color: #111827;
+  background: rgba(24, 12, 58, 0.86);
+  color: #f6f3ff;
   font-size: 14px;
   cursor: pointer;
   outline: none;
@@ -60,20 +60,22 @@
     border-color 0.15s ease,
     box-shadow 0.15s ease,
     background-color 0.15s ease;
+  /* enclave 3D depth */
+  box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(255, 255, 255, 0.07), 0 1px 0 rgba(176, 140, 255, 0.12);
 }
 
 .board-project-selector select:hover {
-  border-color: #9ca3af;
+  border-color: rgba(176, 140, 255, 0.26);
 }
 
 .board-project-selector select:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: #c13bf0;
+  box-shadow: 0 0 0 3px rgba(200, 40, 230, 0.15);
 }
 
 .board-project-selector select:disabled {
-  background: #f3f4f6;
-  color: #9ca3af;
+  background: rgba(34, 18, 78, 0.78);
+  color: #c9c1f0;
   cursor: not-allowed;
 }
 
@@ -85,7 +87,7 @@
   border: none;
   border-radius: 8px;
   padding: 10px 16px;
-  background: #2563eb;
+  background: linear-gradient(180deg, #d23cf2 0%, #7f2fe6 100%);
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
@@ -93,10 +95,16 @@
   transition:
     background-color 0.15s ease,
     transform 0.15s ease;
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .board-header button:hover {
-  background: #1d4ed8;
+  background: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
+  /* enclave 3D depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), inset 0 -3px 0 rgba(40, 0, 90, 0.45), 0 5px 0 #4b1090, 0 16px 28px -8px rgba(214, 0, 220, 0.6);
+  border-color: rgba(255, 255, 255, 0.28);
 }
 
 .board-header button:active {
@@ -104,7 +112,7 @@
 }
 
 .board-header button:disabled {
-  background: #93c5fd;
+  background: rgba(139, 92, 246, 0.16);
   cursor: not-allowed;
 }
 
@@ -118,19 +126,22 @@
   gap: 4px;
   margin-bottom: 20px;
   padding: 12px 16px;
-  border: 1px solid #dbeafe;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 10px;
-  background: #eff6ff;
+  background: rgba(34, 18, 78, 0.78);
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .board-sprint-info strong {
-  color: #1e3a8a;
+  color: #7fd8ff;
   font-size: 14px;
   font-weight: 700;
 }
 
 .board-sprint-info span {
-  color: #4b5563;
+  color: #e4dfff;
   font-size: 13px;
   line-height: 1.5;
 }
@@ -143,14 +154,14 @@
   margin-bottom: 16px;
   padding: 12px 16px;
   border-radius: 8px;
-  background: #fee2e2;
-  color: #b91c1c;
+  background: rgba(255, 77, 125, 0.16);
+  color: #ff8fb0;
   font-size: 14px;
 }
 
 .board-saving {
   margin-bottom: 16px;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 14px;
 }
 
@@ -168,14 +179,17 @@
 .board-column {
   min-height: 500px;
   padding: 16px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 12px;
-  background: #f3f4f6;
+  background: rgba(34, 18, 78, 0.78);
   transition: background-color 0.15s ease;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .board-column:hover {
-  background: #eef2ff;
+  background: rgba(34, 18, 78, 0.78);
 }
 
 .board-column-header {
@@ -189,7 +203,7 @@
   margin: 0;
   font-size: 14px;
   font-weight: 700;
-  color: #374151;
+  color: #e4dfff;
 }
 
 .board-column-header span {
@@ -200,8 +214,8 @@
   height: 24px;
   padding: 0 6px;
   border-radius: 999px;
-  background: #e5e7eb;
-  color: #374151;
+  background: rgba(48, 26, 104, 0.55);
+  color: #e4dfff;
   font-size: 12px;
   font-weight: 600;
 }
@@ -218,16 +232,16 @@
 
 .board-empty {
   padding: 24px 12px;
-  border: 1px dashed #d1d5db;
+  border: 1px dashed rgba(176, 140, 255, 0.26);
   border-radius: 8px;
   text-align: center;
-  color: #9ca3af;
+  color: #c9c1f0;
   font-size: 13px;
 }
 
 .board-empty h3 {
   margin: 0 0 8px;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 15px;
   font-weight: 600;
 }
@@ -244,21 +258,24 @@
 .board-task-card {
   width: 100%;
   padding: 16px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid rgba(176, 140, 255, 0.26);
   border-radius: 10px;
-  background: #ffffff;
+  background: rgba(24, 12, 58, 0.86);
   text-align: left;
   cursor: grab;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 3px rgba(4, 0, 20, 0.16);
   transition:
     border-color 0.15s ease,
     box-shadow 0.15s ease,
     transform 0.15s ease;
+  /* enclave 3D depth */
+  background-image: linear-gradient(155deg, rgba(150, 100, 255, 0.26) 0%, rgba(80, 30, 170, 0.10) 38%, rgba(10, 0, 40, 0.0) 70%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(224, 70, 255, 0.28), 0 26px 50px -22px rgba(0, 0, 0, 0.85), 0 18px 42px -26px rgba(214, 0, 220, 0.6);
 }
 
 .board-task-card:hover {
-  border-color: #bfdbfe;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  border-color: rgba(139, 92, 246, 0.42);
+  box-shadow: 0 3px 8px rgba(4, 0, 20, 0.256);
 }
 
 .board-task-card:active {
@@ -274,12 +291,12 @@
   margin: 0 0 8px;
   font-size: 15px;
   font-weight: 600;
-  color: #111827;
+  color: #f6f3ff;
 }
 
 .board-task-card p {
   margin: 0;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 13px;
   line-height: 1.5;
 }
@@ -290,8 +307,8 @@
   gap: 8px;
   margin-top: 14px;
   padding-top: 10px;
-  border-top: 1px solid #f3f4f6;
-  color: #6b7280;
+  border-top: 1px solid rgba(176, 140, 255, 0.26);
+  color: #b3a9e6;
   font-size: 12px;
 }
 

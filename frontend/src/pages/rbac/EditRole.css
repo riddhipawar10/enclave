@@ -5,7 +5,7 @@
   margin: 0 auto;
   padding: 28px 32px 40px;
   box-sizing: border-box;
-  color: #111827;
+  color: #f6f3ff;
 }
 
 .edit-role-back-button {
@@ -16,14 +16,14 @@
   padding: 9px 0;
   border: none;
   background: transparent;
-  color: #4f46e5;
+  color: #7fd8ff;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
 
 .edit-role-back-button:hover {
-  color: #3730a3;
+  color: #7fd8ff;
   text-decoration: underline;
 }
 
@@ -33,7 +33,7 @@
 
 .edit-role-header h1 {
   margin: 0 0 8px;
-  color: #111827;
+  color: #f6f3ff;
   font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.6px;
@@ -41,7 +41,7 @@
 
 .edit-role-header p {
   margin: 0;
-  color: #6b7280;
+  color: #b3a9e6;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -59,10 +59,10 @@
   box-sizing: border-box;
   margin: 0 0 20px;
   padding: 13px 16px;
-  border: 1px solid #a7f3d0;
+  border: 1px solid rgba(52, 224, 160, 0.42);
   border-radius: 10px;
-  background: #ecfdf5;
-  color: #047857;
+  background: rgba(52, 224, 160, 0.16);
+  color: #6ee7b7;
   font-size: 14px;
   font-weight: 500;
 }

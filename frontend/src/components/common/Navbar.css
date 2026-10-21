@@ -1,8 +1,8 @@
 /* Navbar.css */
 
 .navbar {
-  background-color: #ffffff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  background-color: rgba(24, 12, 58, 0.86);
+  box-shadow: 0 1px 4px rgba(4, 0, 20, 0.192);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -20,7 +20,7 @@
 .navbar__brand {
   font-size: 20px;
   font-weight: 700;
-  color: #4a6cf7;
+  color: #7fd8ff;
   text-decoration: none;
 }
 
@@ -37,7 +37,7 @@
 .navbar__toggle-bar {
   width: 22px;
   height: 2px;
-  background-color: #333333;
+  background-color: rgba(12, 5, 34, 0.88);
 }
 
 .navbar__links {
@@ -49,33 +49,34 @@
 .navbar__link {
   font-size: 14px;
   font-weight: 500;
-  color: #333333;
+  color: #f6f3ff;
   text-decoration: none;
 }
 
 .navbar__link:hover {
-  color: #4a6cf7;
+  color: #7fd8ff;
 }
 
 .navbar__user {
   font-size: 13px;
-  color: #6b6b6b;
+  color: #b3a9e6;
 }
 
 .navbar__logout {
   padding: 7px 14px;
   font-size: 13px;
   font-weight: 600;
-  color: #4a6cf7;
-  background-color: #ffffff;
-  border: 1px solid #4a6cf7;
+  color: #7fd8ff;
+  background-color: rgba(24, 12, 58, 0.86);
+  border: 1px solid #c13bf0;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
 }
 
 .navbar__logout:hover:not(:disabled) {
-  background-color: #4a6cf7;
+  background-color: #a22bdc;
+  background-image: linear-gradient(180deg, #e04bff 0%, #9a35f5 100%);
   color: #ffffff;
 }
 
@@ -95,12 +96,12 @@
     top: 100%;
     left: 0;
     right: 0;
-    background-color: #ffffff;
+    background-color: rgba(24, 12, 58, 0.86);
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
     padding: 12px 24px 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 8px rgba(4, 0, 20, 0.192);
     display: none;
   }
 
